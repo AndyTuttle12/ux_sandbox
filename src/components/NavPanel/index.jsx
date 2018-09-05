@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Accordian from '../Accordian';
 import './style.css';
 
 export default class Nav extends Component {
@@ -17,7 +18,7 @@ export default class Nav extends Component {
         const { open } = this.state;
         return (
             <div className={`nav-root ${open ? 'open' : 'closed'}`}>
-                <h1>{ open ? '+' : '-' }</h1>
+                <Accordian min={!this.state.open} />
                 <button className='nav-close-btn' onClick={this.handleOpen}>
                     { open ? 'close' : 'open' }
                 </button>

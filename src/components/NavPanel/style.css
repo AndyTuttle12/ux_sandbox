@@ -19,6 +19,7 @@
 
 .nav-close-btn {
   width: 100%;
+  cursor: pointer;
   height: 50px;
   position: absolute;
   bottom: 0px;
