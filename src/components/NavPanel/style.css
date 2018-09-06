@@ -38,14 +38,22 @@
   outline: none;
 }
 
+.home-btn:hover {
+  background-color: #555;
+}
+
+.home-btn:active {
+  background-color: #ddd;
+}
+
 .home-menu {
-  width: 36px;
-  height: 36px;
-  margin: 2px;
+  width: 34px;
+  height: 34px;
+  margin: 3px;
 }
 
 .open {
-  min-width: 300px;
+  min-width: 200px;
 }
 
 .closed {
@@ -63,4 +71,12 @@
   border: 0px;
   outline: none;
   color: #fff;
+}
+
+.nav-close-btn:hover {
+  background-color: #555;
+}
+
+.nav-close-btn:active {
+  background-color: #ddd;
 }
