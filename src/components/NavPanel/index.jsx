@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Accordian from '../Accordian';
 import AppLogo from './images/placeholderApp.svg';
 import AppMenu from './images/placeholderMenu.svg';
+import Device from './images/placeholderDevice.svg';
+import Group from './images/placeholderGroup.svg';
+import Backups from './images/placeholderBackups.svg';
+import Config from './images/placeholderConfig.svg';
 import './style.css';
 
 export default class Nav extends Component {
@@ -22,13 +26,17 @@ export default class Nav extends Component {
             <div className={`nav-root ${open ? 'open' : 'closed'}`}>
                 <div className='nav-header'>
                     <img className='app-logo' src={AppLogo} alt='' />
-                    <span className='app-title'>Manager</span>
-                    <button className='home-btn'>
-                        <img className='home-menu' src={AppMenu} alt='' />
-                    </button>
+                    {open && (
+                        <React.Fragment>
+                            <span className='app-title'>Manager</span>
+                            <button className='home-btn'>
+                                <img className='home-menu' src={AppMenu} alt='' />
+                            </button>
+                        </React.Fragment>
+                    )}
                 </div>
-                <Accordian allowMultipleOpen disabled={!this.state.open}>
-                    <div label='Devices' isOpen>
+                <Accordian disabled={!open}>
+                    <div icon={Device} label='Devices' isOpen>
                         <p>
                             <strong>Name:</strong> Test
                         </p>
@@ -39,7 +47,7 @@ export default class Nav extends Component {
                             <strong>Something:</strong> Else
                         </p>
                     </div>
-                    <div label='Groups'>
+                    <div icon={Group} label='Groups'>
                         <p>
                             <strong>Name:</strong> Test
                         </p>
@@ -50,7 +58,7 @@ export default class Nav extends Component {
                             <strong>Something:</strong> Else
                         </p>
                     </div>
-                    <div label='Backups'>
+                    <div icon={Backups} label='Backups'>
                         <p>
                             <strong>Name:</strong> Test
                         </p>
@@ -61,7 +69,7 @@ export default class Nav extends Component {
                             <strong>Something:</strong> Else
                         </p>
                     </div>
-                    <div label='Config'>
+                    <div icon={Config} label='Config'>
                         <p>
                             <strong>Name:</strong> Test
                         </p>

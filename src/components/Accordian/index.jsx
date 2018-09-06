@@ -54,7 +54,7 @@ export default class Accordion extends Component {
   render() {
     const {
       onClick,
-      props: { children },
+      props: { children, disabled },
       state: { openSections },
     } = this;
 
@@ -64,8 +64,10 @@ export default class Accordion extends Component {
           <AccordionSection
             isOpen={!!openSections[child.props.label]}
             label={child.props.label}
+            icon={child.props.icon}
             onClick={onClick}
             key={child.props.label}
+            disabled={disabled}
           >
             {child.props.children}
           </AccordionSection>

@@ -6,7 +6,9 @@ export default class AccordionSection extends Component {
   static propTypes = {
     children: PropTypes.instanceOf(Object).isRequired,
     isOpen: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool,
     label: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
   };
 
@@ -17,15 +19,16 @@ export default class AccordionSection extends Component {
   render() {
     const {
       onClick,
-      props: { isOpen, label },
+      props: { isOpen, label, disabled, icon },
     } = this;
 
     return (
-      <div>
+      <div className={`accordian-section-root ${isOpen && !disabled && 'open'}`}>
         <div onClick={onClick} className='accordian-section-header'>
-          {label}
+          <img className='accordian-section-icon' src={icon} alt='' />
+          {!disabled && label}
         </div>
-        {isOpen && (
+        {isOpen && !disabled && (
           <div className='accordian-section-body'>
             {this.props.children}
           </div>
