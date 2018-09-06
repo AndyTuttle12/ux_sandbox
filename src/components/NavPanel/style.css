@@ -9,6 +9,41 @@
   transition: min-width .3s;
 }
 
+.nav-header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-logo {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
+.app-title {
+  text-transform: uppercase;
+}
+
+.home-btn {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  padding: 0px;
+  border: none;
+  border-radius: 0%;
+  background-color: transparent;
+  outline: none;
+}
+
+.home-menu {
+  width: 36px;
+  height: 36px;
+  margin: 2px;
+}
+
 .open {
   min-width: 300px;
 }

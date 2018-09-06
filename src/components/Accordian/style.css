@@ -1,12 +1,10 @@
 .accordian-root {
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
   background-color: #555;
   color: #fff;
   display: flex;
   flex-direction: column;
-}
-
-.accordian-root.active {
   flex: 1 1 auto;
+  overflow: auto;
 }

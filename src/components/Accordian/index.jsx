@@ -1,29 +1,76 @@
 import React, { Component } from 'react';
-import AccordianPanel from './AccordianPanel';
+import PropTypes from 'prop-types';
 import './style.css';
 
-export default class Accordian extends Component {
-    constructor(props) {
-        super(props);
+import AccordionSection from './AccordionSection';
 
-        this.state = {
-            active: false,
-        };
-    }
+export default class Accordion extends Component {
+  static propTypes = {
+    allowMultipleOpen: PropTypes.bool,
+    disabled: PropTypes.bool,
+    children: PropTypes.instanceOf(Object).isRequired,
+  };
 
-    handlePanel = () => {
-        this.setState({ active: !this.state.active })
-    }
+  constructor(props) {
+    super(props);
 
-    render() {
-        const { active } = this.state;
-        return (
-            <div className={`accordian-root ${active ? 'active': ''}`}>
-                <AccordianPanel key={0} title='Devices' body='List' onActive={this.handlePanel} min={this.props.min} />
-                <AccordianPanel key={1} title='Groups' body='List' onActive={this.handlePanel} min={this.props.min} />
-                <AccordianPanel key={2} title='Backups' body='List' onActive={this.handlePanel} min={this.props.min} />
-                <AccordianPanel key={3} title='Config' body='List' onActive={this.handlePanel} min={this.props.min} />
-            </div>
-        );
+    const openSections = {};
+
+    this.props.children.forEach(child => {
+      if (child.props.isOpen) {
+        openSections[child.props.label] = true;
+      }
+    });
+
+    this.state = { openSections };
+  }
+
+  onClick = label => {
+    const {
+      props: { allowMultipleOpen, disabled },
+      state: { openSections },
+    } = this;
+
+    const isOpen = !!openSections[label];
+
+    if (!disabled) {
+      if (allowMultipleOpen) {
+        this.setState({
+          openSections: {
+            ...openSections,
+            [label]: !isOpen
+          }
+        });
+      } else {
+        this.setState({
+          openSections: {
+            [label]: !isOpen
+          }
+        });
+      }
     }
+  };
+
+  render() {
+    const {
+      onClick,
+      props: { children },
+      state: { openSections },
+    } = this;
+
+    return (
+      <div className={`accordian-root`}>
+        {children.map(child => (
+          <AccordionSection
+            isOpen={!!openSections[child.props.label]}
+            label={child.props.label}
+            onClick={onClick}
+            key={child.props.label}
+          >
+            {child.props.children}
+          </AccordionSection>
+        ))}
+      </div>
+    );
+  }
 }
