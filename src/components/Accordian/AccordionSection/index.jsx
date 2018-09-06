@@ -23,10 +23,10 @@ export default class AccordionSection extends Component {
     } = this;
 
     return (
-      <div className={`accordian-section-root ${isOpen && !disabled && 'open'}`}>
-        <div onClick={onClick} className='accordian-section-header'>
+      <div className={`accordian-section-root ${isOpen && 'active'} ${isOpen && !disabled && 'open'}`}>
+        <div onClick={onClick} className={`accordian-section-header ${isOpen && 'active'}`}>
           <img className='accordian-section-icon' src={icon} alt='' />
-          {!disabled && label}
+          {!disabled && (<span className='accordian-section-label'>{label}</span>)}
         </div>
         {isOpen && !disabled && (
           <div className='accordian-section-body'>

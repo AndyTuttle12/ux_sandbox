@@ -33,21 +33,19 @@ export default class Accordion extends Component {
 
     const isOpen = !!openSections[label];
 
-    if (!disabled) {
-      if (allowMultipleOpen) {
-        this.setState({
-          openSections: {
-            ...openSections,
-            [label]: !isOpen
-          }
-        });
-      } else {
-        this.setState({
-          openSections: {
-            [label]: !isOpen
-          }
-        });
-      }
+    if (allowMultipleOpen) {
+      this.setState({
+        openSections: {
+          ...openSections,
+          [label]: !isOpen
+        }
+      });
+    } else {
+      this.setState({
+        openSections: {
+          [label]: !isOpen
+        }
+      });
     }
   };
 

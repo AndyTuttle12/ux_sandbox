@@ -3,6 +3,11 @@
   background-color: #555;
   color: #fff;
   transition: all .3s;
+  border-left: 3px solid #333;
+}
+
+.accordian-section-root.active {
+  border-left: 3px solid #0094d9;
 }
 
 .accordian-section-root.open {
@@ -18,17 +23,25 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   padding: 0px;
   background-color: #333;
   color: #fff;
   border-top: 1px solid #000;
 }
 
+.accordian-section-header.active {
+  background-color: #666;
+}
+
 .accordian-section-icon {
   width: 40px;
   height: 40px;
   margin: 5px;
+}
+
+.accordian-section-label {
+  padding-left: 15px;
 }
 
 .accordian-section-body {
