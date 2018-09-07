@@ -42,7 +42,11 @@ export default class SearchList extends Component {
   }
 
   onOptionSelect = (e) => {
-    this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: false, }, () => this.onSearch(e))
+    if (this.state.data.total && Number(this.state.data.total) < Number(e.target.value)) {
+      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: true, }, () => this.onSearch(e));
+    } else {
+      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: false, }, () => this.onSearch(e));
+    }
   }
 
   onPageBack = (e) => {
@@ -162,6 +166,14 @@ export default class SearchList extends Component {
         name: '25',
         value: '25',
       },
+      {
+        name: '50',
+        value: '50',
+      },
+      {
+        name: '100',
+        value: '100',
+      },
     ];
 
     const currentMax = Number(limit) + Number(skip);
@@ -201,11 +213,11 @@ export default class SearchList extends Component {
             <img src={PageLeft} alt='' />
           </button>
           <span className='search-page-list-label'>Rows: </span>
-          <SelectInput value={limit} onChange={onOptionSelect} list={optionList}/>
+          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data}/>
           <span
             className='search-page-total'
           >
-            {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {data && data.total || 0}
+            {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
           </span>
           <button className='search-page-next' onClick={onPageNext} disabled={nextDisabled}>
             <img src={PageRight} alt='' />
