@@ -1,0 +1,35 @@
+.text-input-root {
+  padding: 0 4px;
+  margin: 4px;
+  font-size: 12px;
+  height: 24px;
+  min-width: 180px;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  border-bottom: solid 2px;
+  border-radius: 0;
+  color: rgba(0,0,0,0.75);
+  outline: none;
+}
+
+.text-input-label {
+  width: 90px;
+}
+
+.text-input-root:focus:not(:disabled) {
+  background-color: #fefefe;
+}
+
+.text-input-root:hover:not(:disabled) {
+  border-bottom: solid 2px #0094d9;
+}
+
+.text-input-root:active:not(:disabled) {
+  border-bottom: solid 2px #a1a1a1;
+}
+
+.text-input-root:disabled {
+  background-color: #a1a1a1;
+  cursor: not-allowed;
+}

@@ -7,7 +7,7 @@ import AccordionSection from './AccordionSection';
 export default class Accordion extends Component {
   static propTypes = {
     allowMultipleOpen: PropTypes.bool,
-    disabled: PropTypes.bool,
+    isDisabled: PropTypes.bool,
     children: PropTypes.instanceOf(Object).isRequired,
   };
 
@@ -27,7 +27,7 @@ export default class Accordion extends Component {
 
   onClick = label => {
     const {
-      props: { allowMultipleOpen, disabled },
+      props: { allowMultipleOpen },
       state: { openSections },
     } = this;
 
@@ -52,7 +52,7 @@ export default class Accordion extends Component {
   render() {
     const {
       onClick,
-      props: { children, disabled },
+      props: { children, isDisabled },
       state: { openSections },
     } = this;
 
@@ -65,7 +65,7 @@ export default class Accordion extends Component {
             icon={child.props.icon}
             onClick={onClick}
             key={child.props.label}
-            disabled={disabled}
+            isDisabled={isDisabled}
           >
             {child.props.children}
           </AccordionSection>
