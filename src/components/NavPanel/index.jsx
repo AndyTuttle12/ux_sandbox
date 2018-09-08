@@ -185,7 +185,7 @@ export default class Nav extends Component {
             {open && (
               <React.Fragment>
                 <span className='app-title'>Manager</span>
-                <button className='home-btn'>
+                <button className='home-btn' onClick={() => window.location = '/'}>
                   <img className='home-menu' src={AppMenu} alt='' />
                 </button>
               </React.Fragment>

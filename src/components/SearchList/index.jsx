@@ -61,7 +61,7 @@ export default class SearchList extends Component {
     if (backSkip > 0) {
       this.setState({ skip: backSkip, prevDisabled: false, nextDisabled: false }, () => onSearch(e));
     } else {
-      this.setState({ skip: 0, prevDisabled: true }, () => onSearch(e));
+      this.setState({ skip: 0, prevDisabled: true, nextDisabled: false }, () => onSearch(e));
     }
   }
 
@@ -114,7 +114,7 @@ export default class SearchList extends Component {
 
   renderList = () => {
     return this.state.data.list.map((name, index) => (
-      <a key={index} className='search-list-area' href='#'>
+      <a key={index} className='search-list-area' href='/'>
         <div>
           {name}
         </div>
@@ -123,7 +123,6 @@ export default class SearchList extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted');
     this.onSearch();
   }
 
