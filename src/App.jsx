@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/NavPanel';
+import Switch from './components/SwitchInput';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends Component {
           <h1 className="App-title">Testing Component Designs...</h1>
         </header>
         <Nav {...this.props} />
+        <Switch disabled onChange={e => e}/>
       </div>
     );
   }

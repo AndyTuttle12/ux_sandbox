@@ -1,0 +1,62 @@
+.switch-input-label {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+}
+
+.switch-input-label:disabled, .switch-input-label:disabled input {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.switch-input-root {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #fefefe;
+  transition: .4s;
+}
+
+input:checked + .slider:not(:disabled) {
+  background-color: #0094d9;
+}
+
+input:focus + .slider:not(:disabled) {
+  box-shadow: 0 0 1px #0094d9;
+}
+
+input:checked + .slider:before:not(:disabled) {
+  transform: translateX(18px);
+}
+
+input:disabled + .slider {
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
