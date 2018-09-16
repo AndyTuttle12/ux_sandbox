@@ -1,0 +1,33 @@
+.card-dashboard-root {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.card-dashboard-header {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 5px 0 0 15px;
+  border: none;
+  margin: 0px;
+}
+
+.card-dashboard-title {
+  font-size: 1.4em;
+  text-align: left;
+}
+
+.card-dashboard-body {
+  width: 100%;
+  height: calc(100% - 30px);
+  box-sizing: border-box;
+  padding: 5px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: start;
+}

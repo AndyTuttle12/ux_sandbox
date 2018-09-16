@@ -1,0 +1,62 @@
+.card-root {
+  position: relative;
+  width: auto;
+  height: auto;
+  margin: 5px;
+  overflow: auto;
+}
+
+
+.card-header {
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 1.2em;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.card-btn {
+  position: absolute;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+  margin: 0px;
+  border: none;
+  background: none;
+  box-sizing: border-box;
+  padding: 5px;
+  outline: none;
+  transition: all .3s;
+}
+
+.card-btn img {
+  height: 20px;
+  width: 20px;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.card-btn.open-btn img {
+  transform: rotate(0deg);
+}
+
+.card-btn.close-btn img {
+  transform: rotate(180deg);
+}
+
+.card-body {
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: all .3s;
+}

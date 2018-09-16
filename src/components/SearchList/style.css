@@ -25,7 +25,7 @@
   border-radius: 0%;
   pointer-events: none;
 }
-  
+
 .search-btn:hover:not(:disabled) {
   background-color: #eee;
 }

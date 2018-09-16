@@ -6,7 +6,7 @@
   left: 0px;
   width: auto;
   color: #fff;
-  transition: min-width .3s;
+  transition: width .3s;
 }
 
 .nav-header {
@@ -53,11 +53,11 @@
 }
 
 .open {
-  min-width: 200px;
+  width: 250px;
 }
 
 .closed {
-  min-width: 50px;
+  width: 50px;
 }
 
 .nav-close-btn {

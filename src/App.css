@@ -1,10 +1,32 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
+  height: 100vh;
+  position: fixed;
+  right: 0px;
+  transition: width .3s;
+}
+
+.App.standard {
+  width: calc(100vw - 250px);
+}
+
+.App.expanded {
+  width: calc(100vw - 50px);
 }
 
 .App-header {
-  background-color: #eee;
+  position: relative;
+  background-color: #333;
+  color: #fff;
   padding: 20px;
+  box-sizing: border-box;
+  height: 120px;
+}
+
+.App-body {
+  width: 100%;
+  height: calc(100% - 120px);
 }
 
 .App-title {

@@ -149,13 +149,15 @@ export default class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true,
+      open: this.props.navOpen,
       searchValue: '',
     };
   }
 
   handleOpen = () => {
-    this.setState({ open: !this.state.open });
+    this.setState({ open: !this.state.open },() => {
+      this.props.handleNav();
+    });
   }
 
   handleSearch = (e) => {
