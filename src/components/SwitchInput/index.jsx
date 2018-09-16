@@ -8,21 +8,15 @@ export default class SwitchInput extends Component {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    onKeyPress: PropTypes.func,
   };
 
   onChange = (e) => {
     this.props.onChange(e);
   };
 
-  onKeyPress = (e) => {
-    e.key === 'Enter' && this.props.onKeyPress(e);
-  };
-
   render() {
     const {
       onChange,
-      onKeyPress,
       props: {
         label,
         value,
@@ -39,7 +33,6 @@ export default class SwitchInput extends Component {
           disabled={disabled}
           value={value}
           onChange={onChange}
-          onKeyPress={onKeyPress}
         />
         <span className='slider round'></span>
       </label>

@@ -44,7 +44,7 @@ input:focus + .slider:not(:disabled) {
   box-shadow: 0 0 1px #0094d9;
 }
 
-input:checked + .slider:before:not(:disabled) {
+input:checked + .slider:before {
   transform: translateX(18px);
 }
 

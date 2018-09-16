@@ -25,7 +25,7 @@ class App extends Component {
       <div className={`App ${navOpen?'standard':'expanded'}`}>
         <header className="App-header">
           <h1 className="App-title">Testing Component Designs...</h1>
-          <Switch disabled onChange={e => e}/>
+          <Switch onChange={e => e}/>
         </header>
         <div className="App-body">
           <CardDashboard title="Test Dashboard">
