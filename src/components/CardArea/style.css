@@ -1,0 +1,4 @@
+.card-area-root {
+  display: flex;
+  flex-wrap: wrap;
+}

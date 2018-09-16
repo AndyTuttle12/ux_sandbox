@@ -31,3 +31,8 @@
   flex-wrap: wrap;
   align-content: start;
 }
+
+.card-dashboard-body.alone {
+  height: calc(100% - 20px);
+  margin: 10px 0;
+}

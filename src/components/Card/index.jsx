@@ -6,8 +6,11 @@ import './style.css';
 export default class Card extends Component {
   static propTypes = {
     collapsed: PropTypes.bool,
+    collapsible: PropTypes.bool,
     spanWidth: PropTypes.number,
     spanHeight: PropTypes.number,
+    areaWidth: PropTypes.number,
+    areaHeight: PropTypes.number,
     title: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
   };
@@ -30,6 +33,8 @@ export default class Card extends Component {
       props: {
         spanWidth,
         spanHeight,
+        areaWidth,
+        collapsible,
         title,
         children,
       },
@@ -42,20 +47,22 @@ export default class Card extends Component {
       <div
         className={`card-root`}
         style={{
-          width: `calc(${(spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
-          height: `calc(${(spanHeight/12) * 100 + '%' || 'auto'} - 10px )`
+          width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
+          height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`
         }}
       >
         <div className="card-header">
           {title && (
             <span className="card-title">{title}</span>
           )}
-          <button
-            className={`card-btn ${!collapsed?'close':'open'}-btn`}
-            onClick={handleCollapsed}
-          >
-            <img src={Arrow} alt="" />
-          </button>
+          {collapsible && (
+            <button
+              className={`card-btn ${!collapsed?'close':'open'}-btn`}
+              onClick={handleCollapsed}
+            >
+              <img src={Arrow} alt="" />
+            </button>
+          )}
         </div>
         {!collapsed && (
           <div className="card-body">
