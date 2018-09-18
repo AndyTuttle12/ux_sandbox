@@ -31,25 +31,25 @@ class App extends Component {
           <CardDashboard title="Test Dashboard">
             <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible>
               <p>They can be any amount high, just based on the child content.</p>
-              <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>I am content</div>
+              <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>I am content</div>
             </Card>
 
             <CardArea spanWidth={6} direction="row">
               <Card title="1ST" areaWidth={6} spanWidth={3}>
                 <p>Content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Content</div>
+                <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Content</div>
               </Card>
               <Card title="2ND" areaWidth={6} spanWidth={3}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
               <Card title="3RD" areaWidth={6} spanWidth={2}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
               <Card title="4TH" areaWidth={6} spanWidth={4}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
             </CardArea>
 
@@ -64,18 +64,18 @@ class App extends Component {
               </Card>
               <Card title="7TH" areaWidth={6} spanWidth={6}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '420px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
             </CardArea>
 
             <CardArea spanWidth={4} direction="column">
               <Card title="8TH" areaWidth={4} spanWidth={4}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
               <Card title="9TH" areaWidth={4} spanWidth={4}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
             </CardArea>
 
@@ -86,7 +86,7 @@ class App extends Component {
               </Card>
               <Card title="11TH" areaWidth={8} spanWidth={8}>
                 <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
             </CardArea>
 
