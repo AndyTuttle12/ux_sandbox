@@ -28,7 +28,7 @@ export default class SearchList extends Component {
       reverseSort: false,
       data: {},
       prevDisabled: true,
-      nextDisabled: false,
+      nextDisabled: true,
       loading: false,
     }
   }
@@ -36,7 +36,7 @@ export default class SearchList extends Component {
   onInputChange = (e) => {
     this.setState({ searchValue: e.target.value });
   }
-  
+
   onSort = (e) => {
     this.setState({ reverseSort: !this.state.reverseSort }, () => this.onSearch(e))
   }
@@ -76,7 +76,9 @@ export default class SearchList extends Component {
     } = this;
     const nextSkip = Number(skip) + Number(limit);
     const lastSkip = Number(nextSkip) + Number(limit);
-    if (total && total < lastSkip) {
+    if (total && total + Number(skip) >= lastSkip) {
+      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: true }, () => onSearch(e));
+    } else if (total && total <= lastSkip) {
       this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: true }, () => onSearch(e));
     } else if (total && total > nextSkip) {
       this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: false }, () => onSearch(e));
@@ -105,7 +107,11 @@ export default class SearchList extends Component {
       await this.setState({ loading: true });
       let data = await this.props.fetchData(options);
       setTimeout(() => { // TODO: remove demo code and timeouts for real implementation
-        this.setState({ data, loading: false });
+        if (data && data.total && data.total > Number(limit)) {
+          this.setState({ data, loading: false, nextDisabled: false });
+        } else {
+          this.setState({ data, loading: false });
+        }
       }, 500);
     } catch (e) {
       console.error(e);
