@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Accordian from '../Accordian';
 import SearchList from '../SearchList';
+import ToolTip from '../ToolTip';
 import AppLogo from './images/placeholderApp.svg';
 import AppMenu from './images/placeholderMenu.svg';
 import Device from './images/placeholderDevice.svg';
@@ -187,9 +188,11 @@ export default class Nav extends Component {
             {open && (
               <React.Fragment>
                 <span className='app-title'>Manager</span>
-                <button className='home-btn' onClick={() => window.location = '/'}>
-                  <img className='home-menu' src={AppMenu} alt='' />
-                </button>
+                <ToolTip message="Hello, I am a tool tip!" direction="down" >
+                  <button className='home-btn' onClick={() => window.location = '/'}>
+                    <img className='home-menu' src={AppMenu} alt='' />
+                  </button>
+                </ToolTip>
               </React.Fragment>
             )}
           </div>
