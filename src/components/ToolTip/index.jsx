@@ -39,6 +39,22 @@ export default class ToolTip extends Component {
       },
     } = this;
 
+    if(direction === 'up' || direction === 'left') {
+      return (
+        <div className={`tool-tip-root ${direction}`} onMouseEnter={onHover} onMouseLeave={onHide}>
+        { hovering && (
+          <div className="tool-tip-area">
+            <div className="tool-tip-banner">
+              <span className="tool-tip-message">{message}</span>
+            </div>
+            <div className="tool-tip-arrow"></div>
+          </div>
+        )}
+        {children}
+      </div>
+      );
+    }
+
     return (
       <div className={`tool-tip-root ${direction}`} onMouseEnter={onHover} onMouseLeave={onHide}>
         {children}

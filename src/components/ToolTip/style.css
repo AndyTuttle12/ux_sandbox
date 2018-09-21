@@ -1,18 +1,48 @@
-.tool-tip-root {
+.tool-tip-root, .tool-tip-root.down {
   width: auto;
   height: auto;
   position: relative;
+  overflow: visible;
+  display: block;
+  --root-width: 100%;
 }
+
+.tool-tip-root.up {
+
+}
+
+.tool-tip-root.right, .tool-tip-root.left {
+  display: inline-block;
+  overflow: visible;
+}
+
 
 .tool-tip-area {
   width: auto;
   height: auto;
+  min-width: 100%;
   position: absolute;
   z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  margin: auto;
+}
+
+.tool-tip-root.down .tool-tip-area, .tool-tip-root.up .tool-tip-area {
+  margin-left: calc(var(--root-width)/2 * -1);
+  min-width: 200%;
+  max-width: 300%;
+}
+
+.tool-tip-root.up .tool-tip-area {
+  top: -35px;
+}
+
+.tool-tip-root.right .tool-tip-area, .tool-tip-root.left .tool-tip-area {
+  display: inline-flex;
+  flex-direction: row;
 }
 
 .tool-tip-arrow {
@@ -21,19 +51,42 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid black;
+  border-top: none;
   z-index: 99999;
+}
+
+.tool-tip-root.right .tool-tip-area .tool-tip-arrow {
+  border-left: none;
+  border-right: 5px solid black;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+
+.tool-tip-root.left .tool-tip-area .tool-tip-arrow {
+  border-left: 5px solid black;
+  border-right: none;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+
+.tool-tip-root.up .tool-tip-area .tool-tip-arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: none;
+  border-top: 5px solid black;
 }
 
 .tool-tip-banner {
   width: auto;
-  max-width: 100px;
   height: auto;
   z-index: 99999;
   color: #fff;
   background-color: #000;
   border-radius: 5px;
+  padding: 5px;
 }
 
 .tool-tip-message {
+  width: auto;
   font-size: .8em;
 }

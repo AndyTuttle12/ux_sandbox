@@ -5,6 +5,7 @@ import Switch from './components/SwitchInput';
 import CardDashboard from './components/CardDashboard';
 import CardArea from './components/CardArea';
 import Card from './components/Card';
+import ToolTip from './components/ToolTip';
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +26,9 @@ class App extends Component {
       <div className={`App ${navOpen?'standard':'expanded'}`}>
         <header className="App-header">
           <h1 className="App-title">Testing Component Designs...</h1>
-          <Switch onChange={e => e}/>
+          <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="up">
+            <Switch onChange={e => e}/>
+          </ToolTip>
         </header>
         <div className="App-body">
           <CardDashboard title="Test Dashboard">
