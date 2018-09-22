@@ -26,7 +26,7 @@ class App extends Component {
       <div className={`App ${navOpen?'standard':'expanded'}`}>
         <header className="App-header">
           <h1 className="App-title">Testing Component Designs...</h1>
-          <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="up">
+          <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="down">
             <Switch onChange={e => e}/>
           </ToolTip>
         </header>
