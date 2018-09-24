@@ -11,7 +11,6 @@ export default class ContextContainer extends Component {
   render() {
     const {
       props: {
-        context,
         children,
       },
     } = this;
