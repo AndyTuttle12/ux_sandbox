@@ -11,6 +11,8 @@ export default class Card extends Component {
     spanHeight: PropTypes.number,
     areaWidth: PropTypes.number,
     areaHeight: PropTypes.number,
+    offsetHeight: PropTypes.number,
+    offsetWidth: PropTypes.number,
     title: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
   };
@@ -34,6 +36,8 @@ export default class Card extends Component {
         spanWidth,
         spanHeight,
         areaWidth,
+        offsetHeight,
+        offsetWidth,
         collapsible,
         title,
         children,
@@ -48,7 +52,9 @@ export default class Card extends Component {
         className={`card-root`}
         style={{
           width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
-          height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`
+          height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`,
+          marginTop: `calc(${(offsetHeight) * 150 + 'px' || 'auto'})`,
+          marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
         }}
       >
         <div className="card-header">
