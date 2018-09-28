@@ -6,6 +6,7 @@ import CardDashboard from './components/CardDashboard';
 import CardArea from './components/CardArea';
 import Card from './components/Card';
 import ToolTip from './components/ToolTip';
+import TextArea from './components/TextArea';
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
           <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="down">
             <Switch onChange={e => e}/>
           </ToolTip>
+          <TextArea placeholder="Type Something" onChange={() => {}}></TextArea>
         </header>
         <div className="App-body">
           <CardDashboard title="Test Dashboard">
