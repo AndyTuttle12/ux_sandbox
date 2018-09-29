@@ -37,7 +37,7 @@ export default class TextArea extends Component {
     return (
       <label>
         {label && (<p className='text-area-label'>{label}</p>)}
-        <input
+        <textarea
           className='text-area-root'
           disabled={disabled}
           value={value}

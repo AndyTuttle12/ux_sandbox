@@ -6,7 +6,9 @@ import CardDashboard from './components/CardDashboard';
 import CardArea from './components/CardArea';
 import Card from './components/Card';
 import ToolTip from './components/ToolTip';
+import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
+import Button from './components/Button';
 
 class App extends Component {
   constructor(props) {
@@ -30,12 +32,14 @@ class App extends Component {
           <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="down">
             <Switch onChange={e => e}/>
           </ToolTip>
-          <TextArea placeholder="Type Something" onChange={() => {}}></TextArea>
         </header>
         <div className="App-body">
           <CardDashboard title="Test Dashboard">
             <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible>
               <p>They can be any amount high, just based on the child content.</p>
+              <TextInput placeholder="An Input" onChange={() => {}}></TextInput>
+              <TextArea placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
+              <Button onClick={() => console.log('Button Pressed!')}>Click Me!</Button>
               <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>I am content</div>
             </Card>
 

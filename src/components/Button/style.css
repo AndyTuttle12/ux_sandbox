@@ -1,0 +1,25 @@
+.btn-default {
+  width: auto;
+  min-width: 40px;
+  box-sizing: border-box;
+  padding: 5px;
+  outline: none;
+  border: none;
+  background-color: #ccc;
+}
+
+.btn-default:hover:not(:disabled) {
+  background-color: #ddd;
+}
+
+.btn-default:active:not(:disabled) {
+  background-color: #aaa;
+}
+
+.btn-default:focus:not(:disabled) {
+  color: #0094d9
+}
+
+.btn-default:disabled {
+  opacity: .4;
+}
