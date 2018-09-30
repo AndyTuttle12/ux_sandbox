@@ -39,7 +39,7 @@ class App extends Component {
               <p>They can be any amount high, just based on the child content.</p>
               <TextInput placeholder="An Input" onChange={() => {}}></TextInput>
               <TextArea placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
-              <Button onClick={() => console.log('Button Pressed!')}>Click Me!</Button>
+              <Button onClick={() => console.log(this.props.context)}>Click Me!</Button>
               <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>I am content</div>
             </Card>
 

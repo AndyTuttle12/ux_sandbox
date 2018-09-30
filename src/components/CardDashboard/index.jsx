@@ -13,12 +13,12 @@ export default class CardDashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {...props};
+    this.state = {...props, shared: {}};
   }
 
   render() {
     return (
-      <wrappedContext.Provider value={this.state}>
+      <wrappedContext.Provider value={this.state.shared}>
         <div className="card-dashboard-root">
           <div className="card-dashboard-header">
             {this.props.title && <div className="card-dashboard-title">{this.props.title}</div>}
