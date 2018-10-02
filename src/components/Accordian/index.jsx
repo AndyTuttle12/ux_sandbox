@@ -66,6 +66,7 @@ export default class Accordion extends Component {
             onClick={onClick}
             key={child.props.label}
             isDisabled={isDisabled}
+            {...this.props}
           >
             {child.props.children}
           </AccordionSection>

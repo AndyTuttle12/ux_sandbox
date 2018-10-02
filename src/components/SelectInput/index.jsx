@@ -96,9 +96,21 @@ export default class SelectInput extends Component {
 
     return (
       <React.Fragment>
-        { !active && (<div className={`select-input-root ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`} disabled={disabled} onClick={onClick}>
-          <div className={`select-input-area ${disabled ? 'disabled' : ''}`} disabled={disabled}>{value}</div>
-        </div>)}
+        { !active && (
+          <div
+            className={`select-input-root ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`}
+            disabled={disabled}
+            onClick={onClick}
+            {...this.props}
+          >
+            <div
+              className={`select-input-area ${disabled ? 'disabled' : ''}`}
+              disabled={disabled}
+            >
+              {value}
+            </div>
+          </div>
+        )}
         { active && renderItems() }
       </React.Fragment>
     );

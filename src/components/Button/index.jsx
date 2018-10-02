@@ -42,6 +42,7 @@ export default class Button extends Component {
         disabled={disabled}
         value={value}
         onClick={onClick}
+        {...this.props}
       >
         {children}
       </button>
