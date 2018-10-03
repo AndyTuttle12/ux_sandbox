@@ -13,6 +13,7 @@ export default class Button extends Component {
       'secondary',
       'tertiary',
     ]),
+    theme: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.string,
     className: PropTypes.string,
@@ -32,13 +33,14 @@ export default class Button extends Component {
         value,
         disabled,
         className,
+        theme,
         children,
       },
     } = this;
 
     return (
       <button
-        className={className || (type && `btn-${type}`) || 'btn-default'}
+        className={theme || className || (type && `btn-${type}`) || 'btn-default'}
         disabled={disabled}
         value={value}
         onClick={onClick}
