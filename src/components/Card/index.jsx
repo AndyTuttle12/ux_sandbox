@@ -16,6 +16,8 @@ export default class Card extends Component {
     offsetWidth: PropTypes.number,
     title: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
+    footerText: PropTypes.string,
+    footerActions: PropTypes.any,
   };
 
   constructor(props) {
@@ -42,6 +44,8 @@ export default class Card extends Component {
         collapsible,
         title,
         children,
+        footerText,
+        footerActions,
       },
       state: {
         collapsed,
@@ -75,9 +79,15 @@ export default class Card extends Component {
               )}
             </div>
             {!collapsed && (
-              <div className="card-body">
-                {children}
-              </div>
+              <React.Fragment>
+                <div className="card-body" style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                  {children}
+                </div>
+                <div className="card-footer" style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
+                  <div className="footer-text">{footerText}</div>
+                  <div className="footer-actions">{footerActions}</div>
+                </div>
+              </React.Fragment>
             )}
           </div>
         )}

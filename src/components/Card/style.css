@@ -54,9 +54,26 @@
 
 .card-body {
   width: 100%;
-  height: calc(100% - 30px);
+  height: auto;
   background-color: #eee;
   box-sizing: border-box;
   padding: 10px;
   transition: all .3s;
+}
+
+.card-footer {
+  height: auto;
+  width: 100%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-text {
+  padding: 0 10px;
+}
+
+.footer-actions {
+  padding: 0 10px;
 }

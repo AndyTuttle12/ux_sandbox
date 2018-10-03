@@ -44,11 +44,11 @@ class App extends Component {
             </Card>
 
             <CardArea spanWidth={6} direction="row">
-              <Card title="1ST" areaWidth={6} spanWidth={3}>
+              <Card title="1ST" areaWidth={6} spanWidth={3} footerText="Testing text.">
                 <p>Content</p>
                 <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Content</div>
               </Card>
-              <Card title="2ND" areaWidth={6} spanWidth={3}>
+              <Card title="2ND" areaWidth={6} spanWidth={3} footerActions={<Button onClick={() => console.log('Clicked')}>Action</Button>}>
                 <p>Some content</p>
                 <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
