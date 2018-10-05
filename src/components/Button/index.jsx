@@ -4,7 +4,8 @@ import './style.css';
 
 export default class Button extends Component {
   static propTypes = {
-    type: PropTypes.oneOf([
+    type: PropTypes.string,
+    buttonType: PropTypes.oneOf([
       'success',
       'warn',
       'info',
@@ -30,6 +31,7 @@ export default class Button extends Component {
       onClick,
       props: {
         type,
+        buttonType,
         value,
         disabled,
         className,
@@ -40,7 +42,8 @@ export default class Button extends Component {
 
     return (
       <button
-        className={theme || className || (type && `btn-${type}`) || 'btn-default'}
+        className={theme || className || (type && `btn-${buttonType}`) || 'btn-default'}
+        type={type}
         disabled={disabled}
         value={value}
         onClick={onClick}
