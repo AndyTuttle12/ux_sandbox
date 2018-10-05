@@ -8,6 +8,7 @@ export default class Accordion extends Component {
   static propTypes = {
     allowMultipleOpen: PropTypes.bool,
     isDisabled: PropTypes.bool,
+    theme: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
   };
 
@@ -52,12 +53,12 @@ export default class Accordion extends Component {
   render() {
     const {
       onClick,
-      props: { children, isDisabled },
+      props: { children, isDisabled, theme },
       state: { openSections },
     } = this;
 
     return (
-      <div className={`accordian-root`}>
+      <div className={`accordian-root ${theme}`}>
         {children.map(child => (
           <AccordionSection
             isOpen={!!openSections[child.props.label]}
@@ -66,6 +67,7 @@ export default class Accordion extends Component {
             onClick={onClick}
             key={child.props.label}
             isDisabled={isDisabled}
+            theme={theme}
             {...this.props}
           >
             {child.props.children}

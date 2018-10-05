@@ -10,6 +10,7 @@ export default class TextInput extends Component {
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onKeyPress: PropTypes.func,
+    theme: PropTypes.string,
   };
 
   onChange = (e) => {
@@ -29,14 +30,15 @@ export default class TextInput extends Component {
         value,
         placeholder,
         disabled,
+        theme,
       },
     } = this;
 
     return (
       <label>
-        {label && (<p className='text-input-label'>{label}</p>)}
+        {label && (<p className={`text-input-label ${theme}`}>{label}</p>)}
         <input
-          className='text-input-root'
+          className={`text-input-root ${theme}`}
           disabled={disabled}
           value={value}
           placeholder={placeholder}

@@ -8,6 +8,7 @@ export default class CardArea extends Component {
     spanHeight: PropTypes.number,
     direction: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
+    theme: PropTypes.string,
   };
 
   render() {
@@ -17,12 +18,13 @@ export default class CardArea extends Component {
         spanHeight,
         direction,
         children,
+        theme,
       },
     } = this;
 
     return (
       <div
-        className={`card-area-root`}
+        className={`card-area-root ${theme}`}
         style={{
           width: `${(spanWidth/12) * 100 + '%' || 'auto' }`,
           height: `${(spanHeight) * 150 + 'px' || 'auto'}`,

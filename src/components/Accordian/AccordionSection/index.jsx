@@ -9,6 +9,7 @@ export default class AccordionSection extends Component {
     isDisabled: PropTypes.bool,
     label: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
+    theme: PropTypes.string,
     onClick: PropTypes.func.isRequired,
   };
 
@@ -23,18 +24,19 @@ export default class AccordionSection extends Component {
         isOpen,
         label,
         isDisabled,
-        icon
+        icon,
+        theme,
       },
     } = this;
 
     return (
-      <div className={`accordian-section-root ${isOpen && 'active'} ${isOpen && !isDisabled && 'open'}`}>
-        <div onClick={onClick} className={`accordian-section-header ${isOpen && 'active'}`}>
-          <img className='accordian-section-icon' src={icon} alt='' />
-          {!isDisabled && (<span className='accordian-section-label'>{label}</span>)}
+      <div className={`accordian-section-root ${theme} ${isOpen && 'active'} ${isOpen && !isDisabled && 'open'}`}>
+        <div onClick={onClick} className={`accordian-section-header ${theme} ${isOpen && 'active'}`}>
+          <img className={`accordian-section-icon ${theme}`} src={icon} alt='' />
+          {!isDisabled && (<span className={`accordian-section-label ${theme}`}>{label}</span>)}
         </div>
         {isOpen && !isDisabled && (
-          <div className='accordian-section-body'>
+          <div className={`accordian-section-body ${theme}`}>
             {this.props.children}
           </div>
         )}

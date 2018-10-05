@@ -18,6 +18,7 @@ export default class Card extends Component {
     children: PropTypes.instanceOf(Object).isRequired,
     footerText: PropTypes.string,
     footerActions: PropTypes.any,
+    theme: PropTypes.string,
   };
 
   constructor(props) {
@@ -46,6 +47,7 @@ export default class Card extends Component {
         children,
         footerText,
         footerActions,
+        theme,
       },
       state: {
         collapsed,
@@ -56,7 +58,7 @@ export default class Card extends Component {
       <wrappedContext.Consumer>
         {(context) => (
           <div
-            className={`card-root`}
+            className={`card-root ${theme}`}
             context={context}
             style={{
               width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
@@ -65,13 +67,13 @@ export default class Card extends Component {
               marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
             }}
           >
-            <div className="card-header">
+            <div className={`card-header ${theme}`}>
               {title && (
-                <span className="card-title">{title}</span>
+                <span className={`card-title ${theme}`}>{title}</span>
               )}
               {collapsible && (
                 <button
-                  className={`card-btn ${!collapsed?'close':'open'}-btn`}
+                  className={`card-btn ${theme} ${!collapsed?'close':'open'}-btn`}
                   onClick={handleCollapsed}
                 >
                   <img src={Arrow} alt="" />
@@ -80,12 +82,12 @@ export default class Card extends Component {
             </div>
             {!collapsed && (
               <React.Fragment>
-                <div className="card-body" style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                <div className={`card-body ${theme}`} style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
                   {children}
                 </div>
-                <div className="card-footer" style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
-                  <div className="footer-text">{footerText}</div>
-                  <div className="footer-actions">{footerActions}</div>
+                <div className={`card-footer ${theme}`} style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
+                  <div className={`footer-text ${theme}`}>{footerText}</div>
+                  <div className={`footer-actions ${theme}`}>{footerActions}</div>
                 </div>
               </React.Fragment>
             )}

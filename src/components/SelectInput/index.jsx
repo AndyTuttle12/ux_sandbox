@@ -18,6 +18,7 @@ export default class SelectInput extends Component {
     })).isRequired,
     direction: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    theme: PropTypes.string,
   };
 
   constructor(props) {
@@ -49,6 +50,7 @@ export default class SelectInput extends Component {
       props: {
         direction,
         disabled,
+        theme,
       },
     } = this;
     const list = this.props.list && this.props.list.map((item, index) => (
@@ -63,18 +65,18 @@ export default class SelectInput extends Component {
     ))
     if (direction && direction.toUpperCase() === 'UP') {
       return (
-        <div className={`select-input-root up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} onClick={onClick} disabled={disabled}>
-          <div className={`select-options-area up ${active ? 'active' : ''}`}>
+        <div className={`select-input-root ${theme} up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} onClick={onClick} disabled={disabled}>
+          <div className={`select-options-area ${theme} up ${active ? 'active' : ''}`}>
             {list}
           </div>
-          <div className={`select-input-area up ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
+          <div className={`select-input-area ${theme} up ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
         </div>
       );
     }
     return (
-      <div className={`select-input-root down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} onClick={onClick} disabled={disabled}>
-        <div className={`select-input-area down ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
-        <div className={`select-options-area down ${active ? 'active' : ''}`}>
+      <div className={`select-input-root ${theme} down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} onClick={onClick} disabled={disabled}>
+        <div className={`select-input-area ${theme} down ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
+        <div className={`select-options-area ${theme} down ${active ? 'active' : ''}`}>
           {list}
         </div>
       </div>
@@ -91,6 +93,7 @@ export default class SelectInput extends Component {
       },
       props: {
         disabled,
+        theme,
       },
     } = this;
 
@@ -98,13 +101,13 @@ export default class SelectInput extends Component {
       <React.Fragment>
         { !active && (
           <div
-            className={`select-input-root ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`}
+            className={`select-input-root ${theme} ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`}
             disabled={disabled}
             onClick={onClick}
             {...this.props}
           >
             <div
-              className={`select-input-area ${disabled ? 'disabled' : ''}`}
+              className={`select-input-area ${theme} ${disabled ? 'disabled' : ''}`}
               disabled={disabled}
             >
               {value}

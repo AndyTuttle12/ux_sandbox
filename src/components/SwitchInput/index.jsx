@@ -8,6 +8,7 @@ export default class SwitchInput extends Component {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    theme: PropTypes.string,
   };
 
   onChange = (e) => {
@@ -21,20 +22,21 @@ export default class SwitchInput extends Component {
         label,
         value,
         disabled,
+        theme,
       },
     } = this;
 
     return (
-      <label className='switch-input-label'>
+      <label className={`switch-input-label ${theme}`}>
         {label && (<p>{label}</p>)}
         <input
-          className='switch-input-root'
+          className={`switch-input-root ${theme}`}
           type='checkbox'
           disabled={disabled}
           value={value}
           onChange={onChange}
         />
-        <span className='slider round'></span>
+        <span className={`slider round ${theme}`}></span>
       </label>
     );
   }

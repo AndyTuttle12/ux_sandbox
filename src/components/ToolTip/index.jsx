@@ -7,6 +7,7 @@ export default class ToolTip extends Component {
     message: PropTypes.string,
     direction: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
+    theme: PropTypes.string,
   };
 
   constructor(props) {
@@ -33,6 +34,7 @@ export default class ToolTip extends Component {
         message,
         direction,
         children,
+        theme,
       },
       state: {
         hovering,
@@ -42,17 +44,17 @@ export default class ToolTip extends Component {
     if(direction === 'up' || direction === 'left') {
       return (
         <div
-          className={`tool-tip-root ${direction}`}
+          className={`tool-tip-root ${theme} ${direction}`}
           onMouseEnter={onHover}
           onMouseLeave={onHide}
           {...this.props}
         >
         { hovering && (
-          <div className="tool-tip-area">
-            <div className="tool-tip-banner">
-              <span className="tool-tip-message">{message}</span>
+          <div className={`tool-tip-area ${theme}`}>
+            <div className={`tool-tip-banner ${theme}`}>
+              <span className={`tool-tip-message ${theme}`}>{message}</span>
             </div>
-            <div className="tool-tip-arrow"></div>
+            <div className={`tool-tip-arrow ${theme}`}></div>
           </div>
         )}
         {children}
@@ -62,17 +64,17 @@ export default class ToolTip extends Component {
 
     return (
       <div
-        className={`tool-tip-root ${direction}`}
+        className={`tool-tip-root ${theme} ${direction}`}
         onMouseEnter={onHover}
         onMouseLeave={onHide}
         {...this.props}
       >
         {children}
         { hovering && (
-          <div className="tool-tip-area">
-            <div className="tool-tip-arrow"></div>
-            <div className="tool-tip-banner">
-              <span className="tool-tip-message">{message}</span>
+          <div className={`tool-tip-area ${theme}`}>
+            <div className={`tool-tip-arrow ${theme}`}></div>
+            <div className={`tool-tip-banner ${theme}`}>
+              <span className={`tool-tip-message ${theme}`}>{message}</span>
             </div>
           </div>
         )}

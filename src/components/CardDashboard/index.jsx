@@ -8,6 +8,7 @@ export default class CardDashboard extends Component {
   static propTypes = {
     title: PropTypes.string,
     children: PropTypes.instanceOf(Object).isRequired,
+    theme: PropTypes.string,
   };
 
   constructor(props) {
@@ -19,11 +20,11 @@ export default class CardDashboard extends Component {
   render() {
     return (
       <wrappedContext.Provider value={this.state.shared}>
-        <div className="card-dashboard-root" >
-          <div className="card-dashboard-header">
-            {this.props.title && <div className="card-dashboard-title">{this.props.title}</div>}
+        <div className={`card-dashboard-root ${this.props.theme}`}>
+          <div className={`card-dashboard-header ${this.props.theme}`}>
+            {this.props.title && <div className={`card-dashboard-title ${this.props.theme}`}>{this.props.title}</div>}
           </div>
-          <div className="card-dashboard-body">
+          <div className={`card-dashboard-body ${this.props.theme}`}>
             {this.props.children}
           </div>
         </div>

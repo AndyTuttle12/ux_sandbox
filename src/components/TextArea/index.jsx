@@ -13,6 +13,7 @@ export default class TextArea extends Component {
     spellCheck: PropTypes.bool,
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    theme: PropTypes.string,
   };
 
   onChange = (e) => {
@@ -31,14 +32,15 @@ export default class TextArea extends Component {
         spellCheck,
         placeholder,
         disabled,
+        theme,
       },
     } = this;
 
     return (
       <label>
-        {label && (<p className='text-area-label'>{label}</p>)}
+        {label && (<p className={`text-area-label ${theme}`}>{label}</p>)}
         <textarea
-          className='text-area-root'
+          className={`text-area-root ${theme}`}
           disabled={disabled}
           value={value}
           rows={rows}
