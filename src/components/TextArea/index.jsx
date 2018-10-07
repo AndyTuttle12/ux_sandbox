@@ -49,6 +49,7 @@ export default class TextArea extends Component {
           spellCheck={spellCheck}
           placeholder={placeholder}
           onChange={onChange}
+          style={{...this.props.style, resize: this.props.resize }}
           {...this.props}
         />
       </label>
