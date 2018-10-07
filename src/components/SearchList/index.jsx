@@ -121,7 +121,7 @@ export default class SearchList extends Component {
 
   renderList = () => {
     return this.state.data.list.map((name, index) => (
-      <a key={index} className={`search-list-area ${this.props.theme}`} href='/'>
+      <a key={index} className={`search-list-area ${this.props.theme}`} style={{ ...this.props.style }} href='/'>
         <div>
           {name}
         </div>
@@ -187,8 +187,9 @@ export default class SearchList extends Component {
 
     return (
       <React.Fragment>
-        <div className={`search-box ${theme}`}>
+        <div className={`search-box ${theme}`} style={{ ...this.props.style }}>
           <TextInput
+            style={{ ...this.props.style }}
             onChange={onInputChange}
             onKeyPress={onSearch}
             value={searchValue}
@@ -200,40 +201,43 @@ export default class SearchList extends Component {
           </TextInput>
           <button
             className={`search-btn ${theme}`}
+            style={{ ...this.props.style }}
             onClick={onSearch}
           >
             <img src={Search} alt='' />
           </button>
           <button
             className={`sort-btn ${theme}`}
+            style={{ ...this.props.style }}
             onClick={onSort}
           >
             {reverseSort && (<img className="up" src={SortUp} alt='' />)}
             {!reverseSort && (<img className="down" src={SortDown} alt='' />)}
           </button>
         </div>
-        <div className={`search-results ${theme}`}>
+        <div className={`search-results ${theme}`} style={{ ...this.props.style }}>
           {data && data.list && renderList()}
         </div>
-        <div className={`search-pagination ${theme}`}>
-          <button className={`search-page-prev ${theme}`} onClick={onPageBack} disabled={prevDisabled}>
+        <div className={`search-pagination ${theme}`} style={{ ...this.props.style }}>
+          <button className={`search-page-prev ${theme}`} style={{ ...this.props.style }} onClick={onPageBack} disabled={prevDisabled}>
             <img src={PageLeft} alt='' />
           </button>
-          <span className={`search-page-list-label ${theme}`}>Rows: </span>
-          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data}/>
+          <span className={`search-page-list-label ${theme}`} style={{ ...this.props.style }}>Rows: </span>
+          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...this.props.style }}/>
           <span
             className={`search-page-total ${theme}`}
+            style={{ ...this.props.style }}
           >
             {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
           </span>
-          <button className={`search-page-next ${theme}`} onClick={onPageNext} disabled={nextDisabled}>
+          <button className={`search-page-next ${theme}`} style={{ ...this.props.style }} onClick={onPageNext} disabled={nextDisabled}>
             <img src={PageRight} alt='' />
           </button>
         </div>
         {
           loading && (
-            <div className={`loading-overlay ${theme}`}>
-              <div className={`loading-message ${theme}`}>
+            <div className={`loading-overlay ${theme}`} style={{ ...this.props.style }}>
+              <div className={`loading-message ${theme}`} style={{ ...this.props.style }}>
                 <img src={Loading} alt=''/>
               </div>
             </div>

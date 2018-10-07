@@ -43,6 +43,7 @@ export default class Button extends Component {
     return (
       <button
         className={theme || className || (type && `btn-${buttonType}`) || 'btn-default'}
+        style={{ ...this.props.style }}
         type={type}
         disabled={disabled}
         value={value}

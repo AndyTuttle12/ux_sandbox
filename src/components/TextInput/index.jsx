@@ -39,6 +39,7 @@ export default class TextInput extends Component {
         {label && (<p className={`text-input-label ${theme}`}>{label}</p>)}
         <input
           className={`text-input-root ${theme}`}
+          style={{ ...this.props.style }}
           disabled={disabled}
           value={value}
           placeholder={placeholder}

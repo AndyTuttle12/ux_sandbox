@@ -30,13 +30,13 @@ export default class AccordionSection extends Component {
     } = this;
 
     return (
-      <div className={`accordian-section-root ${theme} ${isOpen && 'active'} ${isOpen && !isDisabled && 'open'}`}>
-        <div onClick={onClick} className={`accordian-section-header ${theme} ${isOpen && 'active'}`}>
-          <img className={`accordian-section-icon ${theme}`} src={icon} alt='' />
-          {!isDisabled && (<span className={`accordian-section-label ${theme}`}>{label}</span>)}
+      <div className={`accordian-section-root ${theme} ${isOpen && 'active'} ${isOpen && !isDisabled && 'open'}`} style={{ ...this.props.style }}>
+        <div onClick={onClick} className={`accordian-section-header ${theme} ${isOpen && 'active'}`} style={{ ...this.props.style }}>
+          <img className={`accordian-section-icon ${theme}`} src={icon} alt='' style={{ ...this.props.style }} />
+          {!isDisabled && (<span className={`accordian-section-label ${theme}`} style={{ ...this.props.style }}>{label}</span>)}
         </div>
         {isOpen && !isDisabled && (
-          <div className={`accordian-section-body ${theme}`}>
+          <div className={`accordian-section-body ${theme}`} style={{ ...this.props.style }}>
             {this.props.children}
           </div>
         )}

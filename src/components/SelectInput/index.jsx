@@ -57,6 +57,7 @@ export default class SelectInput extends Component {
       <input
         type='button'
         className='option-item'
+        style={{ ...this.props.style }}
         value={item.value}
         onClick={this.onInputChange}
         key={index}
@@ -65,7 +66,7 @@ export default class SelectInput extends Component {
     ))
     if (direction && direction.toUpperCase() === 'UP') {
       return (
-        <div className={`select-input-root ${theme} up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} onClick={onClick} disabled={disabled}>
+        <div className={`select-input-root ${theme} up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} style={{ ...this.props.style }} onClick={onClick} disabled={disabled}>
           <div className={`select-options-area ${theme} up ${active ? 'active' : ''}`}>
             {list}
           </div>
@@ -74,7 +75,7 @@ export default class SelectInput extends Component {
       );
     }
     return (
-      <div className={`select-input-root ${theme} down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} onClick={onClick} disabled={disabled}>
+      <div className={`select-input-root ${theme} down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} style={{ ...this.props.style }} onClick={onClick} disabled={disabled}>
         <div className={`select-input-area ${theme} down ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
         <div className={`select-options-area ${theme} down ${active ? 'active' : ''}`}>
           {list}
@@ -102,12 +103,14 @@ export default class SelectInput extends Component {
         { !active && (
           <div
             className={`select-input-root ${theme} ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`}
+            style={{ ...this.props.style }}
             disabled={disabled}
             onClick={onClick}
             {...this.props}
           >
             <div
               className={`select-input-area ${theme} ${disabled ? 'disabled' : ''}`}
+              style={{ ...this.props.style }}
               disabled={disabled}
             >
               {value}

@@ -27,16 +27,17 @@ export default class SwitchInput extends Component {
     } = this;
 
     return (
-      <label className={`switch-input-label ${theme}`}>
+      <label className={`switch-input-label ${theme}`} style={{ ...this.props.style }}>
         {label && (<p>{label}</p>)}
         <input
           className={`switch-input-root ${theme}`}
+          style={{ ...this.props.style }}
           type='checkbox'
           disabled={disabled}
           value={value}
           onChange={onChange}
         />
-        <span className={`slider round ${theme}`}></span>
+        <span className={`slider round ${theme}`} style={{ ...this.props.style }}></span>
       </label>
     );
   }

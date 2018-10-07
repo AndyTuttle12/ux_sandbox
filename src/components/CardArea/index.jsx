@@ -26,6 +26,7 @@ export default class CardArea extends Component {
       <div
         className={`card-area-root ${theme}`}
         style={{
+          ...this.props.style,
           width: `${(spanWidth/12) * 100 + '%' || 'auto' }`,
           height: `${(spanHeight) * 150 + 'px' || 'auto'}`,
           flexDirection: `${direction}`,
