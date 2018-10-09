@@ -58,7 +58,7 @@ export default class Card extends Component {
       <wrappedContext.Consumer>
         {(context) => (
           <div
-            className={`card-root ${theme}`}
+            className={`card-root ${theme ? theme : ''}`}
             context={context}
             style={{
               ...this.props.style,
@@ -68,13 +68,13 @@ export default class Card extends Component {
               marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
             }}
           >
-            <div className={`card-header ${theme}`} style={{ ...this.props.style }}>
+            <div className={`card-header ${theme ? theme : ''}`} style={{ ...this.props.style }}>
               {title && (
-                <span className={`card-title ${theme}`} style={{ ...this.props.style }}>{title}</span>
+                <span className={`card-title ${theme ? theme : ''}`} style={{ ...this.props.style }}>{title}</span>
               )}
               {collapsible && (
                 <button
-                  className={`card-btn ${theme} ${!collapsed?'close':'open'}-btn`}
+                  className={`card-btn ${theme ? theme : ''} ${!collapsed?'close':'open'}-btn`}
                   style={{ ...this.props.style }}
                   onClick={handleCollapsed}
                 >
@@ -84,12 +84,12 @@ export default class Card extends Component {
             </div>
             {!collapsed && (
               <React.Fragment>
-                <div className={`card-body ${theme}`} style={{ ...this.props.style, height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                <div className={`card-body ${theme ? theme : ''}`} style={{ ...this.props.style, height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
                   {children}
                 </div>
-                <div className={`card-footer ${theme}`} style={{ ...this.props.style, height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
-                  <div className={`footer-text ${theme}`} style={{ ...this.props.style }}>{footerText}</div>
-                  <div className={`footer-actions ${theme}`} style={{ ...this.props.style }}>{footerActions}</div>
+                <div className={`card-footer ${theme ? theme : ''}`} style={{ ...this.props.style, height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
+                  <div className={`footer-text ${theme ? theme : ''}`} style={{ ...this.props.style }}>{footerText}</div>
+                  <div className={`footer-actions ${theme ? theme : ''}`} style={{ ...this.props.style }}>{footerActions}</div>
                 </div>
               </React.Fragment>
             )}

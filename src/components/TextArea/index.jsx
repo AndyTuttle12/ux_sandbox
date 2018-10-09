@@ -38,9 +38,9 @@ export default class TextArea extends Component {
 
     return (
       <label>
-        {label && (<p className={`text-area-label ${theme}`}>{label}</p>)}
+        {label && (<p className={`text-area-label ${theme ? theme : ''}`}>{label}</p>)}
         <textarea
-          className={`text-area-root ${theme}`}
+          className={`text-area-root ${theme ? theme : ''}`}
           disabled={disabled}
           value={value}
           rows={rows}

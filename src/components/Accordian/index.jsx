@@ -58,7 +58,7 @@ export default class Accordion extends Component {
     } = this;
 
     return (
-      <div className={`accordian-root ${theme}`}style={{ ...this.props.style }}>
+      <div className={`accordian-root ${theme ? theme : ''}`} style={{ ...this.props.style }}>
         {children.map(child => (
           <AccordionSection
             style={{ ...this.props.style }}
