@@ -9,6 +9,7 @@ import ToolTip from './components/ToolTip';
 import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
 import Button from './components/Button';
+import Tabs from './components/Tabs';
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends Component {
               <TextInput placeholder="An Input" onChange={() => {}}></TextInput>
               <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
               <Button onClick={() => console.log(this.props.context)}>Click Me!</Button>
+              <Tabs onClick={() => {}} names={['1', '2', '3']} />
               <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>I am content</div>
             </Card>
 
