@@ -1,0 +1,12 @@
+.tabs-root {
+  border-top: solid 1px;
+  border-left: solid 1px;
+  border-right: solid 1px;
+  width: fit-content;
+  height: auto;
+}
+
+.btn-default.selected {
+  background-color: #0094d9;
+  color: #fff;
+}

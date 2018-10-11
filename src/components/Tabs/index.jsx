@@ -19,17 +19,29 @@ export default class Tabs extends Component {
     value: PropTypes.string,
     className: PropTypes.string,
     names: PropTypes.array.isRequired,
-    onClick: PropTypes.func.isRequired,
+    openTab: PropTypes.func,
     children: PropTypes.any,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: 0,
+    }
+  }
+
   onClick = (e) => {
-    this.props.onClick(e);
+    console.log(e.target);
+    this.setState({ selected: e.target.name }, () => this.props.opentab());
   };
 
   render() {
     const {
       onClick,
+      state: {
+        selected,
+      },
       props: {
         type,
         buttonType,
@@ -39,29 +51,29 @@ export default class Tabs extends Component {
         theme,
         names,
         children,
+        openTab,
       },
     } = this;
 
     const tabs = names.map((name, index) => (
-        <button
+      <button
         key={index}
-        className={theme || className || (type && `tab-btn-${buttonType}`) || 'btn-default'}
+        className={theme || className || (type && `tab-btn-${buttonType}`) || `btn-default ${selected === name ? 'selected' : ''}` }
         style={{ ...this.props.style }}
         type={type}
         disabled={disabled}
         value={value}
         name={name}
         onClick={onClick}
-        {...this.props}
       >
         {name}
         {children}
       </button>
     ));
     return (
-      <React.Fragment>
+      <div className="tabs-root" opentab={openTab}>
         {tabs}
-      </React.Fragment>
+      </div>
     );
   }
 }
