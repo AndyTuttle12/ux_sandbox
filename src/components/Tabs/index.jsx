@@ -64,7 +64,7 @@ export default class Tabs extends Component {
         disabled={disabled}
         value={value}
         name={name}
-        onClick={onClick}
+        onClick={(e) => onClick(e)}
       >
         {name}
         {children}

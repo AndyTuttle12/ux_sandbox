@@ -16,10 +16,6 @@
   background-color: #aaa;
 }
 
-.btn-default:focus:not(:disabled) {
-  color: #0094d9
-}
-
 .btn-default:disabled {
   opacity: .4;
 }

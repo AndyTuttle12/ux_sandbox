@@ -10,3 +10,8 @@
   background-color: #0094d9;
   color: #fff;
 }
+
+.btn-default.selected:hover {
+  background-color: #0094d9;
+  opacity: .8;
+}
