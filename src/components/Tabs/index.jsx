@@ -32,8 +32,8 @@ export default class Tabs extends Component {
   }
 
   onClick = (e) => {
-    console.log(e.target);
-    this.setState({ selected: e.target.name }, () => this.props.opentab());
+    this.setState({ selected: e.target.name });
+    this.props.opentab(e.target.name);
   };
 
   render() {

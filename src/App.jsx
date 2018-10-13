@@ -17,6 +17,7 @@ class App extends Component {
 
     this.state = {
       navOpen: true,
+      tab: null,
     };
   }
 
@@ -24,8 +25,12 @@ class App extends Component {
     this.setState({ navOpen: !this.state.navOpen });
   }
 
+  setTab = (name) => {
+    this.setState({ tab: name });
+  }
+
   render() {
-    const { navOpen } = this.state;
+    const { navOpen, tab } = this.state;
     return (
       <div className={`App ${navOpen?'standard':'expanded'}`}>
         <header className="App-header">
@@ -41,8 +46,11 @@ class App extends Component {
               <TextInput placeholder="An Input" onChange={() => {}}></TextInput>
               <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
               <Button onClick={() => console.log(this.props.context)}>Click Me!</Button>
-              <Tabs opentab={(e) => console.log(e)} names={['1', '2', '3']} />
-              <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>I am content</div>
+              <Tabs opentab={(name) => this.setTab(name)} names={['1', '2', '3']} />
+              {tab === null && (<div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
+              {tab === '1' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 1 content</div>)}
+              {tab === '2' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 2 content</div>)}
+              {tab === '3' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 3 content</div>)}
             </Card>
 
             <CardArea spanWidth={6} direction="row">
