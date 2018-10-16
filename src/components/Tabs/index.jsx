@@ -20,6 +20,7 @@ export default class Tabs extends Component {
     className: PropTypes.string,
     names: PropTypes.array.isRequired,
     openTab: PropTypes.func,
+    selectedTab: PropTypes.string,
     children: PropTypes.any,
   };
 
@@ -35,6 +36,12 @@ export default class Tabs extends Component {
     this.setState({ selected: e.target.name });
     this.props.opentab(e.target.name);
   };
+
+  componentDidMount() {
+    if (this.props.selectedTab) {
+      this.setState({ selected: this.props.selectedTab });
+    }
+  }
 
   render() {
     const {

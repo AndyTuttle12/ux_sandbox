@@ -46,7 +46,7 @@ class App extends Component {
               <TextInput placeholder="An Input" onChange={() => {}}></TextInput>
               <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
               <Button onClick={() => console.log(this.props.context)}>Click Me!</Button>
-              <Tabs opentab={(name) => this.setTab(name)} names={['1', '2', '3']} />
+              <Tabs opentab={(name) => this.setTab(name)} selectedTab={tab} names={['1', '2', '3']} />
               {tab === null && (<div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
               {tab === '1' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 1 content</div>)}
               {tab === '2' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 2 content</div>)}
