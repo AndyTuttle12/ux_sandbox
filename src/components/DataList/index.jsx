@@ -15,6 +15,7 @@ export default class DataList extends Component {
     disabled: PropTypes.bool,
     label: PropTypes.string,
     placeholder: PropTypes.string,
+    columns: PropTypes.array,
     fetchData: PropTypes.func.isRequired,
     theme: PropTypes.string,
   };
@@ -115,13 +116,21 @@ export default class DataList extends Component {
     });
   }
 
+  renderHeaders = () => {
+    return this.props.columns.map((column, index) => (
+      <th key={index}>{column.header}</th>
+    ))
+  }
+
   renderList = () => {
-    return this.state.data.list.map((name, index) => (
-      <a key={index} className={`search-list-area ${this.props.theme}`} style={{ ...this.props.style }} href='/'>
-        <div>
-          {name}
-        </div>
-      </a>
+    return this.state.data.list.map((entry, index) => (
+      <tr key={index} className={`search-list-area ${this.props.theme}`} style={{ ...this.props.style }}>
+        {(this.props.columns.map((column, i) => (
+          <td key={i}>
+            {entry[column.accessor]}
+          </td>
+        )))}
+      </tr>
     ));
   }
 
@@ -135,6 +144,7 @@ export default class DataList extends Component {
       onSearch,
       onSort,
       onOptionSelect,
+      renderHeaders,
       renderList,
       onPageBack,
       onPageNext,
@@ -212,10 +222,19 @@ export default class DataList extends Component {
           </button>
         </div>
         <div className={`search-results ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-          {data && data.list && renderList()}
-          {!data && (
-            <p>No results</p>
-          )}
+          <table>
+            <thead>
+              <tr>
+                {renderHeaders()}
+              </tr>
+            </thead>
+            <tbody>
+              {data && data.list && renderList()}
+              {!data && (
+                <tr><td><p>No results</p></td></tr>
+              )}
+            </tbody>
+          </table>
         </div>
         <div className={`search-pagination ${theme ? theme : ''}`} style={{ ...this.props.style }}>
           <button className={`search-page-prev ${theme ? theme : ''}`} style={{ ...this.props.style }} onClick={onPageBack} disabled={prevDisabled}>

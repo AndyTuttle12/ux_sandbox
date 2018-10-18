@@ -37,7 +37,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data)
-        const list = data.map(post => post.title).slice(0, 10);
+        const list = data.slice(0, 10);
         console.log(list)
         return callback({
           total: data.length,
@@ -49,6 +49,16 @@ class App extends Component {
 
   render() {
     const { navOpen, tab } = this.state;
+    const columns = [
+      {
+        header: 'ID',
+        accessor: 'id',
+      },
+      {
+        header: 'Title',
+        accessor: 'title',
+      },
+    ]
     return (
       <div className={`App ${navOpen?'standard':'expanded'}`}>
         <header className="App-header">
@@ -100,7 +110,7 @@ class App extends Component {
                 <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
               <Card title="7TH" areaWidth={6} spanWidth={6}>
-                <DataList fetchData={(options, callback) => this.handleList(options, callback)} />
+                <DataList columns={columns} fetchData={(options, callback) => this.handleList(options, callback)} />
               </Card>
             </CardArea>
 
