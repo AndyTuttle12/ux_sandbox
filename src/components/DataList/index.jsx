@@ -16,6 +16,7 @@ export default class DataList extends Component {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     columns: PropTypes.array,
+    rowClick: PropTypes.func.isRequired,
     fetchData: PropTypes.func.isRequired,
     theme: PropTypes.string,
   };
@@ -118,15 +119,15 @@ export default class DataList extends Component {
 
   renderHeaders = () => {
     return this.props.columns.map((column, index) => (
-      <th key={index}>{column.header}</th>
+      <th className={column.style || column.headerClass || 'list-header-default'} key={index}>{column.header}</th>
     ))
   }
 
   renderList = () => {
     return this.state.data.list.map((entry, index) => (
-      <tr key={index} className={`search-list-area ${this.props.theme}`} style={{ ...this.props.style }}>
+      <tr key={index} className={`list-row-default ${this.props.theme?this.props.theme:''}`} style={{ ...this.props.style }} onClick={() => this.props.rowClick(entry)}>
         {(this.props.columns.map((column, i) => (
-          <td key={i}>
+          <td className={column.style || column.columnClass || 'list-column-default'} key={i}>
             {entry[column.accessor]}
           </td>
         )))}
@@ -222,13 +223,13 @@ export default class DataList extends Component {
           </button>
         </div>
         <div className={`search-results ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-          <table>
+          <table cellSpacing={0}>
             <thead>
               <tr>
                 {renderHeaders()}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="list-body">
               {data && data.list && renderList()}
               {!data && (
                 <tr><td><p>No results</p></td></tr>
