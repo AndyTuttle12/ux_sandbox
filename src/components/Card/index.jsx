@@ -48,6 +48,7 @@ export default class Card extends Component {
         footerText,
         footerActions,
         theme,
+        style,
       },
       state: {
         collapsed,
@@ -61,21 +62,21 @@ export default class Card extends Component {
             className={`card-root ${theme ? theme : ''}`}
             context={context}
             style={{
-              ...this.props.style,
+              ...style,
               width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
               height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`,
               marginTop: `calc(${(offsetHeight) * 150 + 'px' || 'auto'})`,
               marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
             }}
           >
-            <div className={`card-header ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+            <div className={`card-header ${theme ? theme : ''}`} style={{ ...style }}>
               {title && (
-                <span className={`card-title ${theme ? theme : ''}`} style={{ ...this.props.style }}>{title}</span>
+                <span className={`card-title ${theme ? theme : ''}`} style={{ ...style }}>{title}</span>
               )}
               {collapsible && (
                 <button
                   className={`card-btn ${theme ? theme : ''} ${!collapsed?'close':'open'}-btn`}
-                  style={{ ...this.props.style }}
+                  style={{ ...style }}
                   onClick={handleCollapsed}
                 >
                   <img src={Arrow} alt="" />
@@ -84,12 +85,12 @@ export default class Card extends Component {
             </div>
             {!collapsed && (
               <React.Fragment>
-                <div className={`card-body ${theme ? theme : ''}`} style={{ ...this.props.style, height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                <div className={`card-body ${theme ? theme : ''}`} style={{ ...style, height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
                   {children}
                 </div>
-                <div className={`card-footer ${theme ? theme : ''}`} style={{ ...this.props.style, height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
-                  <div className={`footer-text ${theme ? theme : ''}`} style={{ ...this.props.style }}>{footerText}</div>
-                  <div className={`footer-actions ${theme ? theme : ''}`} style={{ ...this.props.style }}>{footerActions}</div>
+                <div className={`card-footer ${theme ? theme : ''}`} style={{ ...style, height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
+                  <div className={`footer-text ${theme ? theme : ''}`} style={{ ...style }}>{footerText}</div>
+                  <div className={`footer-actions ${theme ? theme : ''}`} style={{ ...style }}>{footerActions}</div>
                 </div>
               </React.Fragment>
             )}

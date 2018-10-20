@@ -18,14 +18,25 @@ export default class CardDashboard extends Component {
   }
 
   render() {
+    const {
+      state: {
+        shared,
+      },
+      props: {
+        theme,
+        style,
+        title,
+        children,
+      },
+    } = this;
     return (
-      <wrappedContext.Provider value={this.state.shared}>
-        <div className={`card-dashboard-root ${this.props.theme}`} style={{ ...this.props.style }}>
-          <div className={`card-dashboard-header ${this.props.theme}`} style={{ ...this.props.style }}>
-            {this.props.title && <div className={`card-dashboard-title ${this.props.theme}`} style={{ ...this.props.style }}>{this.props.title}</div>}
+      <wrappedContext.Provider value={shared}>
+        <div className={`card-dashboard-root ${theme}`} style={{ ...style }}>
+          <div className={`card-dashboard-header ${theme}`} style={{ ...style }}>
+            {title && <div className={`card-dashboard-title ${theme}`} style={{ ...style }}>{title}</div>}
           </div>
-          <div className={`card-dashboard-body ${this.props.theme}`} style={{ ...this.props.style }}>
-            {this.props.children}
+          <div className={`card-dashboard-body ${theme}`} style={{ ...style }}>
+            {children}
           </div>
         </div>
       </wrappedContext.Provider>

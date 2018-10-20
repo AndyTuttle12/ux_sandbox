@@ -53,15 +53,15 @@ export default class Accordion extends Component {
   render() {
     const {
       onClick,
-      props: { children, isDisabled, theme },
+      props: { children, isDisabled, theme, style },
       state: { openSections },
     } = this;
 
     return (
-      <div className={`accordian-root ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+      <div className={`accordian-root ${theme ? theme : ''}`} style={{ ...style }}>
         {children.map(child => (
           <AccordionSection
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             isOpen={!!openSections[child.props.label]}
             label={child.props.label}
             icon={child.props.icon}

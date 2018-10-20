@@ -26,18 +26,23 @@ export default class AccordionSection extends Component {
         isDisabled,
         icon,
         theme,
+        style,
+        children,
       },
     } = this;
 
     return (
-      <div className={`accordian-section-root ${theme ? theme : ''} ${isOpen ? 'active' : ''} ${(isOpen && !isDisabled) ? 'open' : ''}`} style={{ ...this.props.style }}>
-        <div onClick={onClick} className={`accordian-section-header ${theme ? theme : ''} ${isOpen ? 'active' : ''}`} style={{ ...this.props.style }}>
-          <img className={`accordian-section-icon ${theme ? theme : ''}`} src={icon} alt='' style={{ ...this.props.style }} />
-          {!isDisabled && (<span className={`accordian-section-label ${theme ? theme : ''}`} style={{ ...this.props.style }}>{label}</span>)}
+      <div
+        className={`accordian-section-root ${theme ? theme : ''} ${isOpen ? 'active' : ''} ${(isOpen && !isDisabled) ? 'open' : ''}`}
+        style={{ ...style }}
+      >
+        <div onClick={onClick} className={`accordian-section-header ${theme ? theme : ''} ${isOpen ? 'active' : ''}`} style={{ ...style }}>
+          <img className={`accordian-section-icon ${theme ? theme : ''}`} src={icon} alt='' style={{ ...style }} />
+          {!isDisabled && (<span className={`accordian-section-label ${theme ? theme : ''}`} style={{ ...style }}>{label}</span>)}
         </div>
         {isOpen && !isDisabled && (
-          <div className={`accordian-section-body ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-            {this.props.children}
+          <div className={`accordian-section-body ${theme ? theme : ''}`} style={{ ...style }}>
+            {children}
           </div>
         )}
       </div>
