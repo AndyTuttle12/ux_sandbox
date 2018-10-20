@@ -16,6 +16,7 @@ export default class DataList extends Component {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     columns: PropTypes.array,
+    style: PropTypes.instanceOf(Object),
     rowClick: PropTypes.func.isRequired,
     fetchData: PropTypes.func.isRequired,
     theme: PropTypes.string,
@@ -40,19 +41,21 @@ export default class DataList extends Component {
     this.setState({ searchValue: e.target.value });
   }
 
-  onSort = (e) => {
-    this.setState({ reverseSort: !this.state.reverseSort }, () => this.onSearch(e))
+  onSort = () => {
+    const { onSearch } = this;
+    this.setState({ reverseSort: !this.state.reverseSort }, () => onSearch())
   }
 
   onOptionSelect = (e) => {
-    if (this.state.data.total && Number(this.state.data.total) < Number(e.target.value)) {
-      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: true, }, () => this.onSearch(e));
+    const { onSearch, state: { data: { total } } } = this;
+    if (total && Number(total) < Number(e.target.value)) {
+      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: true, }, () => onSearch());
     } else {
-      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: false, }, () => this.onSearch(e));
+      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: false, }, () => onSearch());
     }
   }
 
-  onPageBack = (e) => {
+  onPageBack = () => {
     const {
       onSearch,
       state: {
@@ -62,9 +65,9 @@ export default class DataList extends Component {
     } = this;
     const backSkip = Number(skip) - Number(limit);
     if (backSkip > 0) {
-      this.setState({ skip: backSkip, prevDisabled: false, nextDisabled: false }, () => onSearch(e));
+      this.setState({ skip: backSkip, prevDisabled: false, nextDisabled: false }, () => onSearch());
     } else {
-      this.setState({ skip: 0, prevDisabled: true, nextDisabled: false }, () => onSearch(e));
+      this.setState({ skip: 0, prevDisabled: true, nextDisabled: false }, () => onSearch());
     }
   }
 
@@ -80,23 +83,26 @@ export default class DataList extends Component {
     const nextSkip = Number(skip) + Number(limit);
     const lastSkip = Number(nextSkip) + Number(limit);
     if (total && total + Number(skip) >= lastSkip) {
-      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: true }, () => onSearch(e));
+      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: true }, () => onSearch());
     } else if (total && total <= lastSkip) {
-      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: true }, () => onSearch(e));
+      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: true }, () => onSearch());
     } else if (total && total > nextSkip) {
-      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: false }, () => onSearch(e));
+      this.setState({ skip: nextSkip, prevDisabled: false, nextDisabled: false }, () => onSearch());
     } else {
       this.setState({ nextDisabled: true });
     }
   }
 
-  onSearch = (e) => {
+  onSearch = () => {
     const {
       state: {
         skip,
         limit,
         reverseSort,
         searchValue,
+      },
+      props: {
+        fetchData,
       },
     } = this;
     const options = {
@@ -107,7 +113,7 @@ export default class DataList extends Component {
       filter: { 'name': searchValue },
     };
     this.setState({ loading: true });
-    this.props.fetchData(options, (data) => {
+    fetchData(options, (data) => {
       console.log(data);
       if (data && data.total && data.total > Number(limit)) {
         this.setState({ data, loading: false, nextDisabled: false });
@@ -118,15 +124,34 @@ export default class DataList extends Component {
   }
 
   renderHeaders = () => {
-    return this.props.columns.map((column, index) => (
+    const { columns } = this.props;
+    return columns.map((column, index) => (
       <th className={column.style || column.headerClass || 'list-header-default'} key={index}>{column.header}</th>
     ))
   }
 
   renderList = () => {
-    return this.state.data.list.map((entry, index) => (
-      <tr key={index} className={`list-row-default ${this.props.theme?this.props.theme:''}`} style={{ ...this.props.style }} onClick={() => this.props.rowClick(entry)}>
-        {(this.props.columns.map((column, i) => (
+    const {
+      props: {
+        columns,
+        rowClick,
+        theme,
+        style,
+      },
+      state: {
+        data: {
+          list,
+        },
+      },
+    } = this;
+    return list.map((entry, index) => (
+      <tr
+        key={index}
+        className={`list-row-default ${theme ? theme : ''}`}
+        style={{ ...style }}
+        onClick={() => rowClick(entry)}
+      >
+        {(columns.map((column, i) => (
           <td className={column.style || column.columnClass || 'list-column-default'} key={i}>
             {entry[column.accessor]}
           </td>
@@ -164,6 +189,7 @@ export default class DataList extends Component {
         placeholder,
         disabled,
         theme,
+        style,
       },
     } = this;
 
@@ -194,9 +220,9 @@ export default class DataList extends Component {
 
     return (
       <div className="data-list-root">
-        <div className={`search-box ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+        <div className={`search-box ${theme ? theme : ''}`} style={{ ...style }}>
           <TextInput
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             onChange={onInputChange}
             onKeyPress={onSearch}
             value={searchValue}
@@ -208,21 +234,21 @@ export default class DataList extends Component {
           </TextInput>
           <button
             className={`search-btn ${theme ? theme : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             onClick={onSearch}
           >
             <img src={Search} alt='' />
           </button>
           <button
             className={`sort-btn ${theme ? theme : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             onClick={onSort}
           >
             {reverseSort && (<img className="up" src={SortUp} alt='' />)}
             {!reverseSort && (<img className="down" src={SortDown} alt='' />)}
           </button>
         </div>
-        <div className={`search-results ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+        <div className={`search-results ${theme ? theme : ''}`} style={{ ...style }}>
           <table cellSpacing={0}>
             <thead>
               <tr>
@@ -232,31 +258,37 @@ export default class DataList extends Component {
             <tbody className="list-body">
               {data && data.list && renderList()}
               {!data && (
-                <tr><td><p>No results</p></td></tr>
+                <tr>
+                  <td>
+                    <p>
+                      No results
+                    </p>
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>
         </div>
-        <div className={`search-pagination ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-          <button className={`search-page-prev ${theme ? theme : ''}`} style={{ ...this.props.style }} onClick={onPageBack} disabled={prevDisabled}>
+        <div className={`search-pagination ${theme ? theme : ''}`} style={{ ...style }}>
+          <button className={`search-page-prev ${theme ? theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
             <img src={PageLeft} alt='' />
           </button>
-          <span className={`search-page-list-label ${theme ? theme : ''}`} style={{ ...this.props.style }}>Rows: </span>
-          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...this.props.style }}/>
+          <span className={`search-page-list-label ${theme ? theme : ''}`} style={{ ...style }}>Rows: </span>
+          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
           <span
             className={`search-page-total ${theme ? theme : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
           >
             {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
           </span>
-          <button className={`search-page-next ${theme ? theme : ''}`} style={{ ...this.props.style }} onClick={onPageNext} disabled={nextDisabled}>
+          <button className={`search-page-next ${theme ? theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
             <img src={PageRight} alt='' />
           </button>
         </div>
         {
           loading && (
-            <div className={`loading-overlay ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-              <div className={`loading-message ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+            <div className={`loading-overlay ${theme ? theme : ''}`} style={{ ...style }}>
+              <div className={`loading-message ${theme ? theme : ''}`} style={{ ...style }}>
                 <img src={Loading} alt=''/>
               </div>
             </div>
