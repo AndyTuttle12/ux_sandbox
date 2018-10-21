@@ -43,6 +43,7 @@ export default class SelectInput extends Component {
   renderItems = (e) => {
     const {
       onClick,
+      onInputChange,
       state: {
         active,
         value,
@@ -50,33 +51,55 @@ export default class SelectInput extends Component {
       props: {
         direction,
         disabled,
+        list,
         theme,
+        style,
       },
     } = this;
-    const list = this.props.list && this.props.list.map((item, index) => (
+    const list = list && list.map((item, index) => (
       <input
         type='button'
         className='option-item'
-        style={{ ...this.props.style }}
+        style={{ ...style }}
         value={item.value}
-        onClick={this.onInputChange}
+        onClick={onInputChange}
         key={index}
         name={item.name}
       />
     ))
     if (direction && direction.toUpperCase() === 'UP') {
       return (
-        <div className={`select-input-root ${theme ? theme : ''} up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} style={{ ...this.props.style }} onClick={onClick} disabled={disabled}>
+        <div
+          className={`select-input-root ${theme ? theme : ''} up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+          style={{ ...style }}
+          onClick={onClick}
+          disabled={disabled}
+        >
           <div className={`select-options-area ${theme ? theme : ''} up ${active ? 'active' : ''}`}>
             {list}
           </div>
-          <div className={`select-input-area ${theme ? theme : ''} up ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
+          <div
+            className={`select-input-area ${theme ? theme : ''} up ${active ? 'active' : ''}`}
+            disabled={disabled}
+          >
+            {value}
+          </div>
         </div>
       );
     }
     return (
-      <div className={`select-input-root ${theme ? theme : ''} down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`} style={{ ...this.props.style }} onClick={onClick} disabled={disabled}>
-        <div className={`select-input-area ${theme ? theme : ''} down ${active ? 'active' : ''}`} disabled={disabled}>{value}</div>
+      <div
+        className={`select-input-root ${theme ? theme : ''} down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+        style={{ ...style }}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        <div
+          className={`select-input-area ${theme ? theme : ''} down ${active ? 'active' : ''}`}
+          disabled={disabled}
+        >
+          {value}
+        </div>
         <div className={`select-options-area ${theme ? theme : ''} down ${active ? 'active' : ''}`}>
           {list}
         </div>
@@ -95,6 +118,7 @@ export default class SelectInput extends Component {
       props: {
         disabled,
         theme,
+        style,
       },
     } = this;
 
@@ -103,14 +127,14 @@ export default class SelectInput extends Component {
         { !active && (
           <div
             className={`select-input-root ${theme ? theme : ''} ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             disabled={disabled}
             onClick={onClick}
             {...this.props}
           >
             <div
               className={`select-input-area ${theme ? theme : ''} ${disabled ? 'disabled' : ''}`}
-              style={{ ...this.props.style }}
+              style={{ ...style }}
               disabled={disabled}
             >
               {value}

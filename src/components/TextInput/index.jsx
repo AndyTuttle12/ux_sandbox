@@ -31,15 +31,20 @@ export default class TextInput extends Component {
         placeholder,
         disabled,
         theme,
+        style,
       },
     } = this;
 
     return (
       <label>
-        {label && (<p className={`text-input-label ${theme ? theme : ''}`}>{label}</p>)}
+        {label && (
+          <p className={`text-input-label ${theme ? theme : ''}`}>
+            {label}
+          </p>
+        )}
         <input
           className={`text-input-root ${theme ? theme : ''}`}
-          style={{ ...this.props.style }}
+          style={{ ...style }}
           disabled={disabled}
           value={value}
           placeholder={placeholder}

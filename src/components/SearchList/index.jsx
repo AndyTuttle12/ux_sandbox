@@ -43,10 +43,11 @@ export default class SearchList extends Component {
   }
 
   onOptionSelect = (e) => {
-    if (this.state.data.total && Number(this.state.data.total) < Number(e.target.value)) {
-      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: true, }, () => this.onSearch(e));
+    const { onSearch, state: { data: { total } } } = this;
+    if (total && Number(total) < Number(e.target.value)) {
+      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: true, }, () => onSearch(e));
     } else {
-      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: false, }, () => this.onSearch(e));
+      this.setState({ limit: e.target.value, skip: 0, prevDisabled: true, nextDisabled: false, }, () => onSearch(e));
     }
   }
 
@@ -96,6 +97,9 @@ export default class SearchList extends Component {
         reverseSort,
         searchValue,
       },
+      props: {
+        fetchData,
+      },
     } = this;
     const options = {
       skip: (skip || 0),
@@ -106,7 +110,7 @@ export default class SearchList extends Component {
     };
     try {
       await this.setState({ loading: true });
-      let data = await this.props.fetchData(options);
+      let data = await fetchData(options);
       setTimeout(() => { // TODO: remove demo code and timeouts for real implementation
         if (data && data.total && data.total > Number(limit)) {
           this.setState({ data, loading: false, nextDisabled: false });
@@ -120,8 +124,9 @@ export default class SearchList extends Component {
   }
 
   renderList = () => {
-    return this.state.data.list.map((name, index) => (
-      <a key={index} className={`search-list-area ${this.props.theme}`} style={{ ...this.props.style }} href='/'>
+    const { state: { data: { list } }, props: { theme, style } } = this;
+    return list.map((name, index) => (
+      <a key={index} className={`search-list-area ${theme}`} style={{ ...style }} href='/'>
         <div>
           {name}
         </div>
@@ -157,6 +162,7 @@ export default class SearchList extends Component {
         placeholder,
         disabled,
         theme,
+        style,
       },
     } = this;
 
@@ -187,9 +193,9 @@ export default class SearchList extends Component {
 
     return (
       <React.Fragment>
-        <div className={`search-box ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+        <div className={`search-box ${theme ? theme : ''}`} style={{ ...style }}>
           <TextInput
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             onChange={onInputChange}
             onKeyPress={onSearch}
             value={searchValue}
@@ -201,43 +207,43 @@ export default class SearchList extends Component {
           </TextInput>
           <button
             className={`search-btn ${theme ? theme : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             onClick={onSearch}
           >
             <img src={Search} alt='' />
           </button>
           <button
             className={`sort-btn ${theme ? theme : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
             onClick={onSort}
           >
             {reverseSort && (<img className="up" src={SortUp} alt='' />)}
             {!reverseSort && (<img className="down" src={SortDown} alt='' />)}
           </button>
         </div>
-        <div className={`search-results ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+        <div className={`search-results ${theme ? theme : ''}`} style={{ ...style }}>
           {data && data.list && renderList()}
         </div>
-        <div className={`search-pagination ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-          <button className={`search-page-prev ${theme ? theme : ''}`} style={{ ...this.props.style }} onClick={onPageBack} disabled={prevDisabled}>
+        <div className={`search-pagination ${theme ? theme : ''}`} style={{ ...style }}>
+          <button className={`search-page-prev ${theme ? theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
             <img src={PageLeft} alt='' />
           </button>
-          <span className={`search-page-list-label ${theme ? theme : ''}`} style={{ ...this.props.style }}>Rows: </span>
-          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...this.props.style }}/>
+          <span className={`search-page-list-label ${theme ? theme : ''}`} style={{ ...style }}>Rows: </span>
+          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
           <span
             className={`search-page-total ${theme ? theme : ''}`}
-            style={{ ...this.props.style }}
+            style={{ ...style }}
           >
             {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
           </span>
-          <button className={`search-page-next ${theme ? theme : ''}`} style={{ ...this.props.style }} onClick={onPageNext} disabled={nextDisabled}>
+          <button className={`search-page-next ${theme ? theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
             <img src={PageRight} alt='' />
           </button>
         </div>
         {
           loading && (
-            <div className={`loading-overlay ${theme ? theme : ''}`} style={{ ...this.props.style }}>
-              <div className={`loading-message ${theme ? theme : ''}`} style={{ ...this.props.style }}>
+            <div className={`loading-overlay ${theme ? theme : ''}`} style={{ ...style }}>
+              <div className={`loading-message ${theme ? theme : ''}`} style={{ ...style }}>
                 <img src={Loading} alt=''/>
               </div>
             </div>

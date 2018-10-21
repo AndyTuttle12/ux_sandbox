@@ -35,6 +35,7 @@ export default class ToolTip extends Component {
         direction,
         children,
         theme,
+        style,
       },
       state: {
         hovering,
@@ -47,7 +48,7 @@ export default class ToolTip extends Component {
           className={`tool-tip-root ${theme ? theme : ''} ${direction}`}
           onMouseEnter={onHover}
           onMouseLeave={onHide}
-          style={{ ...this.props.style }}
+          style={{ ...style }}
           {...this.props}
         >
         { hovering && (
@@ -68,7 +69,7 @@ export default class ToolTip extends Component {
         className={`tool-tip-root ${theme ? theme : ''} ${direction}`}
         onMouseEnter={onHover}
         onMouseLeave={onHide}
-        style={{ ...this.props.style }}
+        style={{ ...style }}
         {...this.props}
       >
         {children}

@@ -33,6 +33,8 @@ export default class TextArea extends Component {
         placeholder,
         disabled,
         theme,
+        style,
+        resize,
       },
     } = this;
 
@@ -49,7 +51,7 @@ export default class TextArea extends Component {
           spellCheck={spellCheck}
           placeholder={placeholder}
           onChange={onChange}
-          style={{...this.props.style, resize: this.props.resize }}
+          style={{...style, resize: resize }}
           {...this.props}
         />
       </label>

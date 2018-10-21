@@ -59,6 +59,7 @@ export default class Tabs extends Component {
         names,
         children,
         openTab,
+        style,
       },
     } = this;
 
@@ -66,7 +67,7 @@ export default class Tabs extends Component {
       <button
         key={index}
         className={theme || className || (type && `tab-btn-${buttonType}`) || `btn-default ${selected === name ? 'selected' : ''}` }
-        style={{ ...this.props.style }}
+        style={{ ...style }}
         type={type}
         disabled={disabled}
         value={value}
