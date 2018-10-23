@@ -56,7 +56,7 @@ export default class SelectInput extends Component {
         style,
       },
     } = this;
-    const list = list && list.map((item, index) => (
+    const listMap = list && list.map((item, index) => (
       <input
         type='button'
         className='option-item'
@@ -76,7 +76,7 @@ export default class SelectInput extends Component {
           disabled={disabled}
         >
           <div className={`select-options-area ${theme ? theme : ''} up ${active ? 'active' : ''}`}>
-            {list}
+            {listMap}
           </div>
           <div
             className={`select-input-area ${theme ? theme : ''} up ${active ? 'active' : ''}`}
