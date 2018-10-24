@@ -69,14 +69,13 @@ export default class Card extends Component {
               marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
             }}
           >
-            <div className={`card-header ${theme ? theme : ''}`} style={{ ...style }}>
+            <div className={`card-header ${theme ? theme : ''}`}>
               {title && (
-                <span className={`card-title ${theme ? theme : ''}`} style={{ ...style }}>{title}</span>
+                <span className={`card-title ${theme ? theme : ''}`}>{title}</span>
               )}
               {collapsible && (
                 <button
                   className={`card-btn ${theme ? theme : ''} ${!collapsed?'close':'open'}-btn`}
-                  style={{ ...style }}
                   onClick={handleCollapsed}
                 >
                   <img src={Arrow} alt="" />
@@ -85,12 +84,12 @@ export default class Card extends Component {
             </div>
             {!collapsed && (
               <React.Fragment>
-                <div className={`card-body ${theme ? theme : ''}`} style={{ ...style, height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                <div className={`card-body ${theme ? theme : ''}`} style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
                   {children}
                 </div>
-                <div className={`card-footer ${theme ? theme : ''}`} style={{ ...style, height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
-                  <div className={`footer-text ${theme ? theme : ''}`} style={{ ...style }}>{footerText}</div>
-                  <div className={`footer-actions ${theme ? theme : ''}`} style={{ ...style }}>{footerActions}</div>
+                <div className={`card-footer ${theme ? theme : ''}`} style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
+                  <div className={`footer-text ${theme ? theme : ''}`}>{footerText}</div>
+                  <div className={`footer-actions ${theme ? theme : ''}`}>{footerActions}</div>
                 </div>
               </React.Fragment>
             )}
