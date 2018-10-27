@@ -66,7 +66,7 @@ export default class Tabs extends Component {
     const tabs = names.map((name, index) => (
       <button
         key={index}
-        className={theme || className || (type && `tab-btn-${buttonType}`) || `btn-default ${selected === name ? 'selected' : ''}` }
+        className={theme || className || (type && `tab-btn-${buttonType}`) || `btn-default${selected === name ? ' selected' : ''}` }
         style={{ ...style }}
         type={type}
         disabled={disabled}

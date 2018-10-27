@@ -182,7 +182,7 @@ export default class Nav extends Component {
         }
       } = this;
       return (
-        <div className={`nav-root ${open ? 'open' : 'closed'}`}>
+        <div className={`nav-root${open ? ' open' : ' closed'}`}>
           <div className='nav-header'>
             <img className='app-logo' src={AppLogo} alt='' />
             {open && (

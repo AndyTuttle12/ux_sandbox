@@ -31,11 +31,11 @@ export default class CardDashboard extends Component {
     } = this;
     return (
       <wrappedContext.Provider value={shared}>
-        <div className={`card-dashboard-root ${theme ? theme : ''}`} style={{ ...style }}>
-          <div className={`card-dashboard-header ${theme ? theme : ''}`} style={{ ...style }}>
-            {title && <div className={`card-dashboard-title ${theme ? theme : ''}`} style={{ ...style }}>{title}</div>}
+        <div className={`card-dashboard-root${theme ? ''+theme : ''}`} style={{ ...style }}>
+          <div className={`card-dashboard-header${theme ? ''+theme : ''}`} style={{ ...style }}>
+            {title && <div className={`card-dashboard-title${theme ? ''+theme : ''}`} style={{ ...style }}>{title}</div>}
           </div>
-          <div className={`card-dashboard-body ${theme ? theme : ''}`} style={{ ...style }}>
+          <div className={`card-dashboard-body${theme ? ''+theme : ''}`} style={{ ...style }}>
             {children}
           </div>
         </div>

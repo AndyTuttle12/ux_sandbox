@@ -43,7 +43,7 @@ export default class CardArea extends Component {
 
     return (
       <div
-        className={`card-area-root ${theme ? theme : ''}`}
+        className={`card-area-root${theme ? ''+theme : ''}`}
         style={{
           ...this.props.style,
           width: `${(spanWidth/12) * 100 + '%' || 'auto' }`,
@@ -54,7 +54,7 @@ export default class CardArea extends Component {
         {!collapsible && children}
         {collapsible && (
           <div
-            className={`card-area-body ${collapsed ? 'collapsed' : ''}`}
+            className={`card-area-body${collapsed ? ' collapsed' : ''}`}
             style={{
               flexDirection: `${direction}`
             }}
@@ -64,7 +64,7 @@ export default class CardArea extends Component {
         )}
         {collapsible && (
           <button
-            className={`card-area-btn ${!collapsed ?'close':'open'}-btn`}
+            className={`card-area-btn${!collapsed ?' close': ' open'}-btn`}
             onClick={handleCollapsed}
           >
             <img src={Arrow} alt="" />

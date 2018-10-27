@@ -70,16 +70,16 @@ export default class SelectInput extends Component {
     if (direction && direction.toUpperCase() === 'UP') {
       return (
         <div
-          className={`select-input-root ${theme ? theme : ''} up ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+          className={`select-input-root${theme ? ''+theme : ''} up${active ? ' active' : ''}${disabled ? ' disabled' : ''}`}
           style={{ ...style }}
           onClick={onClick}
           disabled={disabled}
         >
-          <div className={`select-options-area ${theme ? theme : ''} up ${active ? 'active' : ''}`}>
+          <div className={`select-options-area${theme ? ''+theme : ''} up${active ? ' active' : ''}`}>
             {listMap}
           </div>
           <div
-            className={`select-input-area ${theme ? theme : ''} up ${active ? 'active' : ''}`}
+            className={`select-input-area${theme ? ''+theme : ''} up${active ? ' active' : ''}`}
             disabled={disabled}
           >
             {value}
@@ -89,18 +89,18 @@ export default class SelectInput extends Component {
     }
     return (
       <div
-        className={`select-input-root ${theme ? theme : ''} down ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+        className={`select-input-root${theme ? ''+theme : ''} down${active ? ' active' : ''}${disabled ? ' disabled' : ''}`}
         style={{ ...style }}
         onClick={onClick}
         disabled={disabled}
       >
         <div
-          className={`select-input-area ${theme ? theme : ''} down ${active ? 'active' : ''}`}
+          className={`select-input-area${theme ? ''+theme : ''} down${active ? ' active' : ''}`}
           disabled={disabled}
         >
           {value}
         </div>
-        <div className={`select-options-area ${theme ? theme : ''} down ${active ? 'active' : ''}`}>
+        <div className={`select-options-area${theme ? ''+theme : ''} down${active ? ' active' : ''}`}>
           {list}
         </div>
       </div>
@@ -126,14 +126,14 @@ export default class SelectInput extends Component {
       <React.Fragment>
         { !active && (
           <div
-            className={`select-input-root ${theme ? theme : ''} ${disabled ? 'disabled' : ''} ${active ? 'active' : ''}`}
+            className={`select-input-root${theme ? ''+theme : ''}${disabled ? ' disabled' : ''}${active ? ' active' : ''}`}
             style={{ ...style }}
             disabled={disabled}
             onClick={onClick}
             {...this.props}
           >
             <div
-              className={`select-input-area ${theme ? theme : ''} ${disabled ? 'disabled' : ''}`}
+              className={`select-input-area${theme ? ''+theme : ''}${disabled ? ' disabled' : ''}`}
               style={{ ...style }}
               disabled={disabled}
             >

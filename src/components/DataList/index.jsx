@@ -147,7 +147,7 @@ export default class DataList extends Component {
     return list.map((entry, index) => (
       <tr
         key={index}
-        className={`list-row-default ${theme ? theme : ''}`}
+        className={`list-row-default${theme ? ''+theme : ''}`}
         style={{ ...style }}
         onClick={() => rowClick(entry)}
       >
@@ -220,7 +220,7 @@ export default class DataList extends Component {
 
     return (
       <div className="data-list-root">
-        <div className={`search-box ${theme ? theme : ''}`} style={{ ...style }}>
+        <div className={`search-box${theme ? ''+theme : ''}`} style={{ ...style }}>
           <TextInput
             style={{ ...style }}
             onChange={onInputChange}
@@ -233,14 +233,14 @@ export default class DataList extends Component {
           {searchValue}
           </TextInput>
           <button
-            className={`search-btn ${theme ? theme : ''}`}
+            className={`search-btn${theme ? ''+theme : ''}`}
             style={{ ...style }}
             onClick={onSearch}
           >
             <img src={Search} alt='' />
           </button>
           <button
-            className={`sort-btn ${theme ? theme : ''}`}
+            className={`sort-btn${theme ? ''+theme : ''}`}
             style={{ ...style }}
             onClick={onSort}
           >
@@ -248,7 +248,7 @@ export default class DataList extends Component {
             {!reverseSort && (<img className="down" src={SortDown} alt='' />)}
           </button>
         </div>
-        <div className={`search-results ${theme ? theme : ''}`} style={{ ...style }}>
+        <div className={`search-results${theme ? ''+theme : ''}`} style={{ ...style }}>
           <table cellSpacing={0}>
             <thead>
               <tr>
@@ -269,26 +269,26 @@ export default class DataList extends Component {
             </tbody>
           </table>
         </div>
-        <div className={`search-pagination ${theme ? theme : ''}`} style={{ ...style }}>
-          <button className={`search-page-prev ${theme ? theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
+        <div className={`search-pagination${theme ? ''+theme : ''}`} style={{ ...style }}>
+          <button className={`search-page-prev${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
             <img src={PageLeft} alt='' />
           </button>
-          <span className={`search-page-list-label ${theme ? theme : ''}`} style={{ ...style }}>Rows: </span>
+          <span className={`search-page-list-label${theme ? ''+theme : ''}`} style={{ ...style }}>Rows: </span>
           <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
           <span
-            className={`search-page-total ${theme ? theme : ''}`}
+            className={`search-page-total${theme ? ''+theme : ''}`}
             style={{ ...style }}
           >
             {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
           </span>
-          <button className={`search-page-next ${theme ? theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
+          <button className={`search-page-next${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
             <img src={PageRight} alt='' />
           </button>
         </div>
         {
           loading && (
-            <div className={`loading-overlay ${theme ? theme : ''}`} style={{ ...style }}>
-              <div className={`loading-message ${theme ? theme : ''}`} style={{ ...style }}>
+            <div className={`loading-overlay${theme ? ''+theme : ''}`} style={{ ...style }}>
+              <div className={`loading-message${theme ? ''+theme : ''}`} style={{ ...style }}>
                 <img src={Loading} alt=''/>
               </div>
             </div>
