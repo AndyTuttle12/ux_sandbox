@@ -7,8 +7,16 @@ export default class MessageContainer extends Component {
       <Context.Consumer>
         {(value) => (
           <div className="message-container-root">
-            {value.toasts}
-            {value.notifications}
+            {value.toasts.map((toast, index) => (
+              <div className="toast-root" key={index}>
+                <span>{toast.msg}</span>
+              </div>
+            ))}
+            {value.notifications.map((notification, index) => (
+              <div className="notification-root" key={index}>
+                <span>{notification.msg}</span>
+              </div>
+            ))}
           </div>
         )}
       </Context.Consumer>
