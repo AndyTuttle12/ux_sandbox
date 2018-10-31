@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import Context from '../ContextContainer';
+import './style.css';
 
 export default class MessageContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: true,
+    }
+  }
+
   render() {
     return (
       <Context.Consumer>
         {(value) => (
-          <div className="message-container-root">
-            {value.toasts.map((toast, index) => (
-              <div className="toast-root" key={index}>
-                <span>{toast.msg}</span>
-              </div>
-            ))}
-            {value.notifications.map((notification, index) => (
-              <div className="notification-root" key={index}>
-                <span>{notification.msg}</span>
-              </div>
-            ))}
+          <div className={`message-container-root${this.state.open ? ' open' : ''}`}>
           </div>
         )}
       </Context.Consumer>

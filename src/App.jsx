@@ -12,6 +12,7 @@ import Button from './components/Button';
 import Tabs from './components/Tabs';
 import DataList from './components/DataList';
 import ContextContainer from './components/ContextContainer';
+import MessageContainer from './components/MessageContainer';
 
 class App extends Component {
   constructor(props) {
@@ -150,7 +151,6 @@ class App extends Component {
           <Nav {...this.props} navOpen={navOpen} handleNav={this.handleNav} />
         </div>
       </ContextContainer>
-      
     );
   }
 }
