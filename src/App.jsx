@@ -64,7 +64,7 @@ class App extends Component {
       },
     ]
     return (
-      <ContextContainer context={{...this.state}}>
+      <React.Fragment>
         <div className={`App ${navOpen?'standard':'expanded'}`}>
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
@@ -150,7 +150,8 @@ class App extends Component {
           </div>
           <Nav {...this.props} navOpen={navOpen} handleNav={this.handleNav} />
         </div>
-      </ContextContainer>
+        <MessageContainer />
+      </React.Fragment>
     );
   }
 }

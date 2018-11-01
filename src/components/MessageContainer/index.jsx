@@ -13,12 +13,9 @@ export default class MessageContainer extends Component {
 
   render() {
     return (
-      <Context.Consumer>
-        {(value) => (
-          <div className={`message-container-root${this.state.open ? ' open' : ''}`}>
-          </div>
-        )}
-      </Context.Consumer>
+      <div className={`message-container-root${this.state.open ? ' open' : ''}`}>
+        
+      </div>
     )
   }
 }
