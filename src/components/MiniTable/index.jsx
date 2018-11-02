@@ -30,6 +30,8 @@ export default class DataList extends Component {
       skip: 0,
       limit: 10,
       reverseSort: false,
+      sortBy: 'name',
+      searchOn: 'name',
       data: {},
       prevDisabled: true,
       nextDisabled: true,
@@ -41,9 +43,9 @@ export default class DataList extends Component {
     this.setState({ searchValue: e.target.value });
   }
 
-  onSort = () => {
+  onSort = (sortBy) => {
     const { onSearch } = this;
-    this.setState({ reverseSort: !this.state.reverseSort }, () => onSearch())
+    this.setState({ sortBy, reverseSort: !this.state.reverseSort }, () => onSearch())
   }
 
   onOptionSelect = (e) => {
@@ -100,6 +102,8 @@ export default class DataList extends Component {
         limit,
         reverseSort,
         searchValue,
+        sortBy,
+        searchOn,
       },
       props: {
         fetchData,
@@ -108,9 +112,9 @@ export default class DataList extends Component {
     const options = {
       skip: (skip || 0),
       limit: (limit || 10),
-      sort: {'name': 1},
+      sort: {[sortBy]: (reverseSort? -1 : 1)},
       order: (reverseSort? 'descending': 'ascending'),
-      filter: { 'name': searchValue },
+      filter: { [searchOn]: searchValue },
     };
     this.setState({ loading: true });
     fetchData(options, (data) => {
@@ -124,9 +128,27 @@ export default class DataList extends Component {
   }
 
   renderHeaders = () => {
-    const { columns } = this.props;
+    const {
+      onSort,
+      state: {
+        reverseSort,
+      },
+      props: {
+        columns,
+        theme,
+      },
+    } = this;
     return columns.map((column, index) => (
-      <th className={column.style || column.headerClass || 'list-header-default'} key={index}>{column.header}</th>
+      <th className={column.style || column.headerClass || 'list-header-default'} key={index}>
+        {column.header}
+        <button
+          className={`sort-btn${theme ? ''+theme : ''}`}
+          onClick={onSort}
+        >
+          {reverseSort && (<img className="up" src={SortUp} alt='sort up' />)}
+          {!reverseSort && (<img className="down" src={SortDown} alt='sort down' />)}
+        </button>
+      </th>
     ))
   }
 
@@ -148,7 +170,6 @@ export default class DataList extends Component {
       <tr
         key={index}
         className={`list-row-default${theme ? ''+theme : ''}`}
-        style={{ ...style }}
         onClick={() => rowClick(entry)}
       >
         {(columns.map((column, i) => (
@@ -168,7 +189,6 @@ export default class DataList extends Component {
     const {
       onInputChange,
       onSearch,
-      onSort,
       onOptionSelect,
       renderHeaders,
       renderList,
@@ -178,7 +198,6 @@ export default class DataList extends Component {
         searchValue,
         skip,
         limit,
-        reverseSort,
         data,
         prevDisabled,
         nextDisabled,
@@ -239,14 +258,6 @@ export default class DataList extends Component {
           >
             <img src={Search} alt='' />
           </button>
-          <button
-            className={`sort-btn${theme ? ''+theme : ''}`}
-            style={{ ...style }}
-            onClick={onSort}
-          >
-            {reverseSort && (<img className="up" src={SortUp} alt='' />)}
-            {!reverseSort && (<img className="down" src={SortDown} alt='' />)}
-          </button>
         </div>
         <div className={`search-results${theme ? ''+theme : ''}`} style={{ ...style }}>
           <table cellSpacing={0}>
@@ -273,7 +284,6 @@ export default class DataList extends Component {
           <button className={`search-page-prev${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
             <img src={PageLeft} alt='' />
           </button>
-          <span className={`search-page-list-label${theme ? ''+theme : ''}`} style={{ ...style }}>Rows: </span>
           <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
           <span
             className={`search-page-total${theme ? ''+theme : ''}`}
