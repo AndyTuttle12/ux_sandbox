@@ -11,6 +11,7 @@ import TextArea from './components/TextArea';
 import Button from './components/Button';
 import Tabs from './components/Tabs';
 import DataList from './components/DataList';
+import MiniTable from './components/MiniTable';
 import ContextContainer from './components/ContextContainer';
 import MessageContainer from './components/MessageContainer';
 
@@ -115,7 +116,7 @@ class App extends Component {
                   <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
                 <Card title="7TH" areaWidth={6} spanWidth={6}>
-                  <DataList columns={columns} fetchData={(options, callback) => this.handleList(options, callback)} rowClick={(item) => console.log(item)} />
+                  <MiniTable columns={columns} fetchData={(options, callback) => this.handleList(options, callback)} rowClick={(item) => console.log(item)} />
                 </Card>
               </CardArea>
 
