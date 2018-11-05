@@ -209,6 +209,7 @@ export default class DataList extends Component {
         disabled,
         theme,
         style,
+        title,
       },
     } = this;
 
@@ -239,25 +240,28 @@ export default class DataList extends Component {
 
     return (
       <div className="data-list-root">
-        <div className={`search-box${theme ? ''+theme : ''}`} style={{ ...style }}>
-          <TextInput
-            style={{ ...style }}
-            onChange={onInputChange}
-            onKeyPress={onSearch}
-            value={searchValue}
-            placeholder={placeholder || 'Search'}
-            disabled={disabled}
-            label={label || ''}
-          >
-          {searchValue}
-          </TextInput>
-          <button
-            className={`search-btn${theme ? ''+theme : ''}`}
-            style={{ ...style }}
-            onClick={onSearch}
-          >
-            <img src={Search} alt='' />
-          </button>
+        <div className="table-header">
+          <span>{title}</span>
+          <div className={`search-box${theme ? ''+theme : ''}`} style={{ ...style }}>
+            <TextInput
+              style={{ ...style }}
+              onChange={onInputChange}
+              onKeyPress={onSearch}
+              value={searchValue}
+              placeholder={placeholder || 'Search'}
+              disabled={disabled}
+              label={label || ''}
+            >
+            {searchValue}
+            </TextInput>
+            <button
+              className={`search-btn${theme ? ''+theme : ''}`}
+              style={{ ...style }}
+              onClick={onSearch}
+            >
+              <img src={Search} alt='' />
+            </button>
+          </div>
         </div>
         <div className={`search-results${theme ? ''+theme : ''}`} style={{ ...style }}>
           <table cellSpacing={0}>
@@ -280,20 +284,22 @@ export default class DataList extends Component {
             </tbody>
           </table>
         </div>
-        <div className={`search-pagination${theme ? ''+theme : ''}`} style={{ ...style }}>
-          <button className={`search-page-prev${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
-            <img src={PageLeft} alt='' />
-          </button>
-          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
-          <span
-            className={`search-page-total${theme ? ''+theme : ''}`}
-            style={{ ...style }}
-          >
-            {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
-          </span>
-          <button className={`search-page-next${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
-            <img src={PageRight} alt='' />
-          </button>
+        <div className="table-footer">
+          <div className={`search-pagination${theme ? ''+theme : ''}`} style={{ ...style }}>
+            <button className={`search-page-prev${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
+              <img src={PageLeft} alt='' />
+            </button>
+            <button className={`search-page-next${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
+              <img src={PageRight} alt='' />
+            </button>
+            <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
+            <span
+              className={`search-page-total${theme ? ''+theme : ''}`}
+              style={{ ...style }}
+            >
+              {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
+            </span>
+          </div>
         </div>
         {
           loading && (
