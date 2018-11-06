@@ -36,6 +36,7 @@ export default class DataList extends Component {
       prevDisabled: true,
       nextDisabled: true,
       loading: false,
+      selected: [],
     }
   }
 
@@ -118,13 +119,65 @@ export default class DataList extends Component {
     };
     this.setState({ loading: true });
     fetchData(options, (data) => {
-      console.log(data);
       if (data && data.total && data.total > Number(limit)) {
         this.setState({ data, loading: false, nextDisabled: false });
       } else {
         this.setState({ data, loading: false });
       }
     });
+  }
+
+  isSelected = (key) => {
+    if (this.state.selected.indexOf(key) > -1) {
+      return true;
+    }
+    return false;
+  }
+
+  areAllChecked = () => {
+    if (this.state.data.list && this.state.selected.length > 0 && this.state.selected.length === this.state.data.list.length) {
+      this.refs.checkAll.indeterminate = false;
+      this.refs.checkAll.checked = true;
+      return true;
+    }
+    if (this.refs.checkAll) {
+      this.refs.checkAll.checked = false;
+    }
+    return false;
+  }
+
+  areAnyChecked = () => {
+    this.areAllChecked();
+    if (this.state.selected.length > 0) {
+      if (this.refs.checkAll) {
+        this.refs.checkAll.indeterminate = true;
+      }
+      return true;
+    }
+    if (this.refs.checkAll) {
+      this.refs.checkAll.indeterminate = false;
+    }
+    return false;
+  }
+
+  handleSelect = (key) => {
+    const selected = this.state.selected;
+    if (this.state.selected.indexOf(key) === -1) {
+      this.setState({ selected: [...selected, key] });
+    }
+    else {
+      selected.splice(selected.indexOf(key), 1);
+      this.setState({ selected })
+    }
+  }
+
+  toggleAll = () => {
+    if (this.areAllChecked()) {
+      this.setState({ selected: [] });
+    } else {
+      const selected = this.state.data.list.map(row => row[this.props.selectKey]);
+      this.setState({ selected });
+    }
   }
 
   renderHeaders = () => {
@@ -154,11 +207,13 @@ export default class DataList extends Component {
 
   renderList = () => {
     const {
+      isSelected,
+      handleSelect,
       props: {
         columns,
         rowClick,
         theme,
-        style,
+        selectKey,
       },
       state: {
         data: {
@@ -170,10 +225,15 @@ export default class DataList extends Component {
       <tr
         key={index}
         className={`list-row-default${theme ? ''+theme : ''}`}
-        onClick={() => rowClick(entry)}
       >
+        <td className="list-row-select">
+          <label className="checkbox-container">
+            <input type="checkbox" checked={isSelected(entry[selectKey])} onChange={() => handleSelect(entry[selectKey])} />
+            <span className="check-mark"></span>
+          </label>
+        </td>
         {(columns.map((column, i) => (
-          <td className={column.style || column.columnClass || 'list-column-default'} key={i}>
+          <td className={column.style || column.columnClass || 'list-column-default'} key={i} onClick={() => rowClick(entry)}>
             {entry[column.accessor]}
           </td>
         )))}
@@ -194,6 +254,9 @@ export default class DataList extends Component {
       renderList,
       onPageBack,
       onPageNext,
+      areAllChecked,
+      areAnyChecked,
+      toggleAll,
       state: {
         searchValue,
         skip,
@@ -267,6 +330,12 @@ export default class DataList extends Component {
           <table cellSpacing={0}>
             <thead>
               <tr>
+                <th className="list-select-all">
+                  <label className="checkbox-container">
+                    <input ref="checkAll" type="checkbox" indeterminate={!areAllChecked() ? areAnyChecked().toString(): 'false'} onClick={toggleAll} />
+                    <span className="check-mark"></span>
+                  </label>
+                </th>
                 {renderHeaders()}
               </tr>
             </thead>
