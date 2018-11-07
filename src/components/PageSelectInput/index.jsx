@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DownArrow from './images/placeholderSortDown.svg';
 import './style.css';
 
-export default class SelectInput extends Component {
+export default class PageSelectInput extends Component {
   static propTypes = {
     disabled: PropTypes.bool,
     value: PropTypes.oneOfType([
@@ -17,7 +16,9 @@ export default class SelectInput extends Component {
       ]).isRequired,
       name: PropTypes.string.isRequired,
     })).isRequired,
+    direction: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    theme: PropTypes.string,
   };
 
   constructor(props) {
@@ -26,7 +27,7 @@ export default class SelectInput extends Component {
     this.state = {
       value: this.props.value || '',
       active: false,
-    }
+    };
   }
 
   onInputChange = (e) => {
@@ -48,36 +49,59 @@ export default class SelectInput extends Component {
         value,
       },
       props: {
+        direction,
         disabled,
         list,
         theme,
+        style,
       },
     } = this;
     const listMap = list && list.map((item, index) => (
       <input
         type='button'
-        className='select-option-item'
+        className='option-item'
+        style={{ ...style }}
         value={item.value}
         onClick={onInputChange}
         key={index}
         name={item.name}
       />
     ))
+    if (direction && direction.toUpperCase() === 'UP') {
+      return (
+        <div
+          className={`page-select-input-root${theme ? ''+theme : ''} up${active ? ' active' : ''}${disabled ? ' disabled' : ''}`}
+          style={{ ...style }}
+          onClick={onClick}
+          disabled={disabled}
+        >
+          <div className={`page-select-options-area${theme ? ''+theme : ''} up${active ? ' active' : ''}`}>
+            {listMap}
+          </div>
+          <div
+            className={`page-select-input-area${theme ? ''+theme : ''} up${active ? ' active' : ''}`}
+            disabled={disabled}
+          >
+            {value}
+          </div>
+        </div>
+      );
+    }
     return (
       <div
-        className={`select-input-root${theme ? ''+theme : ''} down${active ? ' active' : ''}${disabled ? ' disabled' : ''}`}
+        className={`page-select-input-root${theme ? ''+theme : ''} down${active ? ' active' : ''}${disabled ? ' disabled' : ''}`}
+        style={{ ...style }}
         onClick={onClick}
         disabled={disabled}
       >
         <div
-          className={`select-input-area${theme ? ''+theme : ''} down${active ? ' active' : ''}`}
+          className={`page-select-input-area${theme ? ''+theme : ''} down${active ? ' active' : ''}`}
           disabled={disabled}
         >
           {value}
-          <img src={DownArrow} alt=""/>
         </div>
-        <div className={`select-options-area${theme ? ''+theme : ''} down${active ? ' active' : ''}`}>
-          {listMap}
+        <div className={`page-select-options-area${theme ? ''+theme : ''} down${active ? ' active' : ''}`}>
+          {list}
         </div>
       </div>
     );
@@ -94,6 +118,7 @@ export default class SelectInput extends Component {
       props: {
         disabled,
         theme,
+        style,
       },
     } = this;
 
@@ -101,17 +126,18 @@ export default class SelectInput extends Component {
       <React.Fragment>
         { !active && (
           <div
-            className={`select-input-root${theme ? ''+theme : ''}${disabled ? ' disabled' : ''}`}
+            className={`page-select-input-root${theme ? ''+theme : ''}${disabled ? ' disabled' : ''}${active ? ' active' : ''}`}
+            style={{ ...style }}
             disabled={disabled}
             onClick={onClick}
             {...this.props}
           >
             <div
-              className={`select-input-area${theme ? ''+theme : ''}${disabled ? ' disabled' : ''}`}
+              className={`page-select-input-area${theme ? ''+theme : ''}${disabled ? ' disabled' : ''}`}
+              style={{ ...style }}
               disabled={disabled}
             >
               {value}
-              <img src={DownArrow} alt=""/>
             </div>
           </div>
         )}
