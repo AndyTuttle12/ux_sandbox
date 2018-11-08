@@ -10,9 +10,7 @@ import TextInput from './components/TextInput';
 import TextArea from './components/TextArea';
 import Button from './components/Button';
 import Tabs from './components/Tabs';
-import DataList from './components/DataList';
 import MiniTable from './components/MiniTable';
-import ContextContainer from './components/ContextContainer';
 import MessageContainer from './components/MessageContainer';
 import icon from './components/NavPanel/images/placeholderApp.svg';
 
@@ -38,13 +36,10 @@ class App extends Component {
   }
 
   handleList = (options, callback) => {
-    console.log(options)
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         const list = data.slice(0, 10);
-        console.log(list)
         return callback({
           total: data.length,
           list,

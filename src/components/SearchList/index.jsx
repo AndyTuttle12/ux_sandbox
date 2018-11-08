@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../TextInput';
-import SelectInput from '../SelectInput';
+import PageSelectInput from '../PageSelectInput';
 import Search from './images/placeholderSearch.svg';
 import SortUp from './images/placeholderSortUp.svg';
 import SortDown from './images/placeholderSortDown.svg';
@@ -229,7 +229,7 @@ export default class SearchList extends Component {
             <img src={PageLeft} alt='' />
           </button>
           <span className={`search-page-list-label${theme ? ''+theme : ''}`} style={{ ...style }}>Rows: </span>
-          <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
+          <PageSelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
           <span
             className={`search-page-total${theme ? ''+theme : ''}`}
             style={{ ...style }}

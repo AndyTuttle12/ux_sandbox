@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../TextInput';
+import PageSelectInput from '../PageSelectInput';
 import SelectInput from '../SelectInput';
 import Search from './images/placeholderSearch.svg';
 import SortUp from './images/placeholderSortUp.svg';
@@ -19,6 +20,7 @@ export default class DataList extends Component {
     style: PropTypes.instanceOf(Object),
     rowClick: PropTypes.func.isRequired,
     fetchData: PropTypes.func.isRequired,
+    selectKey: PropTypes.string.isRequired,
     theme: PropTypes.string,
   };
 
@@ -30,8 +32,8 @@ export default class DataList extends Component {
       skip: 0,
       limit: 10,
       reverseSort: false,
-      sortBy: 'name',
-      searchOn: 'name',
+      sortBy: '',
+      filterOn: '',
       data: {},
       prevDisabled: true,
       nextDisabled: true,
@@ -96,6 +98,10 @@ export default class DataList extends Component {
     }
   }
 
+  onFilterChange = (e) => {
+    this.setState({ filterOn: e.target.value });
+  }
+
   onSearch = () => {
     const {
       state: {
@@ -104,25 +110,28 @@ export default class DataList extends Component {
         reverseSort,
         searchValue,
         sortBy,
-        searchOn,
+        filterOn,
       },
       props: {
         fetchData,
+        columns,
       },
     } = this;
+    const defaultFilter = columns[0].accessor;
+    const currentFilter = (filterOn ? filterOn : defaultFilter);
     const options = {
       skip: (skip || 0),
       limit: (limit || 10),
       sort: {[sortBy]: (reverseSort? -1 : 1)},
       order: (reverseSort? 'descending': 'ascending'),
-      filter: { [searchOn]: searchValue },
+      filter: { [currentFilter]: searchValue },
     };
     this.setState({ loading: true });
     fetchData(options, (data) => {
       if (data && data.total && data.total > Number(limit)) {
         this.setState({ data, loading: false, nextDisabled: false });
       } else {
-        this.setState({ data, loading: false });
+        this.setState({ data, loading: false, filterOn: currentFilter });
       }
     });
   }
@@ -265,18 +274,19 @@ export default class DataList extends Component {
         prevDisabled,
         nextDisabled,
         loading,
+        filterOn,
       },
       props: {
         label,
         placeholder,
         disabled,
         theme,
-        style,
         title,
+        columns,
       },
     } = this;
 
-    const optionList = [
+    const pageOptionList = [
       {
         name: '5',
         value: '5',
@@ -299,15 +309,24 @@ export default class DataList extends Component {
       },
     ];
 
+    const columnsList = columns.map((column, index) => ({
+      key: index,
+      name: column.header,
+      value: column.accessor,
+    }));
+
+    const defaultFilter = columns[0].accessor;
+
     const currentMax = Number(limit) + Number(skip);
 
     return (
       <div className="data-list-root">
         <div className="table-header">
           <span>{title}</span>
-          <div className={`search-box${theme ? ''+theme : ''}`} style={{ ...style }}>
+          <div className={`search-box${theme ? ''+theme : ''}`}>
+            <label htmlFor="filter-select">Filter by: </label>
+            <SelectInput id="filter-select" list={columnsList} value={filterOn || defaultFilter} onChange={(e) => this.onFilterChange(e)} />
             <TextInput
-              style={{ ...style }}
               onChange={onInputChange}
               onKeyPress={onSearch}
               value={searchValue}
@@ -319,14 +338,13 @@ export default class DataList extends Component {
             </TextInput>
             <button
               className={`search-btn${theme ? ''+theme : ''}`}
-              style={{ ...style }}
               onClick={onSearch}
             >
               <img src={Search} alt='' />
             </button>
           </div>
         </div>
-        <div className={`search-results${theme ? ''+theme : ''}`} style={{ ...style }}>
+        <div className={`search-results${theme ? ''+theme : ''}`}>
           <table cellSpacing={0}>
             <thead>
               <tr>
@@ -354,17 +372,16 @@ export default class DataList extends Component {
           </table>
         </div>
         <div className="table-footer">
-          <div className={`search-pagination${theme ? ''+theme : ''}`} style={{ ...style }}>
-            <button className={`search-page-prev${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
+          <div className={`search-pagination${theme ? ''+theme : ''}`}>
+            <button className={`search-page-prev${theme ? ''+theme : ''}`} onClick={onPageBack} disabled={prevDisabled}>
               <img src={PageLeft} alt='' />
             </button>
-            <button className={`search-page-next${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageNext} disabled={nextDisabled}>
+            <button className={`search-page-next${theme ? ''+theme : ''}`} onClick={onPageNext} disabled={nextDisabled}>
               <img src={PageRight} alt='' />
             </button>
-            <SelectInput value={limit} onChange={onOptionSelect} list={optionList} direction='up' disabled={!data} style={{ ...style }}/>
+            <PageSelectInput value={limit} onChange={onOptionSelect} list={pageOptionList} direction='up' disabled={!data}/>
             <span
               className={`search-page-total${theme ? ''+theme : ''}`}
-              style={{ ...style }}
             >
               {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
             </span>
@@ -372,8 +389,8 @@ export default class DataList extends Component {
         </div>
         {
           loading && (
-            <div className={`loading-overlay${theme ? ''+theme : ''}`} style={{ ...style }}>
-              <div className={`loading-message${theme ? ''+theme : ''}`} style={{ ...style }}>
+            <div className={`loading-overlay${theme ? ''+theme : ''}`}>
+              <div className={`loading-message${theme ? ''+theme : ''}`}>
                 <img src={Loading} alt=''/>
               </div>
             </div>
