@@ -18,6 +18,7 @@ export default class DataList extends Component {
     placeholder: PropTypes.string,
     columns: PropTypes.array,
     style: PropTypes.instanceOf(Object),
+    actions: PropTypes.array,
     rowClick: PropTypes.func.isRequired,
     fetchData: PropTypes.func.isRequired,
     selectKey: PropTypes.string.isRequired,
@@ -250,6 +251,14 @@ export default class DataList extends Component {
     ));
   }
 
+  renderActions = () => {
+    return this.props.actions.map((action, index) => {
+      return (
+        <button key={index} className="table-action-button" onClick={action.event}>{action.name}</button>
+      )
+    })
+  }
+
   componentDidMount() {
     this.onSearch();
   }
@@ -266,6 +275,7 @@ export default class DataList extends Component {
       areAllChecked,
       areAnyChecked,
       toggleAll,
+      renderActions,
       state: {
         searchValue,
         skip,
@@ -283,6 +293,7 @@ export default class DataList extends Component {
         theme,
         title,
         columns,
+        actions,
       },
     } = this;
 
@@ -386,6 +397,11 @@ export default class DataList extends Component {
               {skip + 1}-{(data && data.total)>(currentMax)? (currentMax): (data && data.total)} of {(data && data.total) || 0}
             </span>
           </div>
+          {actions && (
+            <div className="table-actions">
+              {renderActions()}
+            </div>
+          )}
         </div>
         {
           loading && (

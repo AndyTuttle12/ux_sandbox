@@ -115,7 +115,14 @@ class App extends Component {
                   <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
                 <Card title="7TH" areaWidth={6} spanWidth={6}>
-                  <MiniTable title="A Light Table" columns={columns} fetchData={(options, callback) => this.handleList(options, callback)} rowClick={(item) => console.log(item)} selectKey="title" />
+                  <MiniTable
+                    title="A Light Table"
+                    columns={columns}
+                    fetchData={(options, callback) => this.handleList(options, callback)}
+                    rowClick={(item) => console.log(item)}
+                    selectKey="title"
+                    actions={[{name: 'test1', event: () => {}},{name: 'test2', event: () => {}}]}
+                  />
                 </Card>
               </CardArea>
 
