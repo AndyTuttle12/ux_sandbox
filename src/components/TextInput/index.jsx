@@ -62,15 +62,16 @@ export default class TextInput extends Component {
           </p>
         )}
         <input
-          className={`text-input-root${theme ? ''+theme : ''}`}
+          className={`text-input-field${theme ? ''+theme : ''}`}
           style={{ ...style }}
           disabled={disabled}
           value={value}
           placeholder={placeholder}
           onChange={onChange}
           onKeyPress={onKeyPress}
+          spellCheck={false}
         />
-        {clearable && (<button
+        {clearable && value && (<button
             className={`clear-button`}
             onClick={clearInput}
           >

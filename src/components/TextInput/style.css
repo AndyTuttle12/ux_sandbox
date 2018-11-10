@@ -1,5 +1,5 @@
-.text-input-root {
-  padding: 0 4px;
+.text-input-field {
+  padding: 0 14px 0 4px;
   margin: 4px;
   font-size: 12px;
   height: 24px;
@@ -17,10 +17,6 @@
   width: 90px;
 }
 
-.text-input-root:focus:not(:disabled) {
-  background-color: #fefefe;
-}
-
 .text-input-root:hover:not(:disabled) {
   border-bottom: solid 2px #0094d9;
 }
@@ -35,8 +31,9 @@
 }
 
 .clear-button {
-  width: 10px;
-  height: 10px;
+  width: 6%;
+  max-width: 20px;
+  height: auto;
   border: none;
   border-radius: 50%;
   box-sizing: border-box;
@@ -46,6 +43,7 @@
   bottom: 0px;
   outline: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .clear-button:hover {
