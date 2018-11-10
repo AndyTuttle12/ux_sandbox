@@ -73,7 +73,7 @@ class App extends Component {
             <CardDashboard title="Test Dashboard">
               <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible>
                 <p>They can be any amount high, just based on the child content.</p>
-                <TextInput placeholder="An Input" onChange={() => {}}></TextInput>
+                <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                 <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
                 <Button onClick={() => console.log(this.props.context)}>
                   <img src={icon} alt="icon" />
