@@ -344,6 +344,7 @@ export default class DataList extends Component {
               placeholder={placeholder || 'Search'}
               disabled={disabled}
               label={label || ''}
+              clearable={true}
             >
             {searchValue}
             </TextInput>

@@ -1,8 +1,14 @@
+label {
+  height: 20px;
+  width: 180px;
+}
+
 .text-input-field {
   padding: 0 14px 0 4px;
   margin: 4px;
+  margin-top: 0px;
   font-size: 12px;
-  height: 24px;
+  height: 20px;
   min-width: 180px;
   box-sizing: border-box;
   background: none;
@@ -40,7 +46,7 @@
   padding: 0px;
   position: absolute;
   right: 5px;
-  bottom: 0px;
+  top: 5px;
   outline: none;
   background-color: transparent;
   cursor: pointer;
