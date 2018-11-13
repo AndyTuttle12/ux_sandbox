@@ -1,6 +1,7 @@
-label {
+.text-input-root-label {
   height: 20px;
   width: 180px;
+  position: relative;
 }
 
 .text-input-field {

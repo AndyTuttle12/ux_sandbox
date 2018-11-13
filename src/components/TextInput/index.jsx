@@ -55,7 +55,7 @@ export default class TextInput extends Component {
     } = this;
 
     return (
-      <label style={{ position: 'relative'}}>
+      <label className="text-input-root-label">
         {label && (
           <p className={`text-input-label${theme ? ''+theme : ''}`}>
             {label}
