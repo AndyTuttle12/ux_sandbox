@@ -5,6 +5,7 @@
   bottom: -50px;
   transition: all .5s;
   background-color: transparent;
+  pointer-events: none;
 }
 
 .message-container-root.open {
