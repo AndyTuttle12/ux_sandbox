@@ -10,30 +10,32 @@ export default class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: !this.props.show || true,
+      hidden: true,
     }
   }
 
   render() {
     const {
-      state: {
-        hidden,
-      }
+      props: {
+        show,
+        closeModal,
+        submitModal,
+      },
     } = this;
     return (
-      <div className={`modal-overlay${hidden ? ' hidden' : ''}`}>
+      <div className={`modal-overlay${!show ? ' hidden' : ''}`}>
         <div className="modal-card">
           <div className="modal-header">
             <span className="modal-title">Sample Modal</span>
-            <button className="modal-close">X</button>
+            <button className="modal-close" onClick={closeModal}>X</button>
           </div>
           <div className="modal-body">
             body
           </div>
           <div className="modal-footer">
             <div className="modal-actions">
-              <button className="modal-cancel">Cancel</button>
-              <button className="modal-accept">OK</button>
+              <button className="modal-cancel" onClick={closeModal}>Cancel</button>
+              <button className="modal-accept" onClick={submitModal}>OK</button>
             </div>
           </div>
         </div>

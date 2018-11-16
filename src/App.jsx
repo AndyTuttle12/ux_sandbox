@@ -50,8 +50,17 @@ class App extends Component {
       .catch(error => console.error(error))
   }
 
-  handleModal = () => {
-    this.setState({ showModal: !this.state.showModal },() => console.log(this.state.showModal));
+  openModal = () => {
+    this.setState({ showModal: true },() => console.log(this.state.showModal));
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false },() => console.log(this.state.showModal));
+  }
+
+  submitModal = (formData) => {
+    console.log(formData);
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -72,7 +81,7 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
             <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="down">
-              <Switch onChange={() => this.handleModal()}/>
+              <Switch onChange={() => this.openModal()}/>
             </ToolTip>
           </header>
           <div className="App-body">
@@ -163,7 +172,7 @@ class App extends Component {
           </div>
           <Nav {...this.props} navOpen={navOpen} handleNav={this.handleNav} />
         </div>
-        <Modal show={this.state.showModal} />
+        <Modal show={this.state.showModal} closeModal={this.closeModal} submitModal={(formData) => this.submitModal(formData)} />
         <MessageContainer />
       </React.Fragment>
     );
