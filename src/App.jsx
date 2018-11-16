@@ -25,7 +25,7 @@ class App extends Component {
       list: [],
       toasts: [],
       notifications: [],
-      showModal: false,
+      showModal: true,
     };
   }
 
