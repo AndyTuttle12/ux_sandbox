@@ -10,7 +10,7 @@ export default class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: true,
+      hidden: !this.props.show || true,
     }
   }
 

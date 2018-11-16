@@ -12,6 +12,7 @@ import Button from './components/Button';
 import Tabs from './components/Tabs';
 import MiniTable from './components/MiniTable';
 import MessageContainer from './components/MessageContainer';
+import Modal from './components/Modal';
 import icon from './components/NavPanel/images/placeholderApp.svg';
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
       list: [],
       toasts: [],
       notifications: [],
+      showModal: false,
     };
   }
 
@@ -48,6 +50,10 @@ class App extends Component {
       .catch(error => console.error(error))
   }
 
+  handleModal = () => {
+    this.setState({ showModal: !this.state.showModal },() => console.log(this.state.showModal));
+  }
+
   render() {
     const { navOpen, tab } = this.state;
     const columns = [
@@ -66,7 +72,7 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
             <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="down">
-              <Switch onChange={e => e}/>
+              <Switch onChange={() => this.handleModal()}/>
             </ToolTip>
           </header>
           <div className="App-body">
@@ -157,6 +163,7 @@ class App extends Component {
           </div>
           <Nav {...this.props} navOpen={navOpen} handleNav={this.handleNav} />
         </div>
+        <Modal show={this.state.showModal} />
         <MessageContainer />
       </React.Fragment>
     );
