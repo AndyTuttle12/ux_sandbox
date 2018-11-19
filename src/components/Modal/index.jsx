@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from '../Button';
 import './style.css';
 
 export default class Modal extends Component {
@@ -27,15 +28,15 @@ export default class Modal extends Component {
         <div className="modal-card">
           <div className="modal-header">
             <span className="modal-title">Sample Modal</span>
-            <button className="modal-close" onClick={closeModal}>X</button>
+            <Button className="modal-close" onClick={closeModal}>X</Button>
           </div>
           <div className="modal-body">
             body
           </div>
           <div className="modal-footer">
             <div className="modal-actions">
-              <button className="modal-cancel" onClick={closeModal}>Cancel</button>
-              <button className="modal-accept" onClick={submitModal}>OK</button>
+              <Button className="modal-cancel" onClick={closeModal}>Cancel</Button>
+              <Button className="modal-accept" onClick={submitModal}>OK</Button>
             </div>
           </div>
         </div>
