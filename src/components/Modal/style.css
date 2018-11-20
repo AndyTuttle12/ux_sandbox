@@ -76,7 +76,6 @@
 .modal-cancel, .modal-accept {
   width: auto;
   background-color: transparent;
-  border-radius: 20px;
   height: 20px;
   border: none;
   display: flex;

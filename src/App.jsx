@@ -25,7 +25,8 @@ class App extends Component {
       list: [],
       toasts: [],
       notifications: [],
-      showModal: true,
+      showModal: false,
+      switched: false,
     };
   }
 
@@ -63,6 +64,10 @@ class App extends Component {
     this.setState({ showModal: false });
   }
 
+  handleSwitch = () => {
+    this.setState({ switched: !this.state.switched }, () => console.log(this.state.switched));
+  }
+
   render() {
     const { navOpen, tab } = this.state;
     const columns = [
@@ -81,7 +86,7 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
             <ToolTip message="This is a tool tip for the switch component! Switch me on!" direction="down">
-              <Switch onChange={() => this.openModal()}/>
+              <Switch value={`${this.state.switched}`} onChange={this.handleSwitch}/>
             </ToolTip>
           </header>
           <div className="App-body">
@@ -90,7 +95,7 @@ class App extends Component {
                 <p>They can be any amount high, just based on the child content.</p>
                 <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                 <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
-                <Button onClick={() => console.log(this.props.context)}>
+                <Button onClick={() => this.openModal()}>
                   <img src={icon} alt="icon" />
                   Click Me!
                 </Button>

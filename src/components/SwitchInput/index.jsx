@@ -12,6 +12,7 @@ export default class SwitchInput extends Component {
   };
 
   onChange = (e) => {
+    e.persist();
     this.props.onChange(e);
   };
 
