@@ -145,27 +145,28 @@ class App extends Component {
                   />
                 </Card>
               </CardArea>
+              <CardArea spanWidth={12} direction="row" collapsible>
+                <CardArea spanWidth={4} direction="column">
+                  <Card title="8TH" areaWidth={4} spanWidth={4}>
+                    <p>Some content</p>
+                    <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  </Card>
+                  <Card title="9TH" areaWidth={4} spanWidth={4}>
+                    <p>Some content</p>
+                    <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  </Card>
+                </CardArea>
 
-              <CardArea spanWidth={4} direction="column">
-                <Card title="8TH" areaWidth={4} spanWidth={4}>
-                  <p>Some content</p>
-                  <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
-                </Card>
-                <Card title="9TH" areaWidth={4} spanWidth={4}>
-                  <p>Some content</p>
-                  <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
-                </Card>
-              </CardArea>
-
-              <CardArea spanWidth={8} direction="column">
-                <Card title="10TH" areaWidth={8} spanWidth={8}>
-                  <p>Some content</p>
-                  <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
-                </Card>
-                <Card title="11TH" areaWidth={8} spanWidth={8}>
-                  <p>Some content</p>
-                  <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
-                </Card>
+                <CardArea spanWidth={8} direction="column">
+                  <Card title="10TH" areaWidth={8} spanWidth={8}>
+                    <p>Some content</p>
+                    <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  </Card>
+                  <Card title="11TH" areaWidth={8} spanWidth={8}>
+                    <p>Some content</p>
+                    <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  </Card>
+                </CardArea>
               </CardArea>
 
               <Card title="12TH" spanWidth={12}>
