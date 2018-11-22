@@ -15,6 +15,8 @@ import MessageContainer from './components/MessageContainer';
 import Modal from './components/Modal';
 import icon from './components/NavPanel/images/placeholderApp.svg';
 
+export const AppContext = React.createContext('App');
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +83,7 @@ class App extends Component {
       },
     ]
     return (
-      <React.Fragment>
+      <AppContext.Provider value={this.state}>
         <div className={`App ${navOpen?'standard':'expanded'}`}>
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
@@ -180,7 +182,7 @@ class App extends Component {
         </div>
         <Modal show={this.state.showModal} closeModal={this.closeModal} submitModal={(formData) => this.submitModal(formData)} />
         <MessageContainer />
-      </React.Fragment>
+      </AppContext.Provider>
     );
   }
 }
