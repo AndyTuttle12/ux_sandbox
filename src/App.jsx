@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import AppContext from './AppContext';
 import Nav from './components/NavPanel';
 import Switch from './components/SwitchInput';
 import CardDashboard from './components/CardDashboard';
@@ -14,8 +15,6 @@ import MiniTable from './components/MiniTable';
 import MessageContainer from './components/MessageContainer';
 import Modal from './components/Modal';
 import icon from './components/NavPanel/images/placeholderApp.svg';
-
-export const AppContext = React.createContext('App');
 
 class App extends Component {
   constructor(props) {
@@ -83,7 +82,7 @@ class App extends Component {
       },
     ]
     return (
-      <AppContext.Provider value={this.state}>
+      <AppContext.Provider value={{test: 'test'}}>
         <div className={`App ${navOpen?'standard':'expanded'}`}>
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
