@@ -28,6 +28,7 @@ class App extends Component {
       notifications: [],
       showModal: false,
       switched: false,
+      modalContent: 'THIS IS A TEST',
     };
   }
 
@@ -65,6 +66,10 @@ class App extends Component {
     this.setState({ showModal: false });
   }
 
+  handleModal = () => {
+    
+  }
+
   handleSwitch = () => {
     this.setState({ switched: !this.state.switched }, () => console.log(this.state.switched));
   }
@@ -82,7 +87,7 @@ class App extends Component {
       },
     ]
     return (
-      <AppContext.Provider value={{test: 'test'}}>
+      <AppContext.Provider value={this.state}>
         <div className={`App ${navOpen?'standard':'expanded'}`}>
           <header className="App-header">
             <h1 className="App-title">Testing Component Designs...</h1>
