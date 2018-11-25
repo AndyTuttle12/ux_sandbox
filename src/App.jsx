@@ -28,7 +28,7 @@ class App extends Component {
       notifications: [],
       showModal: false,
       switched: false,
-      modalContent: 'THIS IS A TEST',
+      modalContent: '',
     };
   }
 
@@ -53,25 +53,21 @@ class App extends Component {
       .catch(error => console.error(error))
   }
 
-  openModal = () => {
-    this.setState({ showModal: true },() => console.log(this.state.showModal));
+  openModal = (modalContent) => {
+    this.setState({ showModal: true, modalContent });
   }
 
   closeModal = () => {
-    this.setState({ showModal: false },() => console.log(this.state.showModal));
+    this.setState({ showModal: false, modalContent: '' });
   }
 
   submitModal = (formData) => {
-    console.log(formData);
-    this.setState({ showModal: false });
-  }
-
-  handleModal = () => {
-    
+    this.setState({ showModal: false, modalContent: '' });
+    return formData;
   }
 
   handleSwitch = () => {
-    this.setState({ switched: !this.state.switched }, () => console.log(this.state.switched));
+    this.setState({ switched: !this.state.switched });
   }
 
   render() {
@@ -101,7 +97,7 @@ class App extends Component {
                 <p>They can be any amount high, just based on the child content.</p>
                 <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                 <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
-                <Button onClick={() => this.openModal()}>
+                <Button onClick={() => this.openModal('Testing content')}>
                   <img src={icon} alt="icon" />
                   Click Me!
                 </Button>
