@@ -58,11 +58,11 @@ class App extends Component {
   }
 
   closeModal = () => {
-    this.setState({ showModal: false, modalContent: '' });
+    this.setState({ showModal: false, modalContent: {title: '', body: ''} });
   }
 
   submitModal = (formData) => {
-    this.setState({ showModal: false, modalContent: '' });
+    this.setState({ showModal: false, modalContent: {title: '', body: ''} });
     return formData;
   }
 
@@ -97,7 +97,7 @@ class App extends Component {
                 <p>They can be any amount high, just based on the child content.</p>
                 <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                 <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
-                <Button onClick={() => this.openModal('Testing content')}>
+                <Button onClick={() => this.openModal({title: 'Confirm Button Press', body: 'Are you sure you want to click this button? It may cause something to happen...'})}>
                   <img src={icon} alt="icon" />
                   Click Me!
                 </Button>
