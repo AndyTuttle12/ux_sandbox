@@ -73,7 +73,7 @@
   align-items: center;
 }
 
-.modal-cancel, .modal-accept {
+.modal-action, .modal-cancel, .modal-accept {
   width: auto;
   background-color: transparent;
   height: 20px;
@@ -85,11 +85,11 @@
   outline: none;
 }
 
-.modal-cancel:hover, .modal-accept:hover {
+.modal-action:hover, .modal-cancel:hover, .modal-accept:hover {
   background-color: #eee;
 }
 
-.modal-cancel:active, .modal-accept:active {
+.modal-action:active, .modal-cancel:active, .modal-accept:active {
   background-color: #fff;
 }
 

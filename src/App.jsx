@@ -97,7 +97,16 @@ class App extends Component {
                 <p>They can be any amount high, just based on the child content.</p>
                 <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                 <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
-                <Button onClick={() => this.openModal({title: 'Confirm Button Press', body: 'Are you sure you want to click this button? It may cause something to happen...'})}>
+                <Button
+                  onClick={() => this.openModal({
+                    title: 'Confirm Button Press',
+                    body: 'Are you sure you want to click this button? It may cause something to happen...',
+                    actions: [{
+                      name: 'info',
+                      onClick: () => alert('Here is some info!'),
+                    }]
+                  })}
+                >
                   <img src={icon} alt="icon" />
                   Click Me!
                 </Button>

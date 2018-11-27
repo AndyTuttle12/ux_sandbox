@@ -37,6 +37,9 @@ export default class Modal extends Component {
             </div>
             <div className="modal-footer">
               <div className="modal-actions">
+                {value.modalContent.actions && value.modalContent.actions.map((action, index) => (
+                  <Button key={index} className="modal-action" onClick={action.onClick}>{action.name}</Button>
+                ))}
                 <Button className="modal-cancel" onClick={closeModal}>Cancel</Button>
                 <Button className="modal-accept" onClick={submitModal}>OK</Button>
               </div>
