@@ -49,6 +49,7 @@ export default class DataList extends Component {
 
   onSort = (sortBy) => {
     const { onSearch } = this;
+    console.log(sortBy)
     this.setState({ sortBy, reverseSort: !this.state.reverseSort }, () => onSearch())
   }
 
@@ -195,6 +196,7 @@ export default class DataList extends Component {
       onSort,
       state: {
         reverseSort,
+        sortBy,
       },
       props: {
         columns,
@@ -202,14 +204,14 @@ export default class DataList extends Component {
       },
     } = this;
     return columns.map((column, index) => (
-      <th className={column.style || column.headerClass || 'list-header-default'} key={index}>
+      <th className={column.style || column.headerClass || 'table-header-default'} key={index}>
         {column.header}
         <button
-          className={`sort-btn${theme ? ''+theme : ''}`}
-          onClick={onSort}
+          className={`table-sort-btn${theme ? ''+theme : ''}`}
+          onClick={() => onSort(column.accessor)}
         >
-          {reverseSort && (<img className="up" src={SortUp} alt='sort up' />)}
-          {!reverseSort && (<img className="down" src={SortDown} alt='sort down' />)}
+          {reverseSort && sortBy === column.accessor && (<img className="up" src={SortUp} alt='sort up' />)}
+          {!reverseSort && sortBy === column.accessor && (<img className="down" src={SortDown} alt='sort down' />)}
         </button>
       </th>
     ))
@@ -234,16 +236,16 @@ export default class DataList extends Component {
     return list.map((entry, index) => (
       <tr
         key={index}
-        className={`list-row-default${theme ? ''+theme : ''}`}
+        className={`table-row-default${theme ? ''+theme : ''}`}
       >
-        <td className="list-row-select">
+        <td className="table-row-select">
           <label className="checkbox-container">
             <input type="checkbox" checked={isSelected(entry[selectKey])} onChange={() => handleSelect(entry[selectKey])} />
             <span className="check-mark"></span>
           </label>
         </td>
         {(columns.map((column, i) => (
-          <td className={column.style || column.columnClass || 'list-column-default'} key={i} onClick={() => rowClick(entry)}>
+          <td className={column.style || column.columnClass || 'table-column-default'} key={i} onClick={() => rowClick(entry)}>
             {entry[column.accessor]}
           </td>
         )))}
@@ -331,7 +333,7 @@ export default class DataList extends Component {
     const currentMax = Number(limit) + Number(skip);
 
     return (
-      <div className="data-list-root">
+      <div className="data-table-root">
         <div className="table-header">
           <span>{title}</span>
           <div className={`search-box${theme ? ''+theme : ''}`}>
@@ -360,7 +362,7 @@ export default class DataList extends Component {
           <table cellSpacing={0}>
             <thead>
               <tr>
-                <th className="list-select-all">
+                <th className="table-select-all">
                   <label className="checkbox-container">
                     <input ref="checkAll" type="checkbox" indeterminate={!areAllChecked() ? areAnyChecked().toString(): 'false'} onClick={toggleAll} />
                     <span className="check-mark"></span>
@@ -369,7 +371,7 @@ export default class DataList extends Component {
                 {renderHeaders()}
               </tr>
             </thead>
-            <tbody className="list-body">
+            <tbody className="table-body">
               {data && data.list && renderList()}
               {!data && (
                 <tr>
