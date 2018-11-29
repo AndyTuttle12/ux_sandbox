@@ -41,6 +41,8 @@ export default class DataList extends Component {
       loading: false,
       selected: [],
     }
+
+    this.checkAll = React.createRef();
   }
 
   onInputChange = (e) => {
@@ -147,12 +149,12 @@ export default class DataList extends Component {
 
   areAllChecked = () => {
     if (this.state.data.list && this.state.selected.length > 0 && this.state.selected.length === this.state.data.list.length) {
-      this.refs.checkAll.indeterminate = false;
-      this.refs.checkAll.checked = true;
+      this.checkAll.current.indeterminate = false;
+      this.checkAll.current.checked = true;
       return true;
     }
-    if (this.refs.checkAll) {
-      this.refs.checkAll.checked = false;
+    if (this.checkAll.current) {
+      this.checkAll.current.checked = false;
     }
     return false;
   }
@@ -160,13 +162,13 @@ export default class DataList extends Component {
   areAnyChecked = () => {
     this.areAllChecked();
     if (this.state.selected.length > 0) {
-      if (this.refs.checkAll) {
-        this.refs.checkAll.indeterminate = true;
+      if (this.checkAll.current) {
+        this.checkAll.current.indeterminate = true;
       }
       return true;
     }
-    if (this.refs.checkAll) {
-      this.refs.checkAll.indeterminate = false;
+    if (this.checkAll.current) {
+      this.checkAll.current.indeterminate = false;
     }
     return false;
   }
@@ -278,6 +280,7 @@ export default class DataList extends Component {
       areAnyChecked,
       toggleAll,
       renderActions,
+      checkAll,
       state: {
         searchValue,
         skip,
@@ -364,7 +367,7 @@ export default class DataList extends Component {
               <tr>
                 <th className="table-select-all">
                   <label className="checkbox-container">
-                    <input ref="checkAll" type="checkbox" indeterminate={!areAllChecked() ? areAnyChecked().toString(): 'false'} onClick={toggleAll} />
+                    <input ref={checkAll} type="checkbox" indeterminate={!areAllChecked() ? areAnyChecked().toString(): 'false'} onClick={toggleAll} />
                     <span className="check-mark"></span>
                   </label>
                 </th>
