@@ -12,8 +12,8 @@
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "0.0.0-88ada9819",
+    "react-dom": "0.0.0-88ada9819",
     "react-scripts": "1.1.5",
     "react-styleguidist": "^7.3.6"
   },
