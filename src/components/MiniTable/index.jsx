@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../TextInput';
 import PageSelectInput from '../PageSelectInput';
@@ -51,7 +51,6 @@ export default class DataList extends Component {
 
   onSort = (sortBy) => {
     const { onSearch } = this;
-    console.log(sortBy)
     this.setState({ sortBy, reverseSort: !this.state.reverseSort }, () => onSearch())
   }
 
@@ -375,8 +374,7 @@ export default class DataList extends Component {
               </tr>
             </thead>
             <tbody className="table-body">
-              {data && data.list && renderList()}
-              {!data && (
+              <Suspense fallback={(
                 <tr>
                   <td>
                     <p>
@@ -384,7 +382,9 @@ export default class DataList extends Component {
                     </p>
                   </td>
                 </tr>
-              )}
+              )}>
+                {data && data.list && renderList()}
+              </Suspense>
             </tbody>
           </table>
         </div>
