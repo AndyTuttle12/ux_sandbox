@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../TextInput';
 import SelectInput from '../SelectInput';
@@ -248,27 +248,35 @@ export default class DataList extends Component {
             {!reverseSort && (<img className="down" src={SortDown} alt='' />)}
           </button>
         </div>
-        <div className={`search-results${theme ? ''+theme : ''}`} style={{ ...style }}>
-          <table cellSpacing={0}>
-            <thead>
-              <tr>
-                {renderHeaders()}
-              </tr>
-            </thead>
-            <tbody className="list-body">
-              {data && data.list && renderList()}
-              {!data && (
+        <Suspense fallback={
+          <div className={`loading-overlay${theme ? ''+theme : ''}`} style={{ ...style }}>
+            <div className={`loading-message${theme ? ''+theme : ''}`} style={{ ...style }}>
+              <img src={Loading} alt=''/>
+            </div>
+          </div>}
+        >
+          <div className={`search-results${theme ? ''+theme : ''}`} style={{ ...style }}>
+            <table cellSpacing={0}>
+              <thead>
                 <tr>
-                  <td>
-                    <p>
-                      No results
-                    </p>
-                  </td>
+                  {renderHeaders()}
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="list-body">
+                {data && data.list && renderList()}
+                {!data && (
+                  <tr>
+                    <td>
+                      <p>
+                        No results
+                      </p>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </Suspense>
         <div className={`search-pagination${theme ? ''+theme : ''}`} style={{ ...style }}>
           <button className={`search-page-prev${theme ? ''+theme : ''}`} style={{ ...style }} onClick={onPageBack} disabled={prevDisabled}>
             <img src={PageLeft} alt='' />
