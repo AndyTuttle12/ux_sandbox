@@ -251,6 +251,7 @@ export default class DataList extends Component {
         <Suspense fallback={
           <div className={`loading-overlay${theme ? ''+theme : ''}`} style={{ ...style }}>
             <div className={`loading-message${theme ? ''+theme : ''}`} style={{ ...style }}>
+              <span>LOADING!!!!</span>
               <img src={Loading} alt=''/>
             </div>
           </div>}
@@ -293,15 +294,6 @@ export default class DataList extends Component {
             <img src={PageRight} alt='' />
           </button>
         </div>
-        {
-          loading && (
-            <div className={`loading-overlay${theme ? ''+theme : ''}`} style={{ ...style }}>
-              <div className={`loading-message${theme ? ''+theme : ''}`} style={{ ...style }}>
-                <img src={Loading} alt=''/>
-              </div>
-            </div>
-          )
-        }
       </div>
     );
   }

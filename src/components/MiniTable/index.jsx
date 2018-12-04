@@ -235,22 +235,30 @@ export default class DataList extends Component {
       },
     } = this;
     return list.map((entry, index) => (
-      <tr
-        key={index}
-        className={`table-row-default${theme ? ''+theme : ''}`}
-      >
-        <td className="table-row-select">
-          <label className="checkbox-container">
-            <input type="checkbox" checked={isSelected(entry[selectKey])} onChange={() => handleSelect(entry[selectKey])} />
-            <span className="check-mark"></span>
-          </label>
-        </td>
-        {(columns.map((column, i) => (
-          <td className={column.style || column.columnClass || 'table-column-default'} key={i} onClick={() => rowClick(entry)}>
-            {entry[column.accessor]}
+      <Suspense fallback={(
+        <div className={`loading-overlay${theme ? ''+theme : ''}`}>
+          <div className={`loading-message${theme ? ''+theme : ''}`}>
+            <img src={Loading} alt=''/>
+          </div>
+        </div>
+      )}>
+        <tr
+          key={index}
+          className={`table-row-default${theme ? ''+theme : ''}`}
+        >
+          <td className="table-row-select">
+            <label className="checkbox-container">
+              <input type="checkbox" checked={isSelected(entry[selectKey])} onChange={() => handleSelect(entry[selectKey])} />
+              <span className="check-mark"></span>
+            </label>
           </td>
-        )))}
-      </tr>
+          {(columns.map((column, i) => (
+            <td className={column.style || column.columnClass || 'table-column-default'} key={i} onClick={() => rowClick(entry)}>
+              {entry[column.accessor]}
+            </td>
+          )))}
+        </tr>
+      </Suspense>
     ));
   }
 
@@ -373,19 +381,17 @@ export default class DataList extends Component {
                 {renderHeaders()}
               </tr>
             </thead>
-            <tbody className="table-body">
-              <Suspense fallback={(
-                <tr>
-                  <td>
-                    <p>
-                      No results
-                    </p>
-                  </td>
-                </tr>
-              )}>
-                {data && data.list && renderList()}
-              </Suspense>
-            </tbody>
+            <Suspense fallback={(
+              <div className={`loading-overlay${theme ? ''+theme : ''}`}>
+                <div className={`loading-message${theme ? ''+theme : ''}`}>
+                  <img src={Loading} alt=''/>
+                </div>
+              </div>
+            )}>
+              <tbody className="table-body">
+                {data.list && renderList()}
+              </tbody>
+            </Suspense>
           </table>
         </div>
         <div className="table-footer">
@@ -409,15 +415,7 @@ export default class DataList extends Component {
             </div>
           )}
         </div>
-        {
-          loading && (
-            <div className={`loading-overlay${theme ? ''+theme : ''}`}>
-              <div className={`loading-message${theme ? ''+theme : ''}`}>
-                <img src={Loading} alt=''/>
-              </div>
-            </div>
-          )
-        }
+        
       </div>
     );
   }
