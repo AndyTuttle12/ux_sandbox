@@ -1,14 +1,5 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import TextInput from '../TextInput';
-import PageSelectInput from '../PageSelectInput';
-import SelectInput from '../SelectInput';
-import Search from './images/placeholderSearch.svg';
-import SortUp from './images/placeholderSortUp.svg';
-import SortDown from './images/placeholderSortDown.svg';
-import PageLeft from './images/placeholderLeft.svg';
-import PageRight from './images/placeholderRight.svg';
-import Loading from './images/placeholderLoading.gif';
 import './style.css';
 
 export default class DataList extends Component {
@@ -204,6 +195,8 @@ export default class DataList extends Component {
         theme,
       },
     } = this;
+    const SortUp = lazy(() => import('./images/placeholderSortUp.svg'));
+    const SortDown = lazy(() => import('./images/placeholderSortDown.svg'));
     return columns.map((column, index) => (
       <th className={column.style || column.headerClass || 'table-header-default'} key={index}>
         {column.header}
@@ -333,6 +326,14 @@ export default class DataList extends Component {
     const defaultFilter = columns[0].accessor;
 
     const currentMax = Number(limit) + Number(skip);
+
+    const SelectInput = lazy(() => import('../SelectInput'));
+    const TextInput = lazy(() => import('../TextInput'));
+    const PageSelectInput = lazy(() => import('../PageSelectInput'));
+    const PageLeft = lazy(() => import('./images/placeholderLeft.svg'));
+    const PageRight = lazy(() => import('./images/placeholderRight.svg'));
+    const Search = lazy(() => import('./images/placeholderSearch.svg'));
+    const Loading = lazy(() => import('./images/placeholderLoading.gif'));
 
     return (
       <div className="data-table-root">
