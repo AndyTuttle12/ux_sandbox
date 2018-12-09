@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Context from '../ContextContainer';
 import './style.css';
 
 export default class MessageContainer extends Component {
@@ -14,7 +13,7 @@ export default class MessageContainer extends Component {
   render() {
     return (
       <div className={`message-container-root${this.state.open ? ' open' : ''}`}>
-        
+        {this.props.children}
       </div>
     )
   }
