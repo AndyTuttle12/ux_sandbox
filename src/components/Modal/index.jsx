@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import PropTypes from 'prop-types';
-import Button from '../Button';
-import AppContext from '../../AppContext';
 import './style.css';
 
 export default class Modal extends Component {
@@ -24,6 +22,10 @@ export default class Modal extends Component {
         submitModal,
       },
     } = this;
+
+    const Button = lazy(() => import('../Button'));
+    const AppContext = lazy(() => import('../../AppContext'));
+
     return (<AppContext.Consumer>
       {(value) => (
         <div className={`modal-overlay${!show ? ' hidden' : ''}`}>

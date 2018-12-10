@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
-
-import AccordionSection from './AccordionSection';
 
 export default class Accordion extends Component {
   static propTypes = {
@@ -56,6 +54,8 @@ export default class Accordion extends Component {
       props: { children, isDisabled, theme, style },
       state: { openSections },
     } = this;
+
+    const AccordionSection = lazy(() => import('./AccordionSection'));
 
     return (
       <div className={`accordian-root${theme ? ''+theme : ''}`} style={{ ...style }}>

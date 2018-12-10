@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import PropTypes from 'prop-types';
-import Arrow from './images/placeholderArrow.svg';
 import { wrappedContext } from '../CardDashboard';
 import './style.css';
 
@@ -54,6 +53,8 @@ export default class Card extends Component {
         collapsed,
       },
     } = this;
+
+    const Arrow = lazy(() => import('./images/placeholderArrow.svg'));
 
     return (
       <wrappedContext.Consumer>
