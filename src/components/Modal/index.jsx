@@ -1,4 +1,5 @@
 import React, { Component, lazy } from 'react';
+import AppContext from '../../AppContext';
 import PropTypes from 'prop-types';
 import './style.css';
 
@@ -24,7 +25,6 @@ export default class Modal extends Component {
     } = this;
 
     const Button = lazy(() => import('../Button'));
-    const AppContext = lazy(() => import('../../AppContext'));
 
     return (<AppContext.Consumer>
       {(value) => (
