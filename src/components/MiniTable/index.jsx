@@ -1,5 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
+import PageLeft from './images/placeholderLeft.svg';
+import PageRight from './images/placeholderRight.svg';
 import './style.css';
 
 export default class DataList extends Component {
@@ -330,8 +332,6 @@ export default class DataList extends Component {
     const SelectInput = lazy(() => import('../SelectInput'));
     const TextInput = lazy(() => import('../TextInput'));
     const PageSelectInput = lazy(() => import('../PageSelectInput'));
-    const PageLeft = lazy(() => import('./images/placeholderLeft.svg'));
-    const PageRight = lazy(() => import('./images/placeholderRight.svg'));
     const Search = lazy(() => import('./images/placeholderSearch.svg'));
     const Loading = lazy(() => import('./images/placeholderLoading.gif'));
 
