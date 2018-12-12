@@ -1,13 +1,4 @@
-import React, { Component } from 'react';
-import Accordian from '../Accordian';
-import SearchList from '../SearchList';
-import ToolTip from '../ToolTip';
-import AppLogo from './images/placeholderApp.svg';
-import AppMenu from './images/placeholderMenu.svg';
-import Device from './images/placeholderDevice.svg';
-import Group from './images/placeholderGroup.svg';
-import Backups from './images/placeholderBackups.svg';
-import Config from './images/placeholderConfig.svg';
+import React, { Component, lazy } from 'react';
 import './style.css';
 
 const dummyData = {
@@ -174,45 +165,56 @@ export default class Nav extends Component {
   }
 
   render() {
-      const {
-        handleOpen,
-        handleDummyData,
-        state: {
-          open,
-        }
-      } = this;
-      return (
-        <div className={`nav-root${open ? ' open' : ' closed'}`}>
-          <div className='nav-header'>
-            <img className='app-logo' src={AppLogo} alt='' />
-            {open && (
-              <React.Fragment>
-                <span className='app-title'>Manager</span>
-                <ToolTip message="Hello, I am a tool tip!" direction="down" >
-                  <button className='home-btn' onClick={() => window.location = '/'}>
-                    <img className='home-menu' src={AppMenu} alt='' />
-                  </button>
-                </ToolTip>
-              </React.Fragment>
-            )}
+    const {
+      handleOpen,
+      handleDummyData,
+      state: {
+        open,
+      }
+    } = this;
+
+    const Accordion = lazy(() => import('../Accordian'));
+    const SearchList = lazy(() => import('../SearchList'));
+    const ToolTip = lazy(() => import('../ToolTip'));
+    const AppLogo = lazy(() => import('./images/placeholderApp.svg'));
+    const AppMenu = lazy(() => import('./images/placeholderMenu.svg'));
+    const Device = lazy(() => import('./images/placeholderDevice.svg'));
+    const Group = lazy(() => import('./images/placeholderGroup.svg'));
+    const Backups = lazy(() => import('./images/placeholderBackups.svg'));
+    const Config = lazy(() => import('./images/placeholderConfig.svg'));
+
+    return (
+      <div className={`nav-root${open ? ' open' : ' closed'}`}>
+        <div className='nav-header'>
+          <img className='app-logo' src={AppLogo} alt='' />
+          {open && (
+            <React.Fragment>
+              <span className='app-title'>Manager</span>
+              <ToolTip message="Hello, I am a tool tip!" direction="down" >
+                <button className='home-btn' onClick={() => window.location = '/'}>
+                  <img className='home-menu' src={AppMenu} alt='' />
+                </button>
+              </ToolTip>
+            </React.Fragment>
+          )}
+        </div>
+        <Accordion isDisabled={!open}>
+          <div icon={Device} label='Devices' isOpen>
+            <SearchList fetchData={handleDummyData} />
           </div>
-          <Accordian isDisabled={!open}>
-            <div icon={Device} label='Devices' isOpen>
-              <SearchList fetchData={handleDummyData} />
-            </div>
-            <div icon={Group} label='Groups'>
-              <SearchList fetchData={() => {}} />
-            </div>
-            <div icon={Backups} label='Backups'>
-              <SearchList fetchData={() => {}} />
-            </div>
-            <div icon={Config} label='Config'>
-              <SearchList fetchData={() => {}} />
-            </div>
-          </Accordian>
-          <button className='nav-close-btn' onClick={handleOpen}>
-            { open ? 'close' : 'open' }
-          </button>
+          <div icon={Group} label='Groups'>
+            <SearchList fetchData={() => {}} />
+          </div>
+          <div icon={Backups} label='Backups'>
+            <SearchList fetchData={() => {}} />
+          </div>
+          <div icon={Config} label='Config'>
+            <SearchList fetchData={() => {}} />
+          </div>
+        </Accordion>
+        <button className='nav-close-btn' onClick={handleOpen}>
+          { open ? 'close' : 'open' }
+        </button>
       </div>
     );
   }
