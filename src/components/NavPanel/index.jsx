@@ -1,4 +1,10 @@
-import React, { Component, lazy } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
+import AppLogo from './images/placeholderApp.svg';
+import AppMenu from './images/placeholderMenu.svg';
+import Device from './images/placeholderDevice.svg';
+import Group from './images/placeholderGroup.svg';
+import Backups from './images/placeholderBackups.svg';
+import Config from './images/placeholderConfig.svg';
 import './style.css';
 
 const dummyData = {
@@ -173,15 +179,15 @@ export default class Nav extends Component {
       }
     } = this;
 
+    // const AppLogo = lazy(() => import('./images/placeholderApp.svg'));
+    // const AppMenu = lazy(() => import('./images/placeholderMenu.svg'));
+    // const Device = lazy(() => import('./images/placeholderDevice.svg'));
+    // const Group = lazy(() => import('./images/placeholderGroup.svg'));
+    // const Backups = lazy(() => import('./images/placeholderBackups.svg'));
+    // const Config = lazy(() => import('./images/placeholderConfig.svg'));
     const Accordion = lazy(() => import('../Accordian'));
     const SearchList = lazy(() => import('../SearchList'));
     const ToolTip = lazy(() => import('../ToolTip'));
-    const AppLogo = lazy(() => import('./images/placeholderApp.svg'));
-    const AppMenu = lazy(() => import('./images/placeholderMenu.svg'));
-    const Device = lazy(() => import('./images/placeholderDevice.svg'));
-    const Group = lazy(() => import('./images/placeholderGroup.svg'));
-    const Backups = lazy(() => import('./images/placeholderBackups.svg'));
-    const Config = lazy(() => import('./images/placeholderConfig.svg'));
 
     return (
       <div className={`nav-root${open ? ' open' : ' closed'}`}>
@@ -198,20 +204,22 @@ export default class Nav extends Component {
             </React.Fragment>
           )}
         </div>
-        <Accordion isDisabled={!open}>
-          <div icon={Device} label='Devices' isOpen>
-            <SearchList fetchData={handleDummyData} />
-          </div>
-          <div icon={Group} label='Groups'>
-            <SearchList fetchData={() => {}} />
-          </div>
-          <div icon={Backups} label='Backups'>
-            <SearchList fetchData={() => {}} />
-          </div>
-          <div icon={Config} label='Config'>
-            <SearchList fetchData={() => {}} />
-          </div>
-        </Accordion>
+        <Suspense fallback={'Loading...'}>
+          <Accordion isDisabled={!open}>
+            <div icon={Device} label='Devices' isOpen>
+              <SearchList fetchData={handleDummyData} />
+            </div>
+            <div icon={Group} label='Groups'>
+              <SearchList fetchData={() => {}} />
+            </div>
+            <div icon={Backups} label='Backups'>
+              <SearchList fetchData={() => {}} />
+            </div>
+            <div icon={Config} label='Config'>
+              <SearchList fetchData={() => {}} />
+            </div>
+          </Accordion>
+        </Suspense>
         <button className='nav-close-btn' onClick={handleOpen}>
           { open ? 'close' : 'open' }
         </button>
