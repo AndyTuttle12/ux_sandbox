@@ -1,5 +1,11 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TextInput from '../TextInput';
+import PageSelectInput from '../PageSelectInput';
+import Search from './images/placeholderSearch.svg';
+import SortUp from './images/placeholderSortUp.svg';
+import SortDown from './images/placeholderSortDown.svg';
+import Loading from './images/placeholderLoading.gif';
 import PageLeft from './images/placeholderLeft.svg';
 import PageRight from './images/placeholderRight.svg';
 import './style.css';
@@ -182,13 +188,6 @@ export default class SearchList extends Component {
         value: '100',
       },
     ];
-
-    const TextInput = lazy(() => import('../TextInput'));
-    const PageSelectInput = lazy(() => import('../PageSelectInput'));
-    const Search = lazy(() => import('./images/placeholderSearch.svg'));
-    const SortUp = lazy(() => import('./images/placeholderSortUp.svg'));
-    const SortDown = lazy(() => import('./images/placeholderSortDown.svg'));
-    const Loading = lazy(() => import('./images/placeholderLoading.gif'));
 
     const currentMax = Number(limit) + Number(skip);
 

@@ -1,7 +1,14 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PageSelectInput from '../PageSelectInput';
+import SelectInput from '../SelectInput';
+import TextInput from '../TextInput';
 import PageLeft from './images/placeholderLeft.svg';
 import PageRight from './images/placeholderRight.svg';
+import SortUp from './images/placeholderSortUp.svg';
+import SortDown from './images/placeholderSortDown.svg';
+import Search from './images/placeholderSearch.svg';
+import Loading from './images/placeholderLoading.gif';
 import './style.css';
 
 export default class DataList extends Component {
@@ -197,8 +204,7 @@ export default class DataList extends Component {
         theme,
       },
     } = this;
-    const SortUp = lazy(() => import('./images/placeholderSortUp.svg'));
-    const SortDown = lazy(() => import('./images/placeholderSortDown.svg'));
+
     return columns.map((column, index) => (
       <th className={column.style || column.headerClass || 'table-header-default'} key={index}>
         {column.header}
@@ -329,12 +335,6 @@ export default class DataList extends Component {
 
     const currentMax = Number(limit) + Number(skip);
 
-    const SelectInput = lazy(() => import('../SelectInput'));
-    const TextInput = lazy(() => import('../TextInput'));
-    const PageSelectInput = lazy(() => import('../PageSelectInput'));
-    const Search = lazy(() => import('./images/placeholderSearch.svg'));
-    const Loading = lazy(() => import('./images/placeholderLoading.gif'));
-
     return (
       <div className="data-table-root">
         <div className="table-header">
@@ -375,17 +375,7 @@ export default class DataList extends Component {
               </tr>
             </thead>
             <tbody className="table-body">
-              <Suspense fallback={(
-                <tr>
-                  <td>
-                    <p>
-                      No results
-                    </p>
-                  </td>
-                </tr>
-              )}>
-                {data.list && renderList()}
-              </Suspense>
+              {data.list && renderList()}
             </tbody>
           </table>
         </div>

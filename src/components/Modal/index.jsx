@@ -1,6 +1,7 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import AppContext from '../../AppContext';
 import PropTypes from 'prop-types';
+import Button from '../Button';
 import './style.css';
 
 export default class Modal extends Component {
@@ -23,8 +24,6 @@ export default class Modal extends Component {
         submitModal,
       },
     } = this;
-
-    const Button = lazy(() => import('../Button'));
 
     return (<AppContext.Consumer>
       {(value) => (

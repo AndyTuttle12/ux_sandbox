@@ -1,4 +1,8 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, lazy } from 'react';
+import Accordion from '../Accordion';
+import SearchList from '../SearchList';
+import ToolTip from '../ToolTip';
+
 import AppLogo from './images/placeholderApp.svg';
 import AppMenu from './images/placeholderMenu.svg';
 import Device from './images/placeholderDevice.svg';
@@ -179,16 +183,6 @@ export default class Nav extends Component {
       }
     } = this;
 
-    // const AppLogo = lazy(() => import('./images/placeholderApp.svg'));
-    // const AppMenu = lazy(() => import('./images/placeholderMenu.svg'));
-    // const Device = lazy(() => import('./images/placeholderDevice.svg'));
-    // const Group = lazy(() => import('./images/placeholderGroup.svg'));
-    // const Backups = lazy(() => import('./images/placeholderBackups.svg'));
-    // const Config = lazy(() => import('./images/placeholderConfig.svg'));
-    const Accordion = lazy(() => import('../Accordian'));
-    const SearchList = lazy(() => import('../SearchList'));
-    const ToolTip = lazy(() => import('../ToolTip'));
-
     return (
       <div className={`nav-root${open ? ' open' : ' closed'}`}>
         <div className='nav-header'>
@@ -204,7 +198,6 @@ export default class Nav extends Component {
             </React.Fragment>
           )}
         </div>
-        <Suspense fallback={'Loading...'}>
           <Accordion isDisabled={!open}>
             <div icon={Device} label='Devices' isOpen>
               <SearchList fetchData={handleDummyData} />
@@ -219,7 +212,6 @@ export default class Nav extends Component {
               <SearchList fetchData={() => {}} />
             </div>
           </Accordion>
-        </Suspense>
         <button className='nav-close-btn' onClick={handleOpen}>
           { open ? 'close' : 'open' }
         </button>
