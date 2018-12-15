@@ -37,6 +37,11 @@ export default class Tabs extends Component {
     this.props.opentab(e.target.name);
   };
 
+  openTab = (tab) => {
+    this.setState({ selected: tab });
+    this.props.opentab(tab);
+  }
+
   componentDidMount() {
     if (this.props.selectedTab) {
       this.setState({ selected: this.props.selectedTab });

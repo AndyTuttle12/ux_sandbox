@@ -114,7 +114,16 @@ class App extends Component {
                 {tab === null && (<div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
                 {tab === '1' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 1 content</div>)}
                 {tab === '2' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 2 content</div>)}
-                {tab === '3' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 3 content</div>)}
+                {tab === '3' && (
+                  <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>
+                    This is tab 3 content
+                    <Button
+                      onClick={() => this.setState({tab: '1'})}
+                    >
+                      Open Tab 1!
+                    </Button>
+                  </div>
+                )}
               </Card>
 
               <CardArea spanWidth={6} collapsible direction="row">
