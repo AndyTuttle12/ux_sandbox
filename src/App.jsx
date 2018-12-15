@@ -161,7 +161,15 @@ class App extends Component {
                     fetchData={(options, callback) => this.handleList(options, callback)}
                     rowClick={(item) => console.log(item)}
                     selectKey="title"
-                    actions={[{name: 'test1', event: () => {}},{name: 'test2', event: () => {}}]}
+                    actions={[{name: 'test1', event: () => this.openModal({
+                      title: 'Confirm Button Press',
+                      body: 'Are you sure you want to click this button? It may cause something to happen...',
+                      actions: [{
+                        name: 'info',
+                        onClick: () => alert('Here is some info!'),
+                      }]
+                    })},
+                    {name: 'test2', event: () => {}}]}
                   />
                 </Card>
               </CardArea>
