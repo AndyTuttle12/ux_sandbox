@@ -1,5 +1,6 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Cancel from './images/cancel.svg';
 import './style.css';
 
 export default class TextInput extends Component {
@@ -52,7 +53,7 @@ export default class TextInput extends Component {
         value,
       }
     } = this;
-    const Cancel = lazy(() => import('./images/cancel.svg'));
+
     return (
       <label className="text-input-root-label">
         {label && (

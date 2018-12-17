@@ -1,5 +1,6 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DownArrow from './images/placeholderSortDown.svg';
 import './style.css';
 
 export default class SelectInput extends Component {
@@ -62,7 +63,7 @@ export default class SelectInput extends Component {
         name={item.name}
       />
     ))
-    const DownArrow = lazy(() => import('./images/placeholderSortDown.svg'));
+
     return (
       <div
         className={`select-input-root${theme ? ''+theme : ''} down${active ? ' active' : ''}${disabled ? ' disabled' : ''}`}
@@ -96,7 +97,7 @@ export default class SelectInput extends Component {
         theme,
       },
     } = this;
-    const DownArrow = lazy(() => import('./images/placeholderSortDown.svg'));
+
     return (
       <React.Fragment>
         { !active && (

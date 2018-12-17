@@ -1,4 +1,4 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import Accordion from '../Accordion';
 import SearchList from '../SearchList';
 import ToolTip from '../ToolTip';
