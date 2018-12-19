@@ -148,11 +148,11 @@ class App extends Component {
               <CardArea spanWidth={6} direction="row">
                 <Card title="5TH" areaWidth={6} spanWidth={2}>
                   <p>Some content</p>
-                  <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  <div style={{ width: '100%', height: '34px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
                 <Card title="6TH" areaWidth={6} spanWidth={4}>
                   <p>Some content</p>
-                  <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  <div style={{ width: '100%', height: '34px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
                 <Card title="7TH" areaWidth={6} spanWidth={6}>
                   <MiniTable
