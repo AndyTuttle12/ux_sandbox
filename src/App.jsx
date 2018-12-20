@@ -93,7 +93,7 @@ class App extends Component {
           </header>
           <div className="App-body">
             <CardDashboard title="Test Dashboard">
-              <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible>
+              <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible configurable>
                 <p>They can be any amount high, just based on the child content.</p>
                 <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                 <TextArea resize="none" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>

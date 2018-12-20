@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { wrappedContext } from '../CardDashboard';
 import Arrow from './images/placeholderArrow.svg';
+import Gear from './images/settings.svg';
 import './style.css';
 
 export default class Card extends Component {
   static propTypes = {
     collapsed: PropTypes.bool,
     collapsible: PropTypes.bool,
+    configurable: PropTypes.bool,
     spanWidth: PropTypes.number,
     spanHeight: PropTypes.number,
     areaWidth: PropTypes.number,
@@ -33,9 +35,14 @@ export default class Card extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
+  handleConfigure = () => {
+    console.log('configure a modal here...');
+  }
+
   render() {
     const {
       handleCollapsed,
+      handleConfigure,
       props: {
         spanWidth,
         spanHeight,
@@ -43,6 +50,7 @@ export default class Card extends Component {
         offsetHeight,
         offsetWidth,
         collapsible,
+        configurable,
         title,
         children,
         footerText,
@@ -73,12 +81,20 @@ export default class Card extends Component {
               {title && (
                 <span className={`card-title${theme ? ''+theme : ''}`}>{title}</span>
               )}
+              {configurable && (
+                <button
+                  className={`card-btn${theme ? ''+theme : ''} config-btn`}
+                  onClick={handleConfigure}
+                >
+                  <img src={Gear} alt="configure" />
+                </button>
+              )}
               {collapsible && (
                 <button
                   className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
                   onClick={handleCollapsed}
                 >
-                  <img src={Arrow} alt="" />
+                  <img src={Arrow} alt="collapse" />
                 </button>
               )}
             </div>

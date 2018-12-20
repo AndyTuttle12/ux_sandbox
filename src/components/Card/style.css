@@ -37,6 +37,10 @@
   transition: all .3s;
 }
 
+.card-btn.config-btn {
+  right: 30px;
+}
+
 .card-btn img {
   height: 20px;
   width: 20px;
