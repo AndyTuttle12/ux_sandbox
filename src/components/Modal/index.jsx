@@ -7,6 +7,11 @@ import './style.css';
 export default class Modal extends Component {
   static propTypes = {
     children: PropTypes.instanceOf(Object),
+    closeModal: PropTypes.func.isRequired,
+    submitModal: PropTypes.func.isRequired,
+    modalContent: PropTypes.instanceOf(Object),
+    title: PropTypes.string,
+    body: PropTypes.string,
   };
 
   constructor(props) {
@@ -22,6 +27,8 @@ export default class Modal extends Component {
         show,
         closeModal,
         submitModal,
+        title,
+        body,
       },
     } = this;
 
@@ -30,11 +37,11 @@ export default class Modal extends Component {
         <div className={`modal-overlay${!show ? ' hidden' : ''}`}>
           <div className="modal-card">
             <div className="modal-header">
-              <span className="modal-title">{value.modalContent.title}</span>
+              <span className="modal-title">{value.modalContent.title || title}</span>
               <Button className="modal-close" onClick={closeModal}>X</Button>
             </div>
             <div className="modal-body">
-              {value.modalContent.body}
+              {value.modalContent.body || body}
             </div>
             <div className="modal-footer">
               <div className="modal-actions">

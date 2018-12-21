@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { wrappedContext } from '../CardDashboard';
+import Modal from '../Modal';
 import Arrow from './images/placeholderArrow.svg';
 import Gear from './images/settings.svg';
 import './style.css';
@@ -28,6 +29,7 @@ export default class Card extends Component {
 
     this.state = {
       collapsed: false,
+      configure: false,
     };
   }
 
@@ -37,12 +39,18 @@ export default class Card extends Component {
 
   handleConfigure = () => {
     console.log('configure a modal here...');
+    this.setState({ configure: true });
+  }
+
+  closeConfigure = (settings) => {
+    this.setState({ configure: false, ...settings });
   }
 
   render() {
     const {
       handleCollapsed,
       handleConfigure,
+      closeConfigure,
       props: {
         spanWidth,
         spanHeight,
@@ -60,56 +68,68 @@ export default class Card extends Component {
       },
       state: {
         collapsed,
+        configure,
       },
     } = this;
 
     return (
       <wrappedContext.Consumer>
         {(context) => (
-          <div
-            className={`card-root${theme ? ''+theme : ''}`}
-            context={context}
-            style={{
-              ...style,
-              width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
-              height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`,
-              marginTop: `calc(${(offsetHeight) * 150 + 'px' || 'auto'})`,
-              marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
-            }}
-          >
-            <div className={`card-header${theme ? ''+theme : ''}`}>
-              {title && (
-                <span className={`card-title${theme ? ''+theme : ''}`}>{title}</span>
-              )}
-              {configurable && (
-                <button
-                  className={`card-btn${theme ? ''+theme : ''} config-btn`}
-                  onClick={handleConfigure}
-                >
-                  <img src={Gear} alt="configure" />
-                </button>
-              )}
-              {collapsible && (
-                <button
-                  className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
-                  onClick={handleCollapsed}
-                >
-                  <img src={Arrow} alt="collapse" />
-                </button>
+          <Fragment>
+            <div
+              className={`card-root${theme ? ''+theme : ''}`}
+              context={context}
+              style={{
+                ...style,
+                width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
+                height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`,
+                marginTop: `calc(${(offsetHeight) * 150 + 'px' || 'auto'})`,
+                marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
+              }}
+            >
+              <div className={`card-header${theme ? ''+theme : ''}`}>
+                {title && (
+                  <span className={`card-title${theme ? ''+theme : ''}`}>{title}</span>
+                )}
+                {configurable && (
+                  <button
+                    className={`card-btn${theme ? ''+theme : ''} config-btn`}
+                    onClick={handleConfigure}
+                  >
+                    <img src={Gear} alt="configure" />
+                  </button>
+                )}
+                {collapsible && (
+                  <button
+                    className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
+                    onClick={handleCollapsed}
+                  >
+                    <img src={Arrow} alt="collapse" />
+                  </button>
+                )}
+              </div>
+              {!collapsed && (
+                <React.Fragment>
+                  <div className={`card-body${theme ? ''+theme : ''}`} style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                    {children}
+                  </div>
+                  <div className={`card-footer${theme ? ''+theme : ''}`} style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
+                    <div className={`footer-text${theme ? ''+theme : ''}`}>{footerText}</div>
+                    <div className={`footer-actions${theme ? ''+theme : ''}`}>{footerActions}</div>
+                  </div>
+                </React.Fragment>
               )}
             </div>
-            {!collapsed && (
-              <React.Fragment>
-                <div className={`card-body${theme ? ''+theme : ''}`} style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
-                  {children}
-                </div>
-                <div className={`card-footer${theme ? ''+theme : ''}`} style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
-                  <div className={`footer-text${theme ? ''+theme : ''}`}>{footerText}</div>
-                  <div className={`footer-actions${theme ? ''+theme : ''}`}>{footerActions}</div>
-                </div>
-              </React.Fragment>
+            {configure && (
+              <Modal
+                show
+                title="Card Settings"
+                body="This is where settings can be added to the card..."
+                closeModal={closeConfigure}
+                submitModal={closeConfigure}
+              />
             )}
-          </div>
+          </Fragment>
         )}
       </wrappedContext.Consumer>
     );
