@@ -37,7 +37,11 @@ export default class Modal extends Component {
         <div className={`modal-overlay${!show ? ' hidden' : ''}`}>
           <div className="modal-card">
             <div className="modal-header">
-              <span className="modal-title">{value.modalContent.title || title}</span>
+              {
+                (value.modalContent.title || title)
+                ? <span className="modal-title">{value.modalContent.title || title}</span>
+                : ''
+              }
               <Button className="modal-close" onClick={closeModal}>X</Button>
             </div>
             <div className="modal-body">
