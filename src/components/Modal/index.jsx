@@ -29,6 +29,7 @@ export default class Modal extends Component {
         submitModal,
         title,
         body,
+        children,
       },
     } = this;
 
@@ -46,6 +47,7 @@ export default class Modal extends Component {
             </div>
             <div className="modal-body">
               {value.modalContent.body || body}
+              {children}
             </div>
             <div className="modal-footer">
               <div className="modal-actions">
