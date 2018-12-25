@@ -206,7 +206,9 @@ class App extends Component {
           </div>
           <Nav {...this.props} navOpen={navOpen} handleNav={this.handleNav} />
         </div>
-        <Modal show={this.state.showModal} closeModal={this.closeModal} submitModal={(formData) => this.submitModal(formData)} />
+        <Modal show={this.state.showModal} closeModal={this.closeModal} submitModal={(formData) => this.submitModal(formData)}>
+          <div>THIS IS A TEST</div>
+        </Modal>
         <MessageContainer />
       </AppContext.Provider>
     );
