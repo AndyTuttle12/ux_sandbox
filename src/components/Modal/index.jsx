@@ -46,7 +46,6 @@ export default class Modal extends Component {
               <Button className="modal-close" onClick={closeModal}>X</Button>
             </div>
             <div className="modal-body">
-              {value.modalContent.body || body}
               {children}
             </div>
             <div className="modal-footer">
