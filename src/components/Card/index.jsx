@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { wrappedContext } from '../CardDashboard';
+import TextInput from '../TextInput';
 import Modal from '../Modal';
 import Arrow from './images/placeholderArrow.svg';
 import Gear from './images/settings.svg';
@@ -124,10 +125,15 @@ export default class Card extends Component {
               <Modal
                 show
                 title="Card Settings"
-                body="This is where settings can be added to the card..."
                 closeModal={closeConfigure}
                 submitModal={closeConfigure}
-              />
+              >
+                <TextInput
+                  label="Width:"
+                  placeholder={spanWidth.toString()}
+                  onChange={(e) => console.log(`Width: ${e.target.value}`)}
+                />
+              </Modal>
             )}
           </Fragment>
         )}
