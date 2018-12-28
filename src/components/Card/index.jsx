@@ -128,11 +128,25 @@ export default class Card extends Component {
                 closeModal={closeConfigure}
                 submitModal={closeConfigure}
               >
-                <TextInput
-                  label="Width:"
-                  placeholder={spanWidth.toString()}
-                  onChange={(e) => console.log(`Width: ${e.target.value}`)}
-                />
+                <div className="settings-content">
+                  <div className="settings-content-row">
+                    <label htmlFor="width">Width:</label>
+                    <TextInput
+                      id="width"
+                      placeholder={spanWidth.toString()}
+                      onChange={(e) => console.log(`Width: ${e.target.value}`)}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="areaWidth">Area Width:</label>
+                    <TextInput
+                      id="areaWidth"
+                      disabled={areaWidth ? false : true}
+                      placeholder={areaWidth ? areaWidth.toString() : 'N/A'}
+                      onChange={(e) => console.log(`Width: ${e.target.value}`)}
+                    />
+                  </div>
+                </div>
               </Modal>
             )}
           </Fragment>
