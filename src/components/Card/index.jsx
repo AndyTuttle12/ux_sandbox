@@ -162,6 +162,22 @@ export default class Card extends Component {
                       onChange={(e) => console.log(`Area Height: ${e.target.value}`)}
                     />
                   </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="collapsible">Collapsible:</label>
+                    <TextInput
+                      id="collapsible"
+                      placeholder={collapsible ? collapsible.toString() : 'N/A'}
+                      onChange={(e) => console.log(`Collapsible: ${e.target.value}`)}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="titleControl">Title:</label>
+                    <TextInput
+                      id="titleControl"
+                      placeholder={title ? title.toString() : 'N/A'}
+                      onChange={(e) => console.log(`Title: ${e.target.value}`)}
+                    />
+                  </div>
                 </div>
               </Modal>
             )}
