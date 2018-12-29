@@ -56,6 +56,7 @@ export default class Card extends Component {
         spanWidth,
         spanHeight,
         areaWidth,
+        areaHeight,
         offsetHeight,
         offsetWidth,
         collapsible,
@@ -133,17 +134,32 @@ export default class Card extends Component {
                     <label htmlFor="width">Width:</label>
                     <TextInput
                       id="width"
-                      placeholder={spanWidth.toString()}
+                      placeholder={spanWidth ? spanWidth.toString() : 'N/A'}
                       onChange={(e) => console.log(`Width: ${e.target.value}`)}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="height">Height:</label>
+                    <TextInput
+                      id="height"
+                      placeholder={spanHeight ? spanHeight.toString() : 'N/A'}
+                      onChange={(e) => console.log(`Height: ${e.target.value}`)}
                     />
                   </div>
                   <div className="settings-content-row">
                     <label htmlFor="areaWidth">Area Width:</label>
                     <TextInput
                       id="areaWidth"
-                      disabled={areaWidth ? false : true}
                       placeholder={areaWidth ? areaWidth.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Width: ${e.target.value}`)}
+                      onChange={(e) => console.log(`Area Width: ${e.target.value}`)}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="areaHeight">Area Height:</label>
+                    <TextInput
+                      id="areaHeight"
+                      placeholder={areaHeight ? areaHeight.toString() : 'N/A'}
+                      onChange={(e) => console.log(`Area Height: ${e.target.value}`)}
                     />
                   </div>
                 </div>
