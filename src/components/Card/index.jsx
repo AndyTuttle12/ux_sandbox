@@ -31,6 +31,16 @@ export default class Card extends Component {
     this.state = {
       collapsed: false,
       configure: false,
+      settings: {
+        title: props.title,
+        collapsible: props.collapsible,
+        spanWidth: props.spanWidth,
+        spanHeight: props.spanHeight,
+        areaWidth: props.areaWidth,
+        areaHeight: props.areaHeight,
+        offsetWidth: props.offsetWidth,
+        offsetHeight: props.offsetHeight,
+      },
     };
   }
 
@@ -47,21 +57,19 @@ export default class Card extends Component {
     this.setState({ configure: false, ...settings });
   }
 
+  submitConfigure = (settings) => {
+    console.log(settings);
+    this.setState({ configure: false, ...settings });
+  }
+
   render() {
     const {
       handleCollapsed,
       handleConfigure,
       closeConfigure,
+      submitConfigure,
       props: {
-        spanWidth,
-        spanHeight,
-        areaWidth,
-        areaHeight,
-        offsetHeight,
-        offsetWidth,
-        collapsible,
         configurable,
-        title,
         children,
         footerText,
         footerActions,
@@ -71,6 +79,7 @@ export default class Card extends Component {
       state: {
         collapsed,
         configure,
+        settings,
       },
     } = this;
 
@@ -83,15 +92,15 @@ export default class Card extends Component {
               context={context}
               style={{
                 ...style,
-                width: `calc(${(spanWidth/areaWidth || spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
-                height: `calc(${(spanHeight) * 150 + 'px' || 'auto'} - 10px )`,
-                marginTop: `calc(${(offsetHeight) * 150 + 'px' || 'auto'})`,
-                marginLeft: `calc(${(offsetWidth/areaWidth || offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
+                width: `calc(${(settings.spanWidth/settings.areaWidth || settings.spanWidth/12) * 100 + '%' || 'auto' } - 10px )`,
+                height: `calc(${(settings.spanHeight) * 150 + 'px' || 'auto'} - 10px )`,
+                marginTop: `calc(${(settings.offsetHeight) * 150 + 'px' || 'auto'})`,
+                marginLeft: `calc(${(settings.offsetWidth/settings.areaWidth || settings.offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
               }}
             >
               <div className={`card-header${theme ? ''+theme : ''}`}>
-                {title && (
-                  <span className={`card-title${theme ? ''+theme : ''}`}>{title}</span>
+                {settings.title && (
+                  <span className={`card-title${theme ? ''+theme : ''}`}>{settings.title}</span>
                 )}
                 {configurable && (
                   <button
@@ -101,7 +110,7 @@ export default class Card extends Component {
                     <img src={Gear} alt="configure" />
                   </button>
                 )}
-                {collapsible && (
+                {settings.collapsible && (
                   <button
                     className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
                     onClick={handleCollapsed}
@@ -127,55 +136,73 @@ export default class Card extends Component {
                 show
                 title="Card Settings"
                 closeModal={closeConfigure}
-                submitModal={closeConfigure}
+                submitModal={() => submitConfigure(settings)}
               >
                 <div className="settings-content">
                   <div className="settings-content-row">
                     <label htmlFor="width">Width:</label>
                     <TextInput
                       id="width"
-                      placeholder={spanWidth ? spanWidth.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Width: ${e.target.value}`)}
+                      placeholder={settings.spanWidth ? settings.spanWidth.toString() : 'N/A'}
+                      onChange={(e) => {
+                        console.log(`Width: ${e.target.value}`)
+                        this.setState({ settings: { ...settings, width: e.target.value } })
+                      }}
                     />
                   </div>
                   <div className="settings-content-row">
                     <label htmlFor="height">Height:</label>
                     <TextInput
                       id="height"
-                      placeholder={spanHeight ? spanHeight.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Height: ${e.target.value}`)}
+                      placeholder={settings.spanHeight ? settings.spanHeight.toString() : 'N/A'}
+                      onChange={(e) => {
+                        console.log(`Height: ${e.target.value}`)
+                        this.setState({ settings: { ...settings, height: e.target.value } })
+                      }}
                     />
                   </div>
                   <div className="settings-content-row">
                     <label htmlFor="areaWidth">Area Width:</label>
                     <TextInput
                       id="areaWidth"
-                      placeholder={areaWidth ? areaWidth.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Area Width: ${e.target.value}`)}
+                      placeholder={settings.areaWidth ? settings.areaWidth.toString() : 'N/A'}
+                      onChange={(e) => {
+                        console.log(`Area Width: ${e.target.value}`)
+                        this.setState({ settings: { ...settings, areaWidth: e.target.value } })
+                      }}
                     />
                   </div>
                   <div className="settings-content-row">
                     <label htmlFor="areaHeight">Area Height:</label>
                     <TextInput
                       id="areaHeight"
-                      placeholder={areaHeight ? areaHeight.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Area Height: ${e.target.value}`)}
+                      placeholder={settings.areaHeight ? settings.areaHeight.toString() : 'N/A'}
+                      onChange={(e) => {
+                        console.log(`Area Height: ${e.target.value}`)
+                        this.setState({ settings: { ...settings, areaHeight: e.target.value } })
+                      }}
                     />
                   </div>
                   <div className="settings-content-row">
                     <label htmlFor="collapsible">Collapsible:</label>
                     <TextInput
                       id="collapsible"
-                      placeholder={collapsible ? collapsible.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Collapsible: ${e.target.value}`)}
+                      placeholder={settings.collapsible ? settings.collapsible.toString() : 'N/A'}
+                      onChange={(e) => {
+                        console.log(`Collapsible: ${e.target.value}`)
+                        this.setState({ settings: { ...settings, collapsible: e.target.value } })
+                      }}
                     />
                   </div>
                   <div className="settings-content-row">
                     <label htmlFor="titleControl">Title:</label>
                     <TextInput
                       id="titleControl"
-                      placeholder={title ? title.toString() : 'N/A'}
-                      onChange={(e) => console.log(`Title: ${e.target.value}`)}
+                      placeholder={settings.title ? settings.title.toString() : 'N/A'}
+                      onChange={(e) => {
+                        console.log(`Title: ${e.target.value}`)
+                        this.setState({ settings: { ...settings, title: e.target.value } })
+                      }}
                     />
                   </div>
                 </div>
