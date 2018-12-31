@@ -146,7 +146,7 @@ export default class Card extends Component {
                       placeholder={settings.spanWidth ? settings.spanWidth.toString() : 'N/A'}
                       onChange={(e) => {
                         console.log(`Width: ${e.target.value}`)
-                        this.setState({ settings: { ...settings, width: e.target.value } })
+                        this.setState({ settings: { ...settings, spanWidth: e.target.value } })
                       }}
                     />
                   </div>
@@ -157,7 +157,7 @@ export default class Card extends Component {
                       placeholder={settings.spanHeight ? settings.spanHeight.toString() : 'N/A'}
                       onChange={(e) => {
                         console.log(`Height: ${e.target.value}`)
-                        this.setState({ settings: { ...settings, height: e.target.value } })
+                        this.setState({ settings: { ...settings, spanHeight: e.target.value } })
                       }}
                     />
                   </div>
@@ -190,7 +190,8 @@ export default class Card extends Component {
                       placeholder={settings.collapsible ? settings.collapsible.toString() : 'N/A'}
                       onChange={(e) => {
                         console.log(`Collapsible: ${e.target.value}`)
-                        this.setState({ settings: { ...settings, collapsible: e.target.value } })
+                        const collapsible = e.target.value === 'true' ? true : false;
+                        this.setState({ settings: { ...settings, collapsible } })
                       }}
                     />
                   </div>

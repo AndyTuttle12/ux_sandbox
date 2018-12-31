@@ -127,34 +127,34 @@ class App extends Component {
               </Card>
 
               <CardArea spanWidth={6} collapsible direction="row">
-                <Card title="1ST" areaWidth={6} spanWidth={3} footerText="Testing text." style={{minWidth: '200px'}}>
+                <Card configurable title="1ST" areaWidth={6} spanWidth={3} footerText="Testing text." style={{minWidth: '200px'}}>
                   <p>Content</p>
                   <div style={{ width: '100%', height: '130px', backgroundColor: '#777', color: '#fff'}}>Content</div>
                 </Card>
-                <Card title="2ND" areaWidth={6} spanWidth={3} footerActions={<Button onClick={() => console.log('Clicked')}>Action</Button>} style={{minWidth: '200px'}}>
+                <Card configurable title="2ND" areaWidth={6} spanWidth={3} footerActions={<Button onClick={() => console.log('Clicked')}>Action</Button>} style={{minWidth: '200px'}}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '130px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
-                <Card title="3RD" areaWidth={6} spanWidth={2}>
+                <Card configurable title="3RD" areaWidth={6} spanWidth={2}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '200px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
-                <Card title="4TH" areaWidth={6} spanWidth={4}>
+                <Card configurable title="4TH" areaWidth={6} spanWidth={4}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '200px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
               </CardArea>
 
               <CardArea spanWidth={6} direction="row">
-                <Card title="5TH" areaWidth={6} spanWidth={2}>
+                <Card configurable title="5TH" areaWidth={6} spanWidth={2}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '34px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
-                <Card title="6TH" areaWidth={6} spanWidth={4}>
+                <Card configurable title="6TH" areaWidth={6} spanWidth={4}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '34px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
-                <Card title="7TH" areaWidth={6} spanWidth={6}>
+                <Card configurable title="7TH" areaWidth={6} spanWidth={6}>
                   <MiniTable
                     title="A Light Table"
                     columns={columns}
@@ -175,29 +175,29 @@ class App extends Component {
               </CardArea>
               <CardArea spanWidth={12} direction="row" collapsible>
                 <CardArea spanWidth={4} direction="column">
-                  <Card title="8TH" areaWidth={4} spanWidth={4}>
+                  <Card configurable title="8TH" areaWidth={4} spanWidth={4}>
                     <p>Some content</p>
                     <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                   </Card>
-                  <Card title="9TH" areaWidth={4} spanWidth={4}>
+                  <Card configurable title="9TH" areaWidth={4} spanWidth={4}>
                     <p>Some content</p>
                     <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                   </Card>
                 </CardArea>
 
                 <CardArea spanWidth={8} direction="column">
-                  <Card title="10TH" areaWidth={8} spanWidth={8}>
+                  <Card configurable title="10TH" areaWidth={8} spanWidth={8}>
                     <p>Some content</p>
                     <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                   </Card>
-                  <Card title="11TH" areaWidth={8} spanWidth={8}>
+                  <Card configurable title="11TH" areaWidth={8} spanWidth={8}>
                     <p>Some content</p>
                     <div style={{ width: '100%', height: '220px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                   </Card>
                 </CardArea>
               </CardArea>
 
-              <Card title="12TH" spanWidth={12}>
+              <Card configurable title="12TH" spanWidth={12}>
                 <p>Some content</p>
                 <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
               </Card>
