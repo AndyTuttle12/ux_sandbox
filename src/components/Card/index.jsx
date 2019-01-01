@@ -102,22 +102,24 @@ export default class Card extends Component {
                 {settings.title && (
                   <span className={`card-title${theme ? ''+theme : ''}`}>{settings.title}</span>
                 )}
-                {configurable && (
-                  <button
-                    className={`card-btn${theme ? ''+theme : ''} config-btn`}
-                    onClick={handleConfigure}
-                  >
-                    <img src={Gear} alt="configure" />
-                  </button>
-                )}
-                {settings.collapsible && (
-                  <button
-                    className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
-                    onClick={handleCollapsed}
-                  >
-                    <img src={Arrow} alt="collapse" />
-                  </button>
-                )}
+                <div className="header-actions">
+                  {configurable && (
+                    <button
+                      className={`card-btn${theme ? ''+theme : ''} config-btn`}
+                      onClick={handleConfigure}
+                    >
+                      <img src={Gear} alt="configure" />
+                    </button>
+                  )}
+                  {settings.collapsible && (
+                    <button
+                      className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
+                      onClick={handleCollapsed}
+                    >
+                      <img src={Arrow} alt="collapse" />
+                    </button>
+                  )}
+                </div>
               </div>
               {!collapsed && (
                 <React.Fragment>

@@ -14,18 +14,27 @@
   color: #222;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .card-title {
   font-size: 1.2em;
   text-align: left;
   align-self: center;
+  padding: 0 10px;
+}
+
+.header-actions {
+  width: auto;
+  height: 30px;
+  max-width: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .card-btn {
-  position: absolute;
-  right: 0px;
   width: 30px;
   height: 30px;
   margin: 0px;
@@ -35,10 +44,6 @@
   padding: 5px;
   outline: none;
   transition: all .3s;
-}
-
-.card-btn.config-btn {
-  right: 30px;
 }
 
 .card-btn img {
