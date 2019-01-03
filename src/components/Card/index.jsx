@@ -23,6 +23,7 @@ export default class Card extends Component {
     footerText: PropTypes.string,
     footerActions: PropTypes.any,
     theme: PropTypes.string,
+    updateCard: PropTypes.func,
   };
 
   constructor(props) {
@@ -49,7 +50,6 @@ export default class Card extends Component {
   }
 
   handleConfigure = () => {
-    console.log('configure a modal here...');
     this.setState({ configure: true });
   }
 
@@ -58,8 +58,11 @@ export default class Card extends Component {
   }
 
   submitConfigure = (settings) => {
-    console.log(settings);
-    this.setState({ configure: false, ...settings });
+    this.setState({ configure: false, ...settings }, () => {
+      if (this.props.updateCard) {
+        this.props.updateCard(settings);
+      }
+    });
   }
 
   render() {
@@ -147,7 +150,6 @@ export default class Card extends Component {
                       id="width"
                       placeholder={settings.spanWidth ? settings.spanWidth.toString() : 'N/A'}
                       onChange={(e) => {
-                        console.log(`Width: ${e.target.value}`)
                         this.setState({ settings: { ...settings, spanWidth: e.target.value } })
                       }}
                     />
@@ -158,7 +160,6 @@ export default class Card extends Component {
                       id="height"
                       placeholder={settings.spanHeight ? settings.spanHeight.toString() : 'N/A'}
                       onChange={(e) => {
-                        console.log(`Height: ${e.target.value}`)
                         this.setState({ settings: { ...settings, spanHeight: e.target.value } })
                       }}
                     />
@@ -169,7 +170,6 @@ export default class Card extends Component {
                       id="areaWidth"
                       placeholder={settings.areaWidth ? settings.areaWidth.toString() : 'N/A'}
                       onChange={(e) => {
-                        console.log(`Area Width: ${e.target.value}`)
                         this.setState({ settings: { ...settings, areaWidth: e.target.value } })
                       }}
                     />
@@ -180,7 +180,6 @@ export default class Card extends Component {
                       id="areaHeight"
                       placeholder={settings.areaHeight ? settings.areaHeight.toString() : 'N/A'}
                       onChange={(e) => {
-                        console.log(`Area Height: ${e.target.value}`)
                         this.setState({ settings: { ...settings, areaHeight: e.target.value } })
                       }}
                     />
@@ -191,7 +190,6 @@ export default class Card extends Component {
                       id="collapsible"
                       placeholder={settings.collapsible ? settings.collapsible.toString() : 'N/A'}
                       onChange={(e) => {
-                        console.log(`Collapsible: ${e.target.value}`)
                         const collapsible = e.target.value === 'true' ? true : false;
                         this.setState({ settings: { ...settings, collapsible } })
                       }}
@@ -203,7 +201,6 @@ export default class Card extends Component {
                       id="titleControl"
                       placeholder={settings.title ? settings.title.toString() : 'N/A'}
                       onChange={(e) => {
-                        console.log(`Title: ${e.target.value}`)
                         this.setState({ settings: { ...settings, title: e.target.value } })
                       }}
                     />
