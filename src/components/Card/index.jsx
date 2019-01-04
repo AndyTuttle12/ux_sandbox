@@ -41,7 +41,9 @@ export default class Card extends Component {
         areaHeight: props.areaHeight,
         offsetWidth: props.offsetWidth,
         offsetHeight: props.offsetHeight,
+        footerText: props.footerText,
       },
+      placeholderSettings: {},
     };
   }
 
@@ -50,15 +52,15 @@ export default class Card extends Component {
   }
 
   handleConfigure = () => {
-    this.setState({ configure: true });
+    this.setState({ configure: true, placeholderSettings: this.state.settings });
   }
 
-  closeConfigure = (settings) => {
-    this.setState({ configure: false, ...settings });
+  closeConfigure = () => {
+    this.setState({ configure: false, settings: this.state.placeholderSettings, placeholderSettings: {} });
   }
 
   submitConfigure = (settings) => {
-    this.setState({ configure: false, ...settings }, () => {
+    this.setState({ configure: false, settings }, () => {
       if (this.props.updateCard) {
         this.props.updateCard(settings);
       }
@@ -74,7 +76,6 @@ export default class Card extends Component {
       props: {
         configurable,
         children,
-        footerText,
         footerActions,
         theme,
         style,
@@ -126,11 +127,11 @@ export default class Card extends Component {
               </div>
               {!collapsed && (
                 <React.Fragment>
-                  <div className={`card-body${theme ? ''+theme : ''}`} style={{ height: `calc(100% - ${(footerActions || footerText) ? '60px': '30px'}`}}>
+                  <div className={`card-body${theme ? ''+theme : ''}`} style={{ height: `calc(100% - ${(footerActions || settings.footerText) ? '60px': '30px'}`}}>
                     {children}
                   </div>
-                  <div className={`card-footer${theme ? ''+theme : ''}`} style={{ height: `${(footerActions || footerText) ? '30px': '0px'}`}}>
-                    <div className={`footer-text${theme ? ''+theme : ''}`}>{footerText}</div>
+                  <div className={`card-footer${theme ? ''+theme : ''}`} style={{ height: `${(footerActions || settings.footerText) ? '30px': '0px'}`}}>
+                    <div className={`footer-text${theme ? ''+theme : ''}`}>{settings.footerText}</div>
                     <div className={`footer-actions${theme ? ''+theme : ''}`}>{footerActions}</div>
                   </div>
                 </React.Fragment>
@@ -149,6 +150,7 @@ export default class Card extends Component {
                     <TextInput
                       id="width"
                       placeholder={settings.spanWidth ? settings.spanWidth.toString() : 'N/A'}
+                      onKeyPress={() => {}}
                       onChange={(e) => {
                         this.setState({ settings: { ...settings, spanWidth: e.target.value } })
                       }}
@@ -159,6 +161,7 @@ export default class Card extends Component {
                     <TextInput
                       id="height"
                       placeholder={settings.spanHeight ? settings.spanHeight.toString() : 'N/A'}
+                      onKeyPress={() => {}}
                       onChange={(e) => {
                         this.setState({ settings: { ...settings, spanHeight: e.target.value } })
                       }}
@@ -169,6 +172,7 @@ export default class Card extends Component {
                     <TextInput
                       id="areaWidth"
                       placeholder={settings.areaWidth ? settings.areaWidth.toString() : 'N/A'}
+                      onKeyPress={() => {}}
                       onChange={(e) => {
                         this.setState({ settings: { ...settings, areaWidth: e.target.value } })
                       }}
@@ -179,8 +183,31 @@ export default class Card extends Component {
                     <TextInput
                       id="areaHeight"
                       placeholder={settings.areaHeight ? settings.areaHeight.toString() : 'N/A'}
+                      onKeyPress={() => {}}
                       onChange={(e) => {
                         this.setState({ settings: { ...settings, areaHeight: e.target.value } })
+                      }}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="offsetWidth">Offset Width:</label>
+                    <TextInput
+                      id="offsetWidth"
+                      placeholder={settings.offsetWidth ? settings.offsetWidth.toString() : 'N/A'}
+                      onKeyPress={() => {}}
+                      onChange={(e) => {
+                        this.setState({ settings: { ...settings, offsetWidth: e.target.value } })
+                      }}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="offsetHeight">Offset Height:</label>
+                    <TextInput
+                      id="offsetHeight"
+                      placeholder={settings.offsetHeight ? settings.offsetHeight.toString() : 'N/A'}
+                      onKeyPress={() => {}}
+                      onChange={(e) => {
+                        this.setState({ settings: { ...settings, offsetHeight: e.target.value } })
                       }}
                     />
                   </div>
@@ -189,6 +216,7 @@ export default class Card extends Component {
                     <TextInput
                       id="collapsible"
                       placeholder={settings.collapsible ? settings.collapsible.toString() : 'N/A'}
+                      onKeyPress={() => {}}
                       onChange={(e) => {
                         const collapsible = e.target.value === 'true' ? true : false;
                         this.setState({ settings: { ...settings, collapsible } })
@@ -200,8 +228,20 @@ export default class Card extends Component {
                     <TextInput
                       id="titleControl"
                       placeholder={settings.title ? settings.title.toString() : 'N/A'}
+                      onKeyPress={() => {}}
                       onChange={(e) => {
                         this.setState({ settings: { ...settings, title: e.target.value } })
+                      }}
+                    />
+                  </div>
+                  <div className="settings-content-row">
+                    <label htmlFor="footerTextControl">Footer Text:</label>
+                    <TextInput
+                      id="footerTextControl"
+                      placeholder={settings.footerText ? settings.footerText.toString() : 'N/A'}
+                      onKeyPress={() => {}}
+                      onChange={(e) => {
+                        this.setState({ settings: { ...settings, footerText: e.target.value } })
                       }}
                     />
                   </div>
