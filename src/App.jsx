@@ -15,6 +15,7 @@ import MiniTable from './components/MiniTable';
 import MessageContainer from './components/MessageContainer';
 import Modal from './components/Modal';
 import icon from './components/NavPanel/images/placeholderApp.svg';
+import InfiniteScroll from './components/InfiniteScroll';
 
 class App extends Component {
   constructor(props) {
@@ -198,10 +199,11 @@ class App extends Component {
               </CardArea>
 
               <Card configurable title="12TH" spanWidth={12}>
-                <p>Some content</p>
-                <div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                <InfiniteScroll
+                    loadMore={() => console.log('loading more')}
+                    loaded={false}
+                />
               </Card>
-
             </CardDashboard>
           </div>
           <Nav {...this.props} navOpen={navOpen} handleNav={this.handleNav} />

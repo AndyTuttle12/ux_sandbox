@@ -1,0 +1,15 @@
+.infinite-scroll-root {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.dummy {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
