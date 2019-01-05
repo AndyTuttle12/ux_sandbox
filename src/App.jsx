@@ -30,6 +30,8 @@ class App extends Component {
       showModal: false,
       switched: false,
       modalContent: '',
+      infiniiteData: [],
+      infiniteLoaded: false,
     };
   }
 
@@ -200,8 +202,45 @@ class App extends Component {
 
               <Card configurable title="12TH" spanWidth={12}>
                 <InfiniteScroll
-                    loadMore={() => console.log('loading more')}
-                    loaded={false}
+                    loadMore={() => {
+                      setTimeout(() => {
+                        console.log('loading data');
+                        const more = [
+                          {
+                            name: 'test',
+                            value: '123',
+                          },
+                          {
+                            name: 'test',
+                            value: '123',
+                          },
+                          {
+                            name: 'test',
+                            value: '123',
+                          },
+                          {
+                            name: 'test',
+                            value: '123',
+                          },
+                          {
+                            name: 'test',
+                            value: '123',
+                          },
+                        ]
+                        if (this.state.infiniiteData.length === 0) {
+                          this.setState({ infiniteData: more });
+                          return;
+                        }
+                        this.setState({ infiniteData: [...this.state.infiniteData, ...more]}, () => {
+                          if (this.state.infiniteData.length >= 20) {
+                            this.setState({ infiniteLoaded: true });
+                          }
+                          return;
+                        })
+                      }, 2000);
+                    }}
+                    loaded={this.state.infiniteLoaded}
+                    data={this.state.infiniteData}
                 />
               </Card>
             </CardDashboard>

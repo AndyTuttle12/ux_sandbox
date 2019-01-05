@@ -6,6 +6,8 @@ class InfiniteScroll extends Component {
   static propTypes = {
     loaded: PropTypes.bool,
     loadMore: PropTypes.func,
+    data: PropTypes.any,
+    children: PropTypes.any,
   }
 
   constructor(props) {
@@ -13,12 +15,16 @@ class InfiniteScroll extends Component {
     this.state = {
       scrollTop: 0,
       scrollBottom: null,
+      loading: true,
     }
     this.infinite = createRef();
   }
 
   componentDidMount() {
     this.infinite.current.addEventListener('scroll', this.onScroll, false);
+    this.props.loadMore(() => {
+      this.setState({ loading: false });
+    })
   }
 
   componentWillUnmount() {
@@ -26,7 +32,14 @@ class InfiniteScroll extends Component {
   }
 
   onScroll = (e) => {
-    console.log(e)
+    if (!this.props.loaded) {
+      this.setState({ loading: true }, () => {
+        console.log(e);
+        this.props.loadMore(() => {
+          this.setState({ loading: false });
+        })
+      })
+    }
   }
 
   render() {
@@ -35,17 +48,10 @@ class InfiniteScroll extends Component {
         className="infinite-scroll-root"
         ref={this.infinite}
       >
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
-        <div className="dummy">test</div>
+        {this.props.children}
+        {this.state.loading && (
+          <div className="loader">Loading...</div>
+        )}
       </div>
     );
   }
