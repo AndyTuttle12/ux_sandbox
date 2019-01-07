@@ -241,7 +241,14 @@ class App extends Component {
                     }}
                     loaded={this.state.infiniteLoaded}
                     data={this.state.infiniteData}
-                />
+                >
+                  {this.state.infiniiteData.map(({ name, value }) => (
+                    <div className="infiniteRow">
+                      <span>Name: {name}</span>
+                      <span>Value: {value}</span>
+                    </div>
+                  ))}
+                </InfiniteScroll>
               </Card>
             </CardDashboard>
           </div>
