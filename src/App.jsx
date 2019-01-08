@@ -30,7 +30,7 @@ class App extends Component {
       showModal: false,
       switched: false,
       modalContent: '',
-      infiniiteData: [],
+      infiniteData: [],
       infiniteLoaded: false,
     };
   }
@@ -227,11 +227,12 @@ class App extends Component {
                             value: '123',
                           },
                         ]
-                        if (this.state.infiniiteData.length === 0) {
+                        if (this.state.infiniteData.length === 0) {
                           this.setState({ infiniteData: more });
                           return;
                         }
-                        this.setState({ infiniteData: [...this.state.infiniteData, ...more]}, () => {
+                        this.setState({ infiniteData: [...this.state.infiniteData, ...more ] }, () => {
+                          console.log(this.state.infiniteData.length);
                           if (this.state.infiniteData.length >= 20) {
                             this.setState({ infiniteLoaded: true });
                           }
@@ -242,8 +243,9 @@ class App extends Component {
                     loaded={this.state.infiniteLoaded}
                     data={this.state.infiniteData}
                 >
-                  {this.state.infiniiteData.map(({ name, value }) => (
-                    <div className="infiniteRow">
+                  {Array.isArray(this.state.infiniteData) && this.state.infiniteData.map(({ name, value }, index) => (
+                    <div key={`${name}-${value}-${index}`} className="infiniteRow">
+                      <span>{index + 1}. </span>
                       <span>Name: {name}</span>
                       <span>Value: {value}</span>
                     </div>
