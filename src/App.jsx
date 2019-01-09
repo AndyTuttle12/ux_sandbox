@@ -202,7 +202,8 @@ class App extends Component {
 
               <Card configurable title="12TH" spanWidth={12}>
                 <InfiniteScroll
-                    loadMore={() => {
+                    threshold={20}
+                    loadMore={(callback) => {
                       setTimeout(() => {
                         console.log('loading data');
                         const more = [
@@ -229,14 +230,14 @@ class App extends Component {
                         ]
                         if (this.state.infiniteData.length === 0) {
                           this.setState({ infiniteData: more });
-                          return;
+                          return callback();
                         }
                         this.setState({ infiniteData: [...this.state.infiniteData, ...more ] }, () => {
                           console.log(this.state.infiniteData.length);
                           if (this.state.infiniteData.length >= 20) {
                             this.setState({ infiniteLoaded: true });
                           }
-                          return;
+                          return callback();
                         })
                       }, 2000);
                     }}
