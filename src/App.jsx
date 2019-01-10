@@ -202,7 +202,7 @@ class App extends Component {
 
               <Card configurable title="12TH" spanWidth={12}>
                 <InfiniteScroll
-                    threshold={20}
+                    threshold={5}
                     loadMore={(callback) => {
                       setTimeout(() => {
                         console.log('loading data');
