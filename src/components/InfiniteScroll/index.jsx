@@ -31,10 +31,10 @@ class InfiniteScroll extends Component {
     this.infinite.current.removeEventListener('scroll', this.onScroll, false);
   }
 
-  onScroll = (e) => {console.log(e);
+  onScroll = (e) => {
     if (!this.props.loaded) {
-      console.log(e.target.scrollTop, e.target.offsetHeight, this.props.threshold)
-      if (e.target.scrollTop % e.target.offsetHeight > this.props.threshold) {
+      if (e.target.scrollTop % e.target.offsetHeight <= this.props.threshold + 3
+        && e.target.scrollTop % e.target.offsetHeight >= this.props.threshold - 3) {
         this.setState({ loading: true }, () => {
           this.props.loadMore(() => {
             this.setState({ loading: false });

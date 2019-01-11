@@ -205,7 +205,6 @@ class App extends Component {
                     threshold={5}
                     loadMore={(callback) => {
                       setTimeout(() => {
-                        console.log('loading data');
                         const more = [
                           {
                             name: 'test',
@@ -233,13 +232,12 @@ class App extends Component {
                           return callback();
                         }
                         this.setState({ infiniteData: [...this.state.infiniteData, ...more ] }, () => {
-                          console.log(this.state.infiniteData.length);
-                          if (this.state.infiniteData.length >= 20) {
+                          if (this.state.infiniteData.length >= 50) {
                             this.setState({ infiniteLoaded: true });
                           }
                           return callback();
                         })
-                      }, 2000);
+                      }, 500);
                     }}
                     loaded={this.state.infiniteLoaded}
                     data={this.state.infiniteData}
