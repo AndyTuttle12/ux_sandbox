@@ -36,8 +36,10 @@ class InfiniteScroll extends Component {
       if (e.target.scrollTop % e.target.offsetHeight <= this.props.threshold + 3
         && e.target.scrollTop % e.target.offsetHeight >= this.props.threshold - 3) {
         this.setState({ loading: true }, () => {
-          this.props.loadMore(() => {
-            this.setState({ loading: false });
+          this.props.loadMore((loaded) => {
+            if (loaded) {
+              this.setState({ loading: false });
+            }
           })
         })
       }

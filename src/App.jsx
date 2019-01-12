@@ -229,13 +229,14 @@ class App extends Component {
                         ]
                         if (this.state.infiniteData.length === 0) {
                           this.setState({ infiniteData: more });
-                          return callback();
+                          return callback(false);
                         }
                         this.setState({ infiniteData: [...this.state.infiniteData, ...more ] }, () => {
                           if (this.state.infiniteData.length >= 50) {
                             this.setState({ infiniteLoaded: true });
+                            return callback(true);
                           }
-                          return callback();
+                          return callback(false);
                         })
                       }, 500);
                     }}
