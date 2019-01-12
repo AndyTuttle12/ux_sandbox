@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import AppContext from '../../AppContext';
 import PropTypes from 'prop-types';
 import Button from '../Button';
@@ -19,6 +19,31 @@ export default class Modal extends Component {
     this.state = {
       hidden: true,
     }
+    this.modal = createRef();
+  }
+
+  componentDidMount() {
+    this.modal = createRef();
+    if (this.modal) {
+      this.modal.addEventListener('keypress', this.handleKeyPress, false);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.modal)
+    if (this.modal) {
+      this.modal.addEventListener('keypress', this.handleKeyPress, false);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.modal) {
+      this.modal.removeEventListener('keypress', this.handleKeyPress, false);
+    }
+  }
+
+  handleKeyPress = (e) => {
+    console.log(e.key)
   }
 
   render() {
@@ -28,7 +53,6 @@ export default class Modal extends Component {
         closeModal,
         submitModal,
         title,
-        body,
         children,
       },
     } = this;
