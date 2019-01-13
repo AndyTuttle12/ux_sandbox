@@ -20,30 +20,42 @@ export default class Modal extends Component {
       hidden: true,
     }
     this.modal = createRef();
+    this.overlay = createRef();
   }
 
   componentDidMount() {
-    this.modal = createRef();
-    if (this.modal) {
-      this.modal.addEventListener('keypress', this.handleKeyPress, false);
+    if (this.modal.current) {
+      window.addEventListener('keyup', this.handleKeyPress, false);
+      this.overlay.current.addEventListener('click', this.handleOutsideClick, false);
     }
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.modal)
-    if (this.modal) {
-      this.modal.addEventListener('keypress', this.handleKeyPress, false);
+    if (this.modal.current) {
+      window.addEventListener('keyup', this.handleKeyPress, false);
+      this.overlay.current.addEventListener('click', this.handleOutsideClick, false);
     }
   }
 
   componentWillUnmount() {
-    if (this.modal) {
-      this.modal.removeEventListener('keypress', this.handleKeyPress, false);
+    if (this.modal.current) {
+      window.removeEventListener('keyup', this.handleKeyPress, false);
+      this.overlay.current.removeEventListener('click', this.handleOutsideClick, false);
     }
   }
 
   handleKeyPress = (e) => {
-    console.log(e.key)
+    if(e.keyCode === 27) {
+      e.preventDefault();
+      this.props.closeModal();
+    }
+  }
+
+  handleOutsideClick = (e) => {
+    e.preventDefault();
+    if (!this.modal.current.contains(e.target)) {
+      this.props.closeModal();
+    }
   }
 
   render() {
@@ -59,8 +71,8 @@ export default class Modal extends Component {
 
     return (<AppContext.Consumer>
       {(value) => (
-        <div className={`modal-overlay${!show ? ' hidden' : ''}`}>
-          <div className="modal-card">
+        <div ref={this.overlay} className={`modal-overlay${!show ? ' hidden' : ''}`}>
+          <div ref={this.modal} className="modal-card">
             <div className="modal-header">
               {
                 (value.modalContent.title || title)

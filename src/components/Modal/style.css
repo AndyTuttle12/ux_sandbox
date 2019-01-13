@@ -28,6 +28,7 @@
   box-sizing: border-box;
   background-color: #ddd;
   position: relative;
+  z-index: 11;
 }
 
 .modal-header {
