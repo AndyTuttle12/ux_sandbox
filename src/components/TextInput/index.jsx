@@ -62,7 +62,7 @@ export default class TextInput extends Component {
           </p>
         )}
         <input
-          className={`text-input-field${theme ? ''+theme : ''}`}
+          className={`text-input-field${theme ? ''+theme : ''}${clearable ? ' clearable' : ''}`}
           style={{ ...style }}
           disabled={disabled}
           value={value}

@@ -20,6 +20,10 @@
   outline: none;
 }
 
+.text-input-field.clearable {
+  padding: 0 25px 0 4px;
+}
+
 .text-input-label {
   width: 90px;
 }
