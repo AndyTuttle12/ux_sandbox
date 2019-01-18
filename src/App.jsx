@@ -16,6 +16,7 @@ import MessageContainer from './components/MessageContainer';
 import Modal from './components/Modal';
 import icon from './components/NavPanel/images/placeholderApp.svg';
 import InfiniteScroll from './components/InfiniteScroll';
+import Form from './components/Form';
 
 class App extends Component {
   constructor(props) {
@@ -98,21 +99,26 @@ class App extends Component {
             <CardDashboard title="Test Dashboard">
               <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible configurable>
                 <p>They can be any amount high, just based on the child content.</p>
-                <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
-                <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
-                <Button
-                  onClick={() => this.openModal({
-                    title: 'Confirm Button Press',
-                    body: 'Are you sure you want to click this button? It may cause something to happen...',
-                    actions: [{
-                      name: 'info',
-                      onClick: () => alert('Here is some info!'),
-                    }]
-                  })}
+                <Form
+                  action={'action'}
+
                 >
-                  <img src={icon} alt="icon" />
-                  Click Me!
-                </Button>
+                  <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
+                  <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
+                  <Button
+                    onClick={() => this.openModal({
+                      title: 'Confirm Button Press',
+                      body: 'Are you sure you want to click this button? It may cause something to happen...',
+                      actions: [{
+                        name: 'info',
+                        onClick: () => alert('Here is some info!'),
+                      }]
+                    })}
+                  >
+                    <img src={icon} alt="icon" />
+                    Click Me!
+                  </Button>
+                </Form>
                 <Tabs opentab={(name) => this.setTab(name)} selectedTab={tab} names={['1', '2', '3']} />
                 {tab === null && (<div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
                 {tab === '1' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 1 content</div>)}

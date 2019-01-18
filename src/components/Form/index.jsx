@@ -6,7 +6,7 @@ import './style.css';
 class Form extends Component {
 
   static propTypes = {
-    action: PropTypes.func.isRequired,
+    action: PropTypes.any,
     children: PropTypes.any,
   }
 
@@ -18,6 +18,7 @@ class Form extends Component {
   }
 
   updateForm = (values) => {
+    console.log(values)
     this.setState({ formValues: values });
   }
 
@@ -28,15 +29,11 @@ class Form extends Component {
         action,
         children,
       },
-      state: {
-        formValues,
-      },
     } = this;
     return (
       <form
         action={action}
-        updateForm={updateForm}
-        formValues={formValues}
+        onSubmit={updateForm}
       >
         {children}
       </form>
