@@ -18,7 +18,6 @@ class Form extends Component {
   }
 
   updateForm = (values) => {
-    console.log(values)
     this.setState({ formValues: values });
   }
 
@@ -32,7 +31,7 @@ class Form extends Component {
     } = this;
     return (
       <form
-        action={action}
+        action={action || 'submit'}
         onSubmit={updateForm}
       >
         {children}
