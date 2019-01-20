@@ -101,7 +101,7 @@ class App extends Component {
                 <p>They can be any amount high, just based on the child content.</p>
                 <Form
                   action={'action'}
-
+                  submitForm={values => console.log(values)}
                 >
                   <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>

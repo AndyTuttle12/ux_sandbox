@@ -6,8 +6,10 @@ import './style.css';
 class Form extends Component {
 
   static propTypes = {
-    action: PropTypes.any,
+    action: PropTypes.string,
     children: PropTypes.any,
+    validationRules: PropTypes.instanceOf(Object),
+    submitForm: PropTypes.func,
   }
 
   constructor(props) {
@@ -17,13 +19,24 @@ class Form extends Component {
     };
   }
 
-  updateForm = (values) => {
-    this.setState({ formValues: values });
+  validateForm = () => {
+    console.log(this.props.validationRules);
+    // TODO: Add validation for types here
+    this.props.submitForm(this.state.formValues);
+  }
+
+  submitForm = (e) => {
+    e.preventDefault();
+    if (this.props.validationRules) {
+      this.validateForm();
+    } else {
+      this.props.submitForm(this.state.formValues);
+    }
   }
 
   render() {
     const {
-      updateForm,
+      submitForm,
       props: {
         action,
         children,
@@ -32,7 +45,7 @@ class Form extends Component {
     return (
       <form
         action={action || 'submit'}
-        onSubmit={updateForm}
+        onSubmit={submitForm}
       >
         {children}
       </form>
