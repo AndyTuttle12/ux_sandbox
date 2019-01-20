@@ -20,9 +20,18 @@ class Form extends Component {
   }
 
   validateForm = () => {
-    console.log(this.props.validationRules);
-    // TODO: Add validation for types here
-    this.props.submitForm(this.state.formValues);
+    let formValid = true;
+    Object.keys(this.props.validationRules).forEach(rule => {
+      if (this.state.formValues.hasOwnProperty(rule)) {
+        const regexComparison = new RegExp(this.props.validationRules[rule], 'gmi');
+        formValid = regexComparison.test(this.state.formValues[rule]);
+      }
+    })
+    if (formValid) {
+      this.props.submitForm(this.state.formValues);
+    } else {
+      console.log('INVALID FORM');
+    }
   }
 
   submitForm = (e) => {

@@ -102,6 +102,9 @@ class App extends Component {
                 <Form
                   action={'action'}
                   submitForm={values => console.log(values)}
+                  validationRules={{
+                    input: '.+',
+                  }}
                 >
                   <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
