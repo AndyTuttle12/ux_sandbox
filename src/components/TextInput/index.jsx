@@ -24,8 +24,12 @@ export default class TextInput extends Component {
   }
 
   onChange = (e) => {
-    this.props.onChange(e);
     this.setState({ value: e.target.value });
+    if (this.props.updateForm) {
+      this.props.updateForm({ input: e.target.value });
+    } else {
+      this.props.onChange(e);
+    }
   };
 
   onKeyPress = (e) => {

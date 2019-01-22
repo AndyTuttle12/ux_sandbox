@@ -15,8 +15,30 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formValues: {},
+      formValues: {
+        submitForm: this.submitForm,
+        updateForm: this.updateForm,
+      },
     };
+  }
+
+  updateForm = (values) => {
+    if (values instanceof Object && Object.keys(values) > 0) {
+      let newValues = {};
+      const currentKeys = Object.keys(this.state.formValues);
+      const newKeys = Object.keys(values);
+      const staticTypes = ['string', 'number', 'boolean'];
+      newKeys.forEach(key => {
+        if (currentKeys.indexOf(key) !== -1) {
+          newValues[key] = values[key];
+        } else if (
+          staticTypes.indexOf(typeof this.state.formValues[key]) !== -1
+          && typeof this.state.formValues[key] === typeof values[key]) {
+          newValues[key] = values[key];
+        }
+      })
+      this.setState({ formValues: { ...this.state.formValues, ...newValues } })
+    }
   }
 
   validateForm = () => {
@@ -51,12 +73,15 @@ class Form extends Component {
         children,
       },
     } = this;
+    const validChildren = children.filter(child => React.isValidElement(child));
     return (
       <form
         action={action || 'submit'}
         onSubmit={submitForm}
       >
-        {children}
+        {React.Children.map(validChildren, child =>
+          React.cloneElement(child, {...this.state.formValues})
+        )}
       </form>
     );
   }

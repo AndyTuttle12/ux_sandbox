@@ -18,6 +18,9 @@ export default class TextArea extends Component {
 
   onChange = (e) => {
     this.props.onChange(e);
+    if (this.props.updateForm) {
+      this.props.updateForm({ textarea: e.target.value });
+    }
   };
 
   render() {
@@ -52,7 +55,6 @@ export default class TextArea extends Component {
           placeholder={placeholder}
           onChange={onChange}
           style={{...style, resize: resize }}
-          {...this.props}
         />
       </label>
     );

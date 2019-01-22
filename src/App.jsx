@@ -106,8 +106,8 @@ class App extends Component {
                     input: '.+',
                   }}
                 >
-                  <TextInput placeholder="An Input" onChange={() => {}} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
-                  <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}}></TextArea>
+                  <TextInput placeholder="An Input" onChange={(e) => console.log(e.target.value)} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
+                  <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={(e) => console.log(e.target.value)}></TextArea>
                   <Button
                     onClick={() => this.openModal({
                       title: 'Confirm Button Press',
