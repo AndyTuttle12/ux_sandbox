@@ -12,56 +12,45 @@ class Form extends Component {
     submitForm: PropTypes.func,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      formValues: {
-        submitForm: this.submitForm,
-        updateForm: this.updateForm,
-      },
-    };
-  }
-
   updateForm = (values) => {
     if (values instanceof Object && Object.keys(values) > 0) {
       let newValues = {};
-      const currentKeys = Object.keys(this.state.formValues);
+      const currentKeys = Object.keys(this.props.formValues);
       const newKeys = Object.keys(values);
       const staticTypes = ['string', 'number', 'boolean'];
       newKeys.forEach(key => {
         if (currentKeys.indexOf(key) !== -1) {
           newValues[key] = values[key];
         } else if (
-          staticTypes.indexOf(typeof this.state.formValues[key]) !== -1
-          && typeof this.state.formValues[key] === typeof values[key]) {
+          staticTypes.indexOf(typeof this.props.formValues[key]) !== -1
+          && typeof this.props.formValues[key] === typeof values[key]) {
           newValues[key] = values[key];
         }
       })
-      this.setState({ formValues: { ...this.state.formValues, ...newValues } })
+      this.props.updateForm(newValues);
     }
   }
 
-  validateForm = () => {
+  validateForm = (values) => {
     let formValid = true;
     Object.keys(this.props.validationRules).forEach(rule => {
-      if (this.state.formValues.hasOwnProperty(rule)) {
+      if (values.hasOwnProperty(rule)) {
         const regexComparison = new RegExp(this.props.validationRules[rule], 'gmi');
-        formValid = regexComparison.test(this.state.formValues[rule]);
+        formValid = regexComparison.test(values[rule]);
       }
     })
     if (formValid) {
-      this.props.submitForm(this.state.formValues);
+      this.props.submitForm(values);
     } else {
       console.log('INVALID FORM');
     }
   }
 
-  submitForm = (e) => {
-    e.preventDefault();
+  submitForm = (values) => {
     if (this.props.validationRules) {
-      this.validateForm();
+      this.validateForm(values);
     } else {
-      this.props.submitForm(this.state.formValues);
+      this.props.submitForm(values);
     }
   }
 
@@ -73,15 +62,12 @@ class Form extends Component {
         children,
       },
     } = this;
-    const validChildren = children.filter(child => React.isValidElement(child));
     return (
       <form
         action={action || 'submit'}
         onSubmit={submitForm}
       >
-        {React.Children.map(validChildren, child =>
-          React.cloneElement(child, {...this.state.formValues})
-        )}
+        {children}
       </form>
     );
   }

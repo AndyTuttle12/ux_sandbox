@@ -33,6 +33,10 @@ class App extends Component {
       modalContent: '',
       infiniteData: [],
       infiniteLoaded: false,
+      formValues: {
+        input: '',
+        textarea: '',
+      },
     };
   }
 
@@ -74,6 +78,10 @@ class App extends Component {
     this.setState({ switched: !this.state.switched });
   }
 
+  updateForm = (values) => {
+    this.setState({ formValues: { ...this.state.formValues, ...values } });
+  }
+
   render() {
     const { navOpen, tab } = this.state;
     const columns = [
@@ -102,11 +110,13 @@ class App extends Component {
                 <Form
                   action={'action'}
                   submitForm={values => console.log(values)}
+                  formValues={this.state.formValues}
+                  updateForm={values => this.updateForm(values)}
                   validationRules={{
-                    input: '.+',
+                    input: 'input',
                   }}
                 >
-                  <TextInput placeholder="An Input" onChange={(e) => console.log(e.target.value)} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
+                  <TextInput placeholder="An Input" onChange={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={(e) => console.log(e.target.value)}></TextArea>
                   <Button
                     onClick={() => this.openModal({
