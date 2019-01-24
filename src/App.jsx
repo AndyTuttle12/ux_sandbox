@@ -37,6 +37,9 @@ class App extends Component {
         input: '',
         textarea: '',
       },
+      validationRules: {
+        input: 'input',
+      },
     };
   }
 
@@ -79,7 +82,26 @@ class App extends Component {
   }
 
   updateForm = (values) => {
-    this.setState({ formValues: { ...this.state.formValues, ...values } });
+    this.setState({ formValues: { ...this.state.formValues, ...values } }, () => {
+      if (this.state.validationRules) {
+        this.validateForm(values);
+      }
+    });
+  }
+
+  validateForm = (values) => {
+    let formValid = true;
+    Object.keys(this.state.validationRules).forEach(rule => {
+      if (values.hasOwnProperty(rule)) {
+        const regexComparison = new RegExp(this.state.validationRules[rule], 'gmi');
+        formValid = regexComparison.test(values[rule]);
+      }
+    })
+    if (formValid) {
+      console.log('VALID FORM');
+    } else {
+      console.log('INVALID FORM');
+    }
   }
 
   render() {
@@ -111,10 +133,6 @@ class App extends Component {
                   action={'action'}
                   submitForm={values => console.log(values)}
                   formValues={this.state.formValues}
-                  updateForm={values => this.updateForm(values)}
-                  validationRules={{
-                    input: 'input',
-                  }}
                 >
                   <TextInput placeholder="An Input" onChange={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={(e) => console.log(e.target.value)}></TextArea>
