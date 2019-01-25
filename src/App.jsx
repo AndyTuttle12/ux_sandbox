@@ -40,6 +40,7 @@ class App extends Component {
       validationRules: {
         input: 'input',
       },
+      formError: '',
     };
   }
 
@@ -101,6 +102,7 @@ class App extends Component {
       console.log('VALID FORM');
     } else {
       console.log('INVALID FORM');
+      this.setState({ formError: `Invalid Input`});
     }
   }
 
@@ -133,6 +135,7 @@ class App extends Component {
                   action={'action'}
                   submitForm={values => console.log(values)}
                   formValues={this.state.formValues}
+                  style={{ height: '60px', position: 'relative' }}
                 >
                   <TextInput placeholder="An Input" onChange={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={(e) => console.log(e.target.value)}></TextArea>
@@ -149,6 +152,9 @@ class App extends Component {
                     <img src={icon} alt="icon" />
                     Click Me!
                   </Button>
+                  <div className="form-error">
+                    <span className="error">{this.state.formError}</span>
+                  </div>
                 </Form>
                 <Tabs opentab={(name) => this.setTab(name)} selectedTab={tab} names={['1', '2', '3']} />
                 {tab === null && (<div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
