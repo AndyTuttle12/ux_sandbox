@@ -38,7 +38,7 @@ class App extends Component {
         textarea: '',
       },
       validationRules: {
-        input: 'input',
+        input: '([1-9]|test|^$)',
       },
       formError: '',
     };
