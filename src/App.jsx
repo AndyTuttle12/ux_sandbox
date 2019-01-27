@@ -100,6 +100,7 @@ class App extends Component {
     })
     if (formValid) {
       console.log('VALID FORM');
+      this.setState({ formError: ''});
     } else {
       console.log('INVALID FORM');
       this.setState({ formError: `Invalid Input`});
