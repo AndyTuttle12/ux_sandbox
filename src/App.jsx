@@ -101,10 +101,23 @@ class App extends Component {
     if (formValid) {
       console.log('VALID FORM');
       this.setState({ formError: ''});
+      return true;
     } else {
       console.log('INVALID FORM');
       this.setState({ formError: `Invalid Input`});
+      return false;
     }
+  }
+
+  submitForm = () => {
+    const valid = this.validateForm(this.state.formValues);
+    if (!valid) {
+      console.log('Cannot Submit invalid form.');
+      return;
+    }
+    // Call an API here with the updated data.
+    console.log('Submit the form!');
+    return true;
   }
 
   render() {
@@ -144,10 +157,16 @@ class App extends Component {
                     onClick={() => this.openModal({
                       title: 'Confirm Button Press',
                       body: 'Are you sure you want to click this button? It may cause something to happen...',
-                      actions: [{
-                        name: 'info',
-                        onClick: () => alert('Here is some info!'),
-                      }]
+                      actions: [
+                        {
+                          name: 'info',
+                          onClick: () => alert('Here is some info!'),
+                        },
+                        {
+                          name: 'submit',
+                          onClick: () => this.submitForm(),
+                        },
+                      ]
                     })}
                   >
                     <img src={icon} alt="icon" />
