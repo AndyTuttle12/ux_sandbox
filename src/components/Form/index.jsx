@@ -12,11 +12,12 @@ class Form extends Component {
     submitForm: PropTypes.func,
   }
 
-  submitForm = (values) => {
+  submitForm = (e) => {
+    e.preventDefault();
     if (this.props.validationRules) {
-      this.validateForm(values);
+      this.validateForm(this.props.validationRules);
     } else {
-      this.props.submitForm(values);
+      this.props.submitForm();
     }
   }
 

@@ -147,7 +147,7 @@ class App extends Component {
                 <p>They can be any amount high, just based on the child content.</p>
                 <Form
                   action={'action'}
-                  submitForm={values => console.log(values)}
+                  submitForm={() => this.submitForm()}
                   formValues={this.state.formValues}
                   style={{ height: '60px', position: 'relative' }}
                 >
