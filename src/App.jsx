@@ -143,7 +143,7 @@ class App extends Component {
           </header>
           <div className="App-body">
             <CardDashboard title="Test Dashboard">
-              <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} collapsible configurable>
+              <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} spanHeight={2} collapsible configurable>
                 <p>They can be any amount high, just based on the child content.</p>
                 <Form
                   action={'action'}
@@ -170,7 +170,7 @@ class App extends Component {
                     })}
                   >
                     <img src={icon} alt="icon" />
-                    Click Me!
+                    Submit Form
                   </Button>
                   <div className="form-error">
                     <span className="error">{this.state.formError}</span>
