@@ -11,6 +11,7 @@ export default class TextInput extends Component {
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onKeyPress: PropTypes.func,
+    onBlur: PropTypes.func,
     theme: PropTypes.string,
     clearable: PropTypes.bool,
     clearInput: PropTypes.func,
@@ -36,6 +37,14 @@ export default class TextInput extends Component {
     e.key === 'Enter' && this.props.onKeyPress(e);
   };
 
+  onBlur = (e) => {
+    if (this.props.updateForm) {
+      this.props.updateForm({ input: e.target.value });
+    } else {
+      this.props.onBlur(e);
+    }
+  }
+
   clearInput = () => {
     this.setState({ value: '' });
   }
@@ -44,6 +53,7 @@ export default class TextInput extends Component {
     const {
       onChange,
       onKeyPress,
+      onBlur,
       clearInput,
       props: {
         label,
@@ -73,6 +83,7 @@ export default class TextInput extends Component {
           placeholder={placeholder}
           onChange={onChange}
           onKeyPress={onKeyPress}
+          onBlur={onBlur}
           spellCheck={false}
         />
         {clearable && value && (<button

@@ -151,7 +151,7 @@ class App extends Component {
                   formValues={this.state.formValues}
                   style={{ height: '60px', position: 'relative' }}
                 >
-                  <TextInput placeholder="An Input" onChange={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
+                  <TextInput placeholder="An Input" onChange={() => {}} onBlur={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={(e) => console.log(e.target.value)}></TextArea>
                   <Button
                     onClick={() => this.openModal({
