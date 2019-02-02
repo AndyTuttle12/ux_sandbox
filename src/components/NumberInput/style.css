@@ -1,0 +1,42 @@
+.number-input-root-label {
+  height: 20px;
+  width: 180px;
+  position: relative;
+}
+
+.number-input-field {
+  padding: 0 14px 0 4px;
+  margin: 4px;
+  margin-top: 0px;
+  font-size: 12px;
+  height: 20px;
+  min-width: 180px;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  border-bottom: solid 2px;
+  border-radius: 0;
+  color: rgba(0,0,0,0.75);
+  outline: none;
+}
+
+.number-input-field.clearable {
+  padding: 0 25px 0 4px;
+}
+
+.number-input-label {
+  width: 90px;
+}
+
+.number-input-root:hover:not(:disabled) {
+  border-bottom: solid 2px #0094d9;
+}
+
+.number-input-root:active:not(:disabled) {
+  border-bottom: solid 2px #a1a1a1;
+}
+
+.number-input-root:disabled {
+  background-color: #a1a1a1;
+  cursor: not-allowed;
+}

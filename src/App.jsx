@@ -8,6 +8,7 @@ import CardArea from './components/CardArea';
 import Card from './components/Card';
 import ToolTip from './components/ToolTip';
 import TextInput from './components/TextInput';
+import NumberInput from './components/NumberInput';
 import TextArea from './components/TextArea';
 import Button from './components/Button';
 import Tabs from './components/Tabs';
@@ -153,6 +154,7 @@ class App extends Component {
                   style={{ height: '60px', position: 'relative' }}
                 >
                   <TextInput placeholder="An Input" onChange={() => {}} onBlur={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
+                  <NumberInput onChange={() => {}}/>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}} onBlur={(e) => this.updateForm({textarea: e.target.value})}></TextArea>
                   <Button
                     onClick={() => this.openModal({
