@@ -39,6 +39,7 @@ class App extends Component {
       },
       validationRules: {
         input: '([1-9]|test|^$)',
+        textarea: '([1-9]|textarea|^$)',
       },
       formError: '',
     };
@@ -152,7 +153,7 @@ class App extends Component {
                   style={{ height: '60px', position: 'relative' }}
                 >
                   <TextInput placeholder="An Input" onChange={() => {}} onBlur={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
-                  <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={(e) => console.log(e.target.value)}></TextArea>
+                  <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}} onBlur={(e) => this.updateForm({textarea: e.target.value})}></TextArea>
                   <Button
                     onClick={() => this.openModal({
                       title: 'Confirm Button Press',

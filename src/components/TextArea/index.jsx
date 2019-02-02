@@ -13,6 +13,7 @@ export default class TextArea extends Component {
     spellCheck: PropTypes.bool,
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
     theme: PropTypes.string,
   };
 
@@ -23,9 +24,17 @@ export default class TextArea extends Component {
     }
   };
 
+  onBlur = (e) => {
+    if (this.props.updateForm) {
+      this.props.updateForm({ textarea: e.target.value });
+    }
+    this.props.onBlur(e);
+  }
+
   render() {
     const {
       onChange,
+      onBlur,
       props: {
         label,
         value,
@@ -54,6 +63,7 @@ export default class TextArea extends Component {
           spellCheck={spellCheck}
           placeholder={placeholder}
           onChange={onChange}
+          onBlur={onBlur}
           style={{...style, resize: resize }}
         />
       </label>
