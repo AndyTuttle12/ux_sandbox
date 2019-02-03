@@ -13,7 +13,11 @@ export default class SwitchInput extends Component {
 
   onChange = (e) => {
     e.persist();
-    this.props.onChange(e);
+    if (this.props.updateForm) {
+      this.props.updateForm({ switch: e.target.value });
+    } else {
+      this.props.onChange(e);
+    }
   };
 
   render() {
