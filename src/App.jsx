@@ -36,11 +36,13 @@ class App extends Component {
       infiniteLoaded: false,
       formValues: {
         input: '',
+        number: null,
         textarea: '',
       },
       validationRules: {
-        input: '([1-9]|test|^$)',
-        textarea: '([1-9]|textarea|^$)',
+        input: '([0-9]|test|^$)',
+        number: '([0-9]+|^$)',
+        textarea: '([0-9]|test|^$)',
       },
       formError: '',
     };
@@ -94,20 +96,22 @@ class App extends Component {
 
   validateForm = (values) => {
     let formValid = true;
-    Object.keys(this.state.validationRules).forEach(rule => {
+    const rules = Object.keys(this.state.validationRules);
+    for (let rule of rules) {
       if (values.hasOwnProperty(rule)) {
         const regexComparison = new RegExp(this.state.validationRules[rule], 'gmi');
         formValid = regexComparison.test(values[rule]);
+        if (!formValid) {
+          console.log('INVALID FORM');
+          this.setState({ formError: `Invalid Form`});
+          return false;
+        }
       }
-    })
+    }
     if (formValid) {
       console.log('VALID FORM');
       this.setState({ formError: ''});
       return true;
-    } else {
-      console.log('INVALID FORM');
-      this.setState({ formError: `Invalid Input`});
-      return false;
     }
   }
 
@@ -119,6 +123,7 @@ class App extends Component {
     }
     // Call an API here with the updated data.
     console.log('Submit the form!');
+    console.log(this.state.formValues);
     return true;
   }
 
@@ -154,7 +159,7 @@ class App extends Component {
                   style={{ height: '60px', position: 'relative' }}
                 >
                   <TextInput placeholder="An Input" onChange={() => {}} onBlur={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
-                  <NumberInput onChange={() => {}}/>
+                  <NumberInput onChange={(e) => this.updateForm({ number: Number(e.target.value) })}/>
                   <TextArea resize="all" placeholder="A Text area. I wonder how big this gets..." onChange={() => {}} onBlur={(e) => this.updateForm({textarea: e.target.value})}></TextArea>
                   <Button
                     onClick={() => this.openModal({

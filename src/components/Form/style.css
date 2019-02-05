@@ -1,0 +1,8 @@
+form {
+  width: fit-content;
+  height: fit-content;
+  min-height: 60px;
+  min-width: 200px;
+  position: relative;
+  margin: auto;
+}
