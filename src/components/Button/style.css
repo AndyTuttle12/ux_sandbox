@@ -13,6 +13,10 @@
   justify-content: space-evenly;
 }
 
+.btn-default.toggled {
+  background-color: #aaa;
+}
+
 .btn-default:hover:not(:disabled) {
   background-color: #ddd;
 }

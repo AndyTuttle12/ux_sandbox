@@ -205,7 +205,7 @@ class App extends Component {
                   <p>Content</p>
                   <div style={{ width: '100%', height: '130px', backgroundColor: '#777', color: '#fff'}}>Content</div>
                 </Card>
-                <Card configurable title="2ND" areaWidth={6} spanWidth={3} footerActions={<Button onClick={() => console.log('Clicked')}>Action</Button>} style={{minWidth: '200px'}}>
+                <Card configurable title="2ND" areaWidth={6} spanWidth={3} footerActions={<Button isToggleable onClick={() => console.log('Clicked')}>Action</Button>} style={{minWidth: '200px'}}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '130px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
