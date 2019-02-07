@@ -6,6 +6,7 @@ import './style.css';
 export default class TextInput extends Component {
   static propTypes = {
     disabled: PropTypes.bool,
+    id: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.string,
     placeholder: PropTypes.string,
@@ -56,6 +57,7 @@ export default class TextInput extends Component {
       onBlur,
       clearInput,
       props: {
+        id,
         label,
         placeholder,
         disabled,
@@ -69,13 +71,17 @@ export default class TextInput extends Component {
     } = this;
 
     return (
-      <label className="text-input-root-label">
+      <React.Fragment>
         {label && (
-          <p className={`text-input-label${theme ? ''+theme : ''}`}>
+          <label
+            className={`text-input-root-label${theme ? ''+theme : ''}`}
+            htmlFor={id ? id : 'text-input'}
+          >
             {label}
-          </p>
+          </label>
         )}
         <input
+          id={id ? id : 'text-input'}
           className={`text-input-field${theme ? ''+theme : ''}${clearable ? ' clearable' : ''}`}
           style={{ ...style }}
           disabled={disabled}
@@ -86,13 +92,16 @@ export default class TextInput extends Component {
           onBlur={onBlur}
           spellCheck={false}
         />
-        {clearable && value && (<button
+        { clearable && value && (
+          <button
             className={`clear-button`}
             onClick={clearInput}
           >
             <img src={Cancel} alt="clear"/>
-          </button>)}
-      </label>
+          </button>
+          )
+        }
+      </React.Fragment>
     );
   }
 }
