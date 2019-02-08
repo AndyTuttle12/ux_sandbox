@@ -6,6 +6,7 @@ export default class TextArea extends Component {
   static propTypes = {
     disabled: PropTypes.bool,
     label: PropTypes.string,
+    id: PropTypes.string,
     value: PropTypes.string,
     rows: PropTypes.number,
     columms: PropTypes.number,
@@ -38,6 +39,7 @@ export default class TextArea extends Component {
       props: {
         label,
         value,
+        id,
         rows,
         columns,
         readOnly,
@@ -51,10 +53,18 @@ export default class TextArea extends Component {
     } = this;
 
     return (
-      <label>
-        {label && (<p className={`text-area-label${theme ? ''+theme : ''}`}>{label}</p>)}
+      <React.Fragment>
+        {label && (
+          <label
+            className={`text-area-label${theme ? ''+theme : ''}`}
+            htmlFor={id ? id : 'text-area'}
+          >
+            {label}
+          </label>
+        )}
         <textarea
           className={`text-area-root${theme ? ''+theme : ''}`}
+          id={id ? id : 'text-area'}
           disabled={disabled}
           value={value}
           rows={rows}
@@ -66,7 +76,7 @@ export default class TextArea extends Component {
           onBlur={onBlur}
           style={{...style, resize: resize }}
         />
-      </label>
+      </React.Fragment>
     );
   }
 }
