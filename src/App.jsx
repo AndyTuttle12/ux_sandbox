@@ -156,7 +156,6 @@ class App extends Component {
                   action={'action'}
                   submitForm={() => this.submitForm()}
                   formValues={this.state.formValues}
-                  style={{ height: '60px', position: 'relative' }}
                 >
                   <TextInput placeholder="An Input" onChange={() => {}} onBlur={(e) => this.updateForm({input: e.target.value})} clearable={true} clearInput={() => console.log('CLEAR')}></TextInput>
                   <NumberInput onChange={(e) => this.updateForm({ number: Number(e.target.value) })}/>
