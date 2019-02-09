@@ -6,6 +6,7 @@ export default class NumberInput extends Component {
   static propTypes = {
     disabled: PropTypes.bool,
     label: PropTypes.string,
+    id: PropTypes.string,
     value: PropTypes.string,
     min: PropTypes.number,
     max: PropTypes.number,
@@ -39,6 +40,7 @@ export default class NumberInput extends Component {
       onChange,
       props: {
         label,
+        id,
         min,
         max,
         step,
@@ -56,14 +58,18 @@ export default class NumberInput extends Component {
     } = this;
 
     return (
-      <label className="number-input-root-label">
+      <React.Fragment>
         {label && (
-          <p className={`number-input-label${theme ? ''+theme : ''}`}>
+          <label
+            htmlFor={id ? id : 'number-input'}
+            className={`number-input-label${theme ? ''+theme : ''}`}
+          >
             {label}
-          </p>
+          </label>
         )}
         <input
           type="number"
+          id={id ? id : 'number-input'}
           className={`number-input-field${theme ? ''+theme : ''}`}
           style={{ ...style }}
           disabled={disabled}
@@ -77,7 +83,7 @@ export default class NumberInput extends Component {
           readOnly={readOnly}
           onChange={onChange}
         />
-      </label>
+      </React.Fragment>
     );
   }
 }
