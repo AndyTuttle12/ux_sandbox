@@ -1,0 +1,15 @@
+.carousel-root {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: none;
+}
+
+.carousel-items {
+  width: fit-content;
+  height: 100%;
+  scroll-snap-type: mandatory;
+  display: flex;
+}

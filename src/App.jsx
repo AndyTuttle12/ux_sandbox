@@ -18,6 +18,7 @@ import Modal from './components/Modal';
 import icon from './components/NavPanel/images/placeholderApp.svg';
 import InfiniteScroll from './components/InfiniteScroll';
 import Form from './components/Form';
+import Carousel from './components/Carousel';
 
 class App extends Component {
   constructor(props) {
@@ -198,7 +199,16 @@ class App extends Component {
                   </div>
                 )}
               </Card>
-
+              <Card configurable title="Card with Carousel" spanWidth={12} style={{minWidth: '200px'}}>
+                <Carousel>
+                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>One</div>
+                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Two</div>
+                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Three</div>
+                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Four</div>
+                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Five</div>
+                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Six</div>
+                </Carousel>
+              </Card>
               <CardArea spanWidth={6} collapsible direction="row">
                 <Card configurable title="1ST" areaWidth={6} spanWidth={3} footerText="Testing text." style={{minWidth: '200px'}}>
                   <p>Content</p>
