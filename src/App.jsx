@@ -201,12 +201,36 @@ class App extends Component {
               </Card>
               <Card configurable title="Card with Carousel" spanWidth={12} style={{minWidth: '200px'}}>
                 <Carousel>
-                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>One</div>
-                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Two</div>
-                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Three</div>
-                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Four</div>
-                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Five</div>
-                  <div style={{ width: '300px', height: '300px', backgroundColor: '#777', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Six</div>
+                  <div
+                    className="carousel-item"
+                  >
+                    One
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    Two
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    Three
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    Four
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    Five
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    Six
+                  </div>
                 </Carousel>
               </Card>
               <CardArea spanWidth={6} collapsible direction="row">

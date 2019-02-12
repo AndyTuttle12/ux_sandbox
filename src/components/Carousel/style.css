@@ -10,6 +10,6 @@
 .carousel-items {
   width: fit-content;
   height: 100%;
-  scroll-snap-type: mandatory;
   display: flex;
+  scroll-snap-type: y mandatory;
 }
