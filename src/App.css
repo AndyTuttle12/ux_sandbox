@@ -61,14 +61,12 @@ form {
 }
 
 .carousel-item {
-  width: 300px;
+  width: 1384px;
   height: 300px;
   background-color: #777;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  scroll-snap-type: mandatory;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }

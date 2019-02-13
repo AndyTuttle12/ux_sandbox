@@ -11,5 +11,5 @@
   width: fit-content;
   height: 100%;
   display: flex;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: x mandatory;
 }
