@@ -8,8 +8,9 @@
 }
 
 .carousel-items {
-  width: fit-content;
   height: 100%;
   display: flex;
+  overflow-x: scroll;
+  scroll-padding: 0 50%;
   scroll-snap-type: x mandatory;
 }

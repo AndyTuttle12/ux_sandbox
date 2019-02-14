@@ -41,8 +41,10 @@ export default class TextInput extends Component {
   onBlur = (e) => {
     if (this.props.updateForm) {
       this.props.updateForm({ input: e.target.value });
-    } else {
+    } else if (this.props.onBlur) {
       this.props.onBlur(e);
+    } else {
+      console.log('Leaving input');
     }
   }
 
