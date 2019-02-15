@@ -59,13 +59,3 @@ form {
   font-size: .5em;
   font-style: italic;
 }
-
-.carousel-item {
-  width: 280px;
-  height: 280px;
-  margin: 10px;
-  background-color: #777;
-  color: #fff;
-  scroll-snap-align: start;
-  display: inline-block;
-}

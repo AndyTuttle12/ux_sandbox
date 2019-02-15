@@ -9,8 +9,21 @@
 
 .carousel-items {
   height: 100%;
+  width: 100%;
   display: flex;
+  flex-wrap: nowrap;
   overflow-x: scroll;
-  scroll-padding: 0 50%;
   scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+}
+
+.carousel-item {
+  width: 280px;
+  min-width: 280px;
+  height: 280px;
+  margin: 10px;
+  background-color: #777;
+  color: #fff;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }

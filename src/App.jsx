@@ -200,38 +200,16 @@ class App extends Component {
                 )}
               </Card>
               <Card configurable title="Card with Carousel" spanWidth={12} style={{minWidth: '200px'}}>
-                <Carousel>
-                  <div
-                    className="carousel-item"
-                  >
-                    One
-                  </div>
-                  <div
-                    className="carousel-item"
-                  >
-                    Two
-                  </div>
-                  <div
-                    className="carousel-item"
-                  >
-                    Three
-                  </div>
-                  <div
-                    className="carousel-item"
-                  >
-                    Four
-                  </div>
-                  <div
-                    className="carousel-item"
-                  >
-                    Five
-                  </div>
-                  <div
-                    className="carousel-item"
-                  >
-                    Six
-                  </div>
-                </Carousel>
+                <Carousel
+                  items={[
+                    'One',
+                    'Two',
+                    'Three',
+                    'Four',
+                    'Five',
+                    'Six',
+                  ]}
+                />
               </Card>
               <CardArea spanWidth={6} collapsible direction="row">
                 <Card configurable title="1ST" areaWidth={6} spanWidth={3} footerText="Testing text." style={{minWidth: '200px'}}>
