@@ -5,7 +5,7 @@ import './style.css';
 export default class Carousel extends Component {
   static propTypes = {
     children: PropTypes.any,
-    items: PropTypes.instanceOf('Array'),
+    items: PropTypes.instanceOf(Array),
   }
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ export default class Carousel extends Component {
       <div className="carousel-root">
         <div className="carousel-items">
           {items && items.map(item => (
-            <div className="carousel-item">{item}</div>
+            <div key={item} className="carousel-item">{item}</div>
           ))}
           {children}
         </div>

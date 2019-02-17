@@ -19,11 +19,14 @@
 
 .carousel-item {
   width: 280px;
-  min-width: 280px;
-  height: 280px;
+  min-width: 180px;
+  height: 180px;
   margin: 10px;
   background-color: #777;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-behavior: smooth;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }

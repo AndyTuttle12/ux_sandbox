@@ -208,6 +208,10 @@ class App extends Component {
                     'Four',
                     'Five',
                     'Six',
+                    'Seven',
+                    'Eight',
+                    'Nine',
+                    'Ten',
                   ]}
                 />
               </Card>
