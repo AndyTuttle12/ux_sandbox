@@ -19,8 +19,8 @@
 
 .carousel-item {
   width: 280px;
-  min-width: 180px;
-  height: 180px;
+  min-width: calc(100% - 10px);
+  height: 220px;
   margin: 10px;
   background-color: #777;
   color: #fff;

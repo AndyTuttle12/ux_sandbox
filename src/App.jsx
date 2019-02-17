@@ -151,7 +151,7 @@ class App extends Component {
           </header>
           <div className="App-body">
             <CardDashboard title="Test Dashboard">
-              <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={12} spanHeight={2} collapsible configurable>
+              <Card title="Cards can be anywhere from 1-12 units wide." spanWidth={6} spanHeight={2} collapsible configurable>
                 <p>They can be any amount high, just based on the child content.</p>
                 <Form
                   action={'action'}
@@ -185,11 +185,11 @@ class App extends Component {
                   </div>
                 </Form>
                 <Tabs opentab={(name) => this.setTab(name)} selectedTab={tab} names={['1', '2', '3']} />
-                {tab === null && (<div style={{ width: '100%', height: '20px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
-                {tab === '1' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 1 content</div>)}
-                {tab === '2' && (<div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>This is tab 2 content</div>)}
+                {tab === null && (<div style={{ width: '100%', height: '100px', backgroundColor: '#777', color: '#fff'}}>Default content if no tab is selected.</div>)}
+                {tab === '1' && (<div style={{ width: '100%', height: '100px', backgroundColor: '#777', color: '#fff'}}>This is tab 1 content</div>)}
+                {tab === '2' && (<div style={{ width: '100%', height: '100px', backgroundColor: '#777', color: '#fff'}}>This is tab 2 content</div>)}
                 {tab === '3' && (
-                  <div style={{ width: '100%', height: '120px', backgroundColor: '#777', color: '#fff'}}>
+                  <div style={{ width: '100%', height: '100px', backgroundColor: '#777', color: '#fff'}}>
                     This is tab 3 content
                     <Button
                       onClick={() => this.setState({tab: '1'})}
@@ -199,7 +199,7 @@ class App extends Component {
                   </div>
                 )}
               </Card>
-              <Card configurable title="Card with Carousel" spanWidth={12} style={{minWidth: '200px'}}>
+              <Card configurable title="Card with Carousel" spanWidth={6} style={{minWidth: '200px'}}>
                 <Carousel
                   items={[
                     'One',
