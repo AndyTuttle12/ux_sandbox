@@ -92,7 +92,7 @@ export default class Card extends Component {
         {(context) => (
           <Fragment>
             <div
-              className={`card-root${theme ? ''+theme : ''}`}
+              className={`card-root${theme ? ' '+theme : ''}`}
               context={context}
               style={{
                 ...style,
@@ -102,37 +102,44 @@ export default class Card extends Component {
                 marginLeft: `calc(${(settings.offsetWidth/settings.areaWidth || settings.offsetWidth/12) * 100 + '%' || 'auto' } - 10px )`,
               }}
             >
-              <div className={`card-header${theme ? ''+theme : ''}`}>
-                {settings.title && (
-                  <span className={`card-title${theme ? ''+theme : ''}`}>{settings.title}</span>
-                )}
-                <div className="header-actions">
-                  {configurable && (
-                    <button
-                      className={`card-btn${theme ? ''+theme : ''} config-btn`}
-                      onClick={handleConfigure}
-                    >
-                      <img src={Gear} alt="configure" />
-                    </button>
+              {(settings.title || configurable || settings.collapsible) && (
+                <div className={`card-header${theme ? ' '+theme : ''}`}>
+                  {settings.title && (
+                    <span className={`card-title${theme ? ' '+theme : ''}`}>{settings.title}</span>
                   )}
-                  {settings.collapsible && (
-                    <button
-                      className={`card-btn${theme ? ''+theme : ''}${!collapsed?' close':' open'}-btn`}
-                      onClick={handleCollapsed}
-                    >
-                      <img src={Arrow} alt="collapse" />
-                    </button>
-                  )}
+                  <div className="header-actions">
+                    {configurable && (
+                      <button
+                        className={`card-btn${theme ? ' '+theme : ''} config-btn`}
+                        onClick={handleConfigure}
+                      >
+                        <img src={Gear} alt="configure" />
+                      </button>
+                    )}
+                    {settings.collapsible && (
+                      <button
+                        className={`card-btn${theme ? ' '+theme : ''}${!collapsed?' close':' open'}-btn`}
+                        onClick={handleCollapsed}
+                      >
+                        <img src={Arrow} alt="collapse" />
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
               {!collapsed && (
                 <React.Fragment>
-                  <div className={`card-body${theme ? ''+theme : ''}`} style={{ height: `calc(100% - ${(footerActions || settings.footerText) ? '60px': '30px'}`}}>
+                  <div
+                    className={`card-body${theme ? ' '+theme : ''}`}
+                    style={{
+                      height: `calc(100% - ${(footerActions || settings.footerText) ? '60px': '30px'} + ${(settings.title || configurable || settings.collapsible) ? '0px' : '30px'}`
+                    }}
+                  >
                     {children}
                   </div>
-                  <div className={`card-footer${theme ? ''+theme : ''}`} style={{ height: `${(footerActions || settings.footerText) ? '30px': '0px'}`}}>
-                    <div className={`footer-text${theme ? ''+theme : ''}`}>{settings.footerText}</div>
-                    <div className={`footer-actions${theme ? ''+theme : ''}`}>{footerActions}</div>
+                  <div className={`card-footer${theme ? ' '+theme : ''}`} style={{ height: `${(footerActions || settings.footerText) ? '30px': '0px'}`}}>
+                    <div className={`footer-text${theme ? ' '+theme : ''}`}>{settings.footerText}</div>
+                    <div className={`footer-actions${theme ? ' '+theme : ''}`}>{footerActions}</div>
                   </div>
                 </React.Fragment>
               )}

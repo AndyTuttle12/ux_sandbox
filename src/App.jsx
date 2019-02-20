@@ -226,20 +226,20 @@ class App extends Component {
                 </Card>
                 <Card configurable title="3RD" areaWidth={6} spanWidth={2}>
                   <p>Some content</p>
-                  <div style={{ width: '100%', height: '200px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  <div style={{ width: '100%', height: '170px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
                 <Card configurable title="4TH" areaWidth={6} spanWidth={4}>
                   <p>Some content</p>
-                  <div style={{ width: '100%', height: '200px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
+                  <div style={{ width: '100%', height: '170px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
               </CardArea>
 
               <CardArea spanWidth={6} direction="row">
-                <Card configurable title="5TH" areaWidth={6} spanWidth={2}>
+                <Card areaWidth={6} spanWidth={2}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '34px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
-                <Card configurable title="6TH" areaWidth={6} spanWidth={4}>
+                <Card areaWidth={6} spanWidth={4}>
                   <p>Some content</p>
                   <div style={{ width: '100%', height: '34px', backgroundColor: '#777', color: '#fff'}}>Some content</div>
                 </Card>
